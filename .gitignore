@@ -1,0 +1,5 @@
+# Project exclude paths
+/theta-common/target/
+/theta-core/target/
+/theta-segment/target/
+/theta-utils/target/
