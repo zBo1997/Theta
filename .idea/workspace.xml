@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="108d9fd3-ad94-427c-97dc-362a7c83e4a6" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Python Script" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.2.8.RELEASE/spring-context-5.2.8.RELEASE.jar!/org/springframework/context/annotation/FullyQualifiedAnnotationBeanNameGenerator.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_241/src.zip!/java/beans/Introspector.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/Tool/maven_repo/com/scenetec/zeus/cloud/zeus-sequence/1.2.7-zeus-micro-SNAPSHOT/zeus-sequence-1.2.7-zeus-micro-20211020.012154-3-sources.jar!/com/scenetec/zeus/sequence/config/SequenceAutoConfiguration.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.2.8.RELEASE/spring-beans-5.2.8.RELEASE.jar!/org/springframework/beans/factory/support/BeanDefinitionReaderUtils.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/Tool/maven_repo/io/shardingsphere/sharding-jdbc-spring-boot-starter/3.1.0/sharding-jdbc-spring-boot-starter-3.1.0-sources.jar!/io/shardingsphere/shardingjdbc/spring/boot/SpringBootConfiguration.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/Tool/maven_repo/com/aliyun/aliyun-java-sdk-core/4.6.0/aliyun-java-sdk-core-4.6.0.jar!/com/aliyuncs/DefaultAcsClient.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/Tool/maven_repo/org/springframework/boot/spring-boot-autoconfigure/2.3.2.RELEASE/spring-boot-autoconfigure-2.3.2.RELEASE.jar!/org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.2.8.RELEASE/spring-context-5.2.8.RELEASE.jar!/org/springframework/context/annotation/AnnotationScopeMetadataResolver.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.2.8.RELEASE/spring-context-5.2.8.RELEASE.jar!/org/springframework/context/annotation/ScopeMetadata.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.2.8.RELEASE/spring-beans-5.2.8.RELEASE.jar!/org/springframework/beans/factory/support/BeanNameGenerator.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.2.8.RELEASE/spring-context-5.2.8.RELEASE.jar!/org/springframework/context/annotation/AnnotationConfigUtils.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.2.8.RELEASE/spring-beans-5.2.8.RELEASE.jar!/org/springframework/beans/factory/support/BeanDefinitionRegistry.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.2.8.RELEASE/spring-context-5.2.8.RELEASE.jar!/org/springframework/context/annotation/AnnotationBeanNameGenerator.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.2.8.RELEASE/spring-core-5.2.8.RELEASE.jar!/org/springframework/core/type/AnnotatedTypeMetadata.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/Tool/maven_repo/com/alibaba/druid-spring-boot-starter/1.1.22/druid-spring-boot-starter-1.1.22-sources.jar!/com/alibaba/druid/spring/boot/autoconfigure/DruidDataSourceAutoConfigure.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/Tool/maven_repo/org/springframework/spring-jdbc/5.2.8.RELEASE/spring-jdbc-5.2.8.RELEASE.jar!/org/springframework/jdbc/datasource/DataSourceTransactionManager.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.2.8.RELEASE/spring-core-5.2.8.RELEASE.jar!/org/springframework/core/annotation/AnnotationAttributes.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.2.8.RELEASE/spring-context-5.2.8.RELEASE.jar!/org/springframework/context/annotation/ScopeMetadataResolver.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.2.8.RELEASE/spring-beans-5.2.8.RELEASE.jar!/org/springframework/beans/factory/support/DefaultBeanNameGenerator.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/Tool/maven_repo/org/springframework/spring-context/5.2.8.RELEASE/spring-context-5.2.8.RELEASE.jar!/org/springframework/context/ApplicationContextAware.class" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="24OpTDzheelKiaPDLCtCG6sMgvH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/theta-core/src/main/java/com/momo/theta/core" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="yiiguxing.plugin.translate" />
+  </component>
+  <component name="ReaderModeSettings">
+    <option name="enabled" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="api" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zhubo\IdeaProjects\Theta\theta-core\src\main\java\com\momo\theta\core" />
+      <recent name="C:\Users\zhubo\IdeaProjects\Theta\theta-segment\src\main\java\com\momo\theta\sequence\segment" />
+      <recent name="C:\Users\zhubo\IdeaProjects\Theta\theta-utils\src\main\java\com\momo\theta\utils\date" />
+      <recent name="C:\Users\zhubo\IdeaProjects\Theta\theta-common\src\main\java\com\momo\theta\commom\enums" />
+      <recent name="C:\Users\zhubo\IdeaProjects\Theta\theta-utils\src\main\java\com\momo\theta\utils" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.momo.theta.segment.domain" />
+      <recent name="com.momo.theta.sequence.api.generator" />
+      <recent name="com.momo.theta.sequence.count" />
+      <recent name="com.momo.theta.sequence.segments" />
+      <recent name="com.momo.theta.sequence.config" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringBootOptions">
+    <option name="showAdditionalConfigNotification" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\zhubo\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="108d9fd3-ad94-427c-97dc-362a7c83e4a6" name="Changes" comment="" />
+      <created>1643511494192</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1643511494192</updated>
+      <workItem from="1643511496859" duration="6850000" />
+      <workItem from="1643518733603" duration="1311000" />
+      <workItem from="1643520123618" duration="4810000" />
+      <workItem from="1643597852094" duration="4580000" />
+      <workItem from="1643602725444" duration="2121000" />
+      <workItem from="1643604929698" duration="194000" />
+      <workItem from="1643605278774" duration="909000" />
+      <workItem from="1643709060518" duration="17767000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+</project>

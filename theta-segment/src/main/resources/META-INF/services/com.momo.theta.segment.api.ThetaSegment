@@ -1,0 +1,6 @@
+com.momo.theta.segment.segments.DateSegmentGenerator
+com.momo.theta.segment.segments.FixedStringSegmentGenerator
+com.momo.theta.segment.segments.HashSegmentGenerator
+com.momo.theta.segment.segments.RandomStringSegmentGenerator
+com.momo.theta.segment.segments.SubStringSegmentGenerator
+com.momo.theta.segment.segments.VariableSequenceSegmentGenerator

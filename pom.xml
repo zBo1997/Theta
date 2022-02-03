@@ -13,6 +13,7 @@
         <module>theta-utils</module>
         <module>theta-common</module>
         <module>theta-core</module>
+        <module>theta-base</module>
     </modules>
 
     <properties>
