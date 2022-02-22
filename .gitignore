@@ -3,3 +3,6 @@
 /theta-core/target/
 /theta-segment/target/
 /theta-utils/target/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
