@@ -19,6 +19,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.Properties;
@@ -32,7 +33,7 @@ public class SequenceAutoConfiguration implements ApplicationContextAware {
 
     public static BeanDefinitionRegistry registry;
 
-    @Autowired
+    @Resource
     private ThetaSegmentConfig thetaSegmentConfig;
 
     private ScopeMetadataResolver scopeMetadataResolver = new AnnotationScopeMetadataResolver();
@@ -44,7 +45,7 @@ public class SequenceAutoConfiguration implements ApplicationContextAware {
     /**
      * 接受分页插件额外的属性
      *
-     * @return
+     * @return 返回分页插件的配置属性
      */
     @Bean
     @ConfigurationProperties(prefix = "theta.sequence")
@@ -52,6 +53,11 @@ public class SequenceAutoConfiguration implements ApplicationContextAware {
         return new Properties();
     }
 
+    /**
+     * 使用当前数据源进行配置，和进行事务管理器{@link DataSourceTransactionManager}
+     * @param dataSource
+     * @return
+     */
     @Bean
     public Object generateSequenceBeans(DataSource dataSource) {
         //获取Spring的事物管理器

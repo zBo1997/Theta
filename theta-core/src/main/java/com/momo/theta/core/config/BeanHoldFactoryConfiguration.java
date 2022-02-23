@@ -8,7 +8,7 @@ public class BeanHoldFactoryConfiguration {
 
     /**
      * 默认自动注入 SpringContextHolder
-     * @return
+     * @return 返回自定义的Spring上下文
      */
     @Bean
     public SpringContextHolder beanHoldFactory() {

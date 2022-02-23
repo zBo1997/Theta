@@ -15,10 +15,10 @@ public class ThetaServiceFactory {
     private final static Logger logger = LoggerFactory.getLogger(ThetaServiceFactory.class);
 
     /**
-     *
-     * @param type
-     * @param classType
-     * @param <T>
+     * 根据类型获取Bean
+     * @param type 类型
+     * @param classType classType类型
+     * @param <T> 指定的泛型
      * @return
      */
     public static <T> T getService(String type, Class<T> classType) {
