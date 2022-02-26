@@ -19,6 +19,9 @@ import java.sql.*;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * 多服务节点数据库Sequence生成Generator
+ */
 public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
 
     private static final Logger LOG = LoggerFactory.getLogger(DbNumberSequenceGenerator.class);
@@ -232,14 +235,18 @@ public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
     @Override
     public String getSequence() {
         String numberSequence = "";
+        //对象头的锁，是为了防止多线程访问的问题
         synchronized (lock) {
             boolean getFromServer = true;
             if (StringUtils.hasText(resetCronExp)) {
+                //通过表达式获取获取下次需要重置的时间
                 Date nextComparedTime = exp.getNextValidTimeAfter(lastUsedTime);
+                //判断当前是否满足满足重置时间。
                 if (new Date().compareTo(nextComparedTime) >= 0) {
                     getFromServer = false;
                 }
             }
+            //如果不满足重置时间并且当前的可sequence就进行当前“计数”累加
             if (getFromServer && (currentSequenceInServer < maxSequenceInServer)) {
                 currentSequenceInServer = currentSequenceInServer + 1L;
                 numberSequence = currentSequenceInServer + "";
@@ -279,7 +286,7 @@ public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
             DbSequenceConfig config = getSequenceConfig(connection);
             long currentInDb = config.getCurrent();
             long maximumInDb = config.getMaximum();
-
+            //按照对应的step的步长进行自增
             long nextMaxInServer = currentInDb + step;
 
             if (nextMaxInServer <= maximumInDb) {
@@ -290,6 +297,7 @@ public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
                 // nextMaxInServer not available
                 // 序列号即将用完,重置循环使用
                 // 这种处理方式也不是很好 FIXME
+                // 这里step
                 currentSequenceInServer = minSequenceValue;
                 maxSequenceInServer = step;
             }
@@ -719,7 +727,9 @@ public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
         prepareSql(databaseName, currentSequenceKey, maximumSequenceKey, idKey, tableName);
         checkDbSequence();
         if (StringUtils.hasText(resetCronExp)) {
+            //构造出一个指定的时间表达式
             exp = new CronExpression(resetCronExp);
+            //默认的重置时间的也就是当前时间
             lastUsedTime = new Date();
         }
         getSequenceBatchFromDb();

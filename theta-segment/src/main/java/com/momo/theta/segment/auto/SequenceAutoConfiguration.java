@@ -55,7 +55,7 @@ public class SequenceAutoConfiguration implements ApplicationContextAware {
 
     /**
      * 使用当前数据源进行配置，和进行事务管理器{@link DataSourceTransactionManager}
-     * @param dataSource
+     * @param dataSource 当前项目中使用的数据源
      * @return
      */
     @Bean
