@@ -101,7 +101,7 @@ C -->|未重置| E[当前序列号步长+1]
 public class Theta{
     
   public static void main(String[] args) {
-    Sequence sequence = new Sequence("rebateOrderSequence");
+    Sequence sequence = new Sequence("myCompositeString");
     String sequence = sequence.getSequence("myCompositeString");
     System.out.println(sequence);//当前生成的数据序列号
   }

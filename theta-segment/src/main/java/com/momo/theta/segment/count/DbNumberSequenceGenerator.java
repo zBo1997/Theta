@@ -563,11 +563,11 @@ public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
     /**
      * 根据数据库类型和配置准备查询语句和更新语句
      *
-     * @param databaseName
-     * @param currentSequenceKey
-     * @param maximumSequenceKey
-     * @param idKey
-     * @param tableName
+     * @param databaseName 数据库名称
+     * @param currentSequenceKey 当前序列
+     * @param maximumSequenceKey 最大序列
+     * @param idKey 配置主键
+     * @param tableName 表明你
      */
     private void prepareSql(String databaseName, String currentSequenceKey, String maximumSequenceKey, String idKey,
                             String tableName) {
@@ -726,6 +726,7 @@ public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
         String databaseName = resolveDatabaseName();
         prepareSql(databaseName, currentSequenceKey, maximumSequenceKey, idKey, tableName);
         checkDbSequence();
+        //如果有重置的Cron表达式，就设置为自定义cron表达式
         if (StringUtils.hasText(resetCronExp)) {
             //构造出一个指定的时间表达式
             exp = new CronExpression(resetCronExp);
