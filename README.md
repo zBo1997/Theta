@@ -19,7 +19,7 @@
 *Theta*的核心就是这张表
 其中包括了：    
 当前序列号的步长 ==> `step`
-当前变送hi ==> `currentSequenceInServer`
+当前服务节点编号 ==> `currentSequenceInServer`
 当前序列号的步长 ==> `maxSequenceInServer`
 当前序列号的步长 ==> `lastUsedTime`
 
@@ -111,18 +111,18 @@ public class Theta{
 ```
 
 - **Theta 后续和现在需要解决的问题**   
-  因为Theta需要搭配一些分裤分表的组件来使用，所以Theta后续要做的就是整合SharingJDBC,或者MyCat这种分库分表的工具
+  因为Theta需要搭配一些分库分表的组件来使用，所以Theta后续要做的就是整合SharingJDBC,或者MyCat这种分库分表的工具
   所以后续，我会整合这两个组件，方便用户使用，和对应相应生成组件配合ShardingJDBC多数据源下寻找对应的数据，为了完
-  成这些整合，会新的module下进行编写。
+  成这些整合，会再新的module下进行编写可能叫`theta-sharing`,希望有志青年一起来完善Theta。
 
   - **Theta的实机结果**  
   这是一台8核16G的一台ESC云主机。在目前这种主机运行情况下的
   ![头](img/202201071453430.jpg)
   ![尾](img/202201071453441.jpg)  
-  在目前太机器的访问的一台MySQl的Theta 还没有出现重复主键的问题，但是目前Theta还没有和美团Leaf一样机进行，解决闰秒  
-  的问题。这也是Theta手续需要解决的问题
+  在目前太机器的访问的一台MySQL的Theta 还没有出现重复主键的问题，但是目前Theta还没有和模仿美团Leaf进行解决闰秒  
+  的问题。这也是Theta后续需要解决的问题
 - **特别鸣谢** 
-  1、Spring 
+  1、Spring 5.0
   2、ShardingSphere
   3、MySQL
   ......
