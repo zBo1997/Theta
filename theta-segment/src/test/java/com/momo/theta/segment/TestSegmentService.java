@@ -1,7 +1,6 @@
 package com.momo.theta.segment;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author momo
@@ -9,9 +8,7 @@ import org.junit.Test;
  */
 public class TestSegmentService {
 
-    @Before
-    public void init() {
-    }
+
 
     @Test
     public void sendMsg() {
