@@ -12,7 +12,6 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.momo.basic</groupId>
     <artifactId>theta</artifactId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
@@ -52,7 +51,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.momo.basic</groupId>
-                <artifactId>lamp-core</artifactId>
+                <artifactId>theta-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
