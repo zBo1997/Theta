@@ -16,7 +16,7 @@ log.path_IS_UNDEFINED
 .springBeans
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
