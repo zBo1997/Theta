@@ -45,6 +45,13 @@ public class SpringContextHolder implements ApplicationContextAware {
     }
 
     /**
+     * 指定名称和类型返回指定的对象
+     */
+    public static <T> T getBean(String name, Class<T> requiredType) {
+        return applicationContext.getBean(name, requiredType);
+    }
+
+    /**
      * 清除applicationContext静态变量.
      */
     public static void cleanApplicationContext() {

@@ -8,19 +8,39 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="theta-core" />
-        <module name="theta-base" />
-        <module name="theta-utils" />
         <module name="theta-common" />
         <module name="theta-segment" />
+        <module name="theta-mq" />
+        <module name="theta-base" />
+        <module name="theta-utils" />
+        <module name="theta-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Theta" target="1.8" />
-      <module name="theta-base" target="1.8" />
-      <module name="theta-common" target="1.8" />
-      <module name="theta-core" target="1.8" />
-      <module name="theta-segment" target="1.8" />
-      <module name="theta-utils" target="1.8" />
+      <module name="Theta" target="8" />
+      <module name="theta-base" target="8" />
+      <module name="theta-common" target="8" />
+      <module name="theta-core" target="8" />
+      <module name="theta-debug" target="8" />
+      <module name="theta-demo" target="1.8" />
+      <module name="theta-mq" target="8" />
+      <module name="theta-parent" target="8" />
+      <module name="theta-segment" target="8" />
+      <module name="theta-utils" target="8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Theta" options="" />
+      <module name="theta-base" options="-parameters" />
+      <module name="theta-common" options="-parameters" />
+      <module name="theta-core" options="-parameters" />
+      <module name="theta-debug" options="-parameters" />
+      <module name="theta-demo" options="-parameters" />
+      <module name="theta-mq" options="-parameters" />
+      <module name="theta-parent" options="" />
+      <module name="theta-segment" options="-parameters" />
+      <module name="theta-utils" options="-parameters" />
+    </option>
   </component>
 </project>

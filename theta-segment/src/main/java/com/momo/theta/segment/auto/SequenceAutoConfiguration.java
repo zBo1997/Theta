@@ -26,7 +26,8 @@ import java.util.Properties;
 
 @Slf4j
 @Configuration
-@EnableConfigurationProperties(ThetaSegment.class)
+@EnableConfigurationProperties(ThetaSegmentConfig.class)
+@ComponentScan("com.momo.theta.segment.config")
 @ConditionalOnProperty(name = "available", prefix = "theta.sequence", havingValue = "true")
 public class SequenceAutoConfiguration implements ApplicationContextAware {
 
@@ -54,6 +55,7 @@ public class SequenceAutoConfiguration implements ApplicationContextAware {
 
     /**
      * 使用当前数据源进行配置，和进行事务管理器{@link DataSourceTransactionManager}
+     *
      * @param dataSource 当前项目中使用的数据源
      * @return
      */
@@ -91,6 +93,7 @@ public class SequenceAutoConfiguration implements ApplicationContextAware {
 
     /**
      * 动态获取Segment的具体实例
+     *
      * @param registry
      * @param name
      * @param beanClass

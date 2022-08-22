@@ -30,7 +30,7 @@ public class VariableSequenceSegmentGenerator implements VariableSegmentGenerato
     private List<String> patternList = new ArrayList<String>();// 追加变量值
 
     @Override
-    public String getStringSegment(Map<String, String> args) {
+    public String getStringSequence(Map<String, String> args) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < appendList.size(); i++) {
             sb.append(appendList.get(i));

@@ -53,7 +53,7 @@ public class HashSegmentGenerator implements VariableSegmentGenerator {
 
 
     @Override
-    public String getStringSegment(Map<String, String> args) {
+    public String getStringSequence(Map<String, String> args) {
         String originalSequence = null;
         if(!StringUtils.isEmpty(defaultValueField)){
             Object defaultValue = args.get(defaultValueField);

@@ -20,7 +20,7 @@ public class SubStringSegmentGenerator implements VariableSegmentGenerator {
     private int length = 0;
 
     @Override
-    public String getStringSegment(Map<String, String> args) {
+    public String getStringSequence(Map<String, String> args) {
         String string = args.get(stringField);
         String originalSequence = string.substring(start, end);
         String segmentString = originalSequence;

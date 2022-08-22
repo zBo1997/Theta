@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.momo.theta.mq.config.RocketMQProducerConfig,com.momo.theta.mq.config.RocketMQConsumerConfig

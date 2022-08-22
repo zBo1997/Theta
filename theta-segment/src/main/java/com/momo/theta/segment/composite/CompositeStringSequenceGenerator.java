@@ -38,7 +38,7 @@ public class CompositeStringSequenceGenerator implements ThetaSegment {
         for (ThetaSegment ThetaSegment : ThetaSegments) {
             String stringSegment = null;
             if (ThetaSegment instanceof VariableSegmentGenerator) {
-                stringSegment = ((VariableSegmentGenerator) ThetaSegment).getStringSegment(argsMap);
+                stringSegment = ((VariableSegmentGenerator) ThetaSegment).getStringSequence(argsMap);
             } else {
                 stringSegment = ThetaSegment.getSequence();
             }
@@ -62,7 +62,7 @@ public class CompositeStringSequenceGenerator implements ThetaSegment {
             }
             String stringSegment = null;
             if (ThetaSegment instanceof VariableSegmentGenerator) {
-                stringSegment = ((VariableSegmentGenerator) ThetaSegment).getStringSegment(argsMap);
+                stringSegment = ((VariableSegmentGenerator) ThetaSegment).getStringSequence(argsMap);
             } else {
                 stringSegment = ThetaSegment.getSequence();
             }

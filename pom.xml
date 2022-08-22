@@ -54,6 +54,31 @@
                 <artifactId>theta-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-segment</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-mq</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
         </dependencies>
 
     </dependencyManagement>

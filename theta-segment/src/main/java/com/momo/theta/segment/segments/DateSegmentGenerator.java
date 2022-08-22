@@ -32,7 +32,7 @@ public class DateSegmentGenerator implements ThetaSegment {
      */
     @Override
     public String getType() {
-        return "DataSegment";
+        return "dateSegment";
     }
 
 

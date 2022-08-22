@@ -273,6 +273,7 @@ public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
 
         Connection connection = null;
         try {
+            assert dataSource != null;
             connection = DataSourceUtils.getConnection(dataSource);
 
             if (StringUtils.hasText(resetCronExp)) {
@@ -286,7 +287,7 @@ public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
             DbSequenceConfig config = getSequenceConfig(connection);
             long currentInDb = config.getCurrent();
             long maximumInDb = config.getMaximum();
-            //按照对应的step的步长进行自增
+            //按照对应的step的步长进行自增 102 + 100 = 202 max=999999
             long nextMaxInServer = currentInDb + step;
 
             if (nextMaxInServer <= maximumInDb) {
@@ -296,7 +297,7 @@ public class DbNumberSequenceGenerator implements NumberSequenceGenerator {
             } else {
                 // nextMaxInServer not available
                 // 序列号即将用完,重置循环使用
-                // 这种处理方式也不是很好 FIXME
+                // 这种处理方式也不是很好
                 // 这里step
                 currentSequenceInServer = minSequenceValue;
                 maxSequenceInServer = step;
