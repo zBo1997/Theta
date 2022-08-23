@@ -8,20 +8,27 @@
 方便用户扩展，详细后面有会讲到他的使用方法。
 
  - **关于Theta构思：**  
-  首先想到的是使用MySQL基于，MVVC支持的Innodb引擎来维护每次序列号生成的顺序，防止出现重复的
+首先想到的是使用MySQL基于，MVVC支持的Innodb引擎来维护每次序列号生成的顺序，防止出现重复的
 主键。同时我们还需要使用到数据库的事务，当然这也是为了防止出现多个线程，同时操作数据库，每条线程
 使用了重复的序列号。也就是说，每当我们需要生成一个序列号的时候，Theta会帮助我们去调度事务，
-去给用户当前使用的唯一序列号进行自增，也就是说`ThetaSegment`是通过数据库的`X`锁保证了多服务节点的序列号唯一（目前1.0.0的问题如果当前序列号大于了最大时间,Theta
+去给用户当前使用的唯一序列号进行自增，也就是说`ThetaSegment`是通过数据库的`X`锁
+保证了多服务节点的序列号唯一（目前1.0.0的问题如果当前序列号大于了最大时间,Theta
 会帮助我们重置最最大个数的,于此同时为了防止出现问题我们还会判断此时的更新时间，判断当前
 的序列号配置是否再之前被其他线程重置过，当然这个方法不是一个最终的解决办法，我最终可能会按照Leaf
 的双Buffer实现方式继续优化）
 
 *Theta*的核心就是这张表
-其中包括了：    
-当前序列号的步长 ==> `step`
-当前服务节点编号 ==> `currentSequenceInServer`
-当前序列号的步长 ==> `maxSequenceInServer`
-当前序列号的步长 ==> `lastUsedTime`
+其中包括了：
+你可能需要通过这个表来进行控制你想要的segment的大小
+```SQL
+CREATE TABLE `sequence_config` (
+  `ID` varchar(128) NOT NULL,
+  `CURRENT` bigint(20) NOT NULL,
+  `MAXIMUM` varchar(255) NOT NULL,
+  `LAST_UPDATE_TIME` datetime(2) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(2),
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 | 唯一标识 | 当前序列号 | 步长 | 最大序列号数  | 时间  | 更新时间 |
 |:---------:|-------|-------|-------|-----|------|
@@ -67,22 +74,26 @@ D -->|进行生成| F[获取最新无重复的主sequence]
           segmentConfigs:
           - id: date
             type: dateSegment
-            args: {pattern: 'yyyyMMdd'}
+            args: {pattern: 'yyyyMMddHHmmss'}
           - id: db
             type: dbNumberSegment
-            args: {id: 'myDbNumberSegment', maxSequenceValue: '9999999999', length: '10'}
+            args: {id: 'myDbNumberSegment', maxSequenceValue: '2', length: '10',step: '2'}
           - id: type
             type: fixedStringSegment
             args: {segmentString: 'THETA'}
+            # 这里可以通过数据库进行Hash
           - id: databaseIndex
             type: hashSegment
-            args: {length: '2', defaultMod: '2', hashField: 'hashField', defaultValueField: 'databaseDefaultValue'}
+            args: {length: '2', defaultMod: '2', hashField: 'hashField', defaultValueField: 'customerString'}
+            # 这里可以通过表下表进行索引Hash
           - id: tableIndex
             type: hashSegment
             args: {length: '3', defaultMod: '128', hashField: 'hashField', startField: 'tableStart'}
+            # 当前应用的节点编号
           - id: nodeNo
             type: fixedStringSegment
             args: {propertyName: 'nodeNo', length: '1', segmentString: '1'}
+            # 生产一个6位随机数
           - id: random
             type: randomStringSegment
             args: {length: '6'}
@@ -97,16 +108,79 @@ D -->|进行生成| F[获取最新无重复的主sequence]
             args: {pattern: '#{settleBatch}#{userId}#{batchDate}', upperCase: 'true'}
 
  ```
-  接下来，我们就是用熟悉的Java代码就可以就可以使用Theta了。
+  接下来，我们就是用熟悉的Java代码就可以就可以使用Theta了。（由于Theta依托于Spring容器这也是我我的初衷，世基于框架可拔插的，所哟你要使用的时候可能新建一个Spring的Web容器）
+  【像这样】LIKE THIS：
+  - 克隆本项目后，在本项目中新建一个使用maven的demo项目，命名随意并且添加Spring中的相关坐标
+ 
+  ```XML
+      <dependencies>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <!-- 如果数据库服务器是5.7以下版本，驱动建议使用这个版本，如果使用高版本会导致时间问题-->
+            <version>5.1.42</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- JDBC场景启动器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- theta-segment -->
+        <dependency>
+            <groupId>com.momo.basic</groupId>
+            <artifactId>theta-segment</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        
+        <!-- 单元测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+  ```
+  然后在demo项目中的test类中做一个单元测试进行一个简单的调用。
 
 ```java
-public class Theta{
-    
-  public static void main(String[] args) {
-    Sequence sequence = new Sequence("myCompositeString");
-    String sequence = sequence.getSequence("myCompositeString");
-    System.out.println(sequence);//当前生成的数据序列号
-  }
+package com.momo.theta.thetademo;
+
+import com.momo.theta.segment.api.Sequence;
+import com.momo.theta.segment.api.ThetaSegment;
+import com.momo.theta.segment.config.SegmentConfig;
+import com.momo.theta.segment.generator.GenerateSegmentService;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.HashMap;
+
+@SpringBootTest
+class ThetaDemoApplicationTests {
+
+    @Test
+    void contextLoads() {
+        //指定
+        Sequence sequence = new Sequence("myCompositeString");
+        HashMap<String, String> args = new HashMap<>();
+        args.put("customerString", "2");
+        System.out.println(sequence.getSequence(args));
+    }
+
 }
 ```
 
