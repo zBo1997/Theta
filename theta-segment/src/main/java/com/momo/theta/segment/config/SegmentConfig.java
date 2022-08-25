@@ -80,7 +80,7 @@ public class SegmentConfig {
 
     @Override
     public String toString() {
-        return "DbSequenceConfig{" +
+        return "SequenceConfig{" +
                 "id='" + id + '\'' +
                 ", type='" + type + '\'' +
                 ", args=" + args +

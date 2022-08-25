@@ -120,7 +120,7 @@ public class CompositeStringSequenceGenerator implements ThetaSegment {
         SegmentConfig[] segmentConfigs = segmentConfig.getSegmentConfigs();
         for (SegmentConfig sc : segmentConfigs) {
             ThetaSegment segmentGenerator = (ThetaSegment) GenerateSegmentService.getSegment(sc);
-            segmentConfig.getInitArgs().putAll(sc.getInitArgs());
+            sc.getInitArgs().putAll(segmentConfig.getInitArgs());
             segmentGenerator.init(sc);
             this.ThetaSegments.add(segmentGenerator);
         }
