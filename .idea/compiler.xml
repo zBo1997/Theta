@@ -38,7 +38,7 @@
       <module name="theta-debug" options="-parameters" />
       <module name="theta-demo" options="-parameters" />
       <module name="theta-mq" options="-parameters" />
-      <module name="theta-parent" options="" />
+      <module name="theta-parent" options="-parameters" />
       <module name="theta-segment" options="-parameters" />
       <module name="theta-utils" options="-parameters" />
     </option>
