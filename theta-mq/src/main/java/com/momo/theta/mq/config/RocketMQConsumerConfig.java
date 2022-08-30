@@ -67,7 +67,7 @@ public class RocketMQConsumerConfig implements AutoCloseable {
 
         //判断消费者组是否有效
         if (Objects.isNull(this.property.getConsumer()) || StatusEnum.DISABLE.getCode().equals(this.property.getConsumer().getEnable())) {
-            log.warn("consumer config is null or enable status is false, skip init consumers");
+            log.warn("consumer com.momo.theta.redis.config is null or enable status is false, skip init consumers");
             return;
         }
 
