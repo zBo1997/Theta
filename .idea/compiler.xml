@@ -33,14 +33,14 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Theta" options="" />
+      <module name="Theta" options="-parameters" />
       <module name="theta-base" options="-parameters" />
       <module name="theta-common" options="-parameters" />
       <module name="theta-core" options="-parameters" />
       <module name="theta-debug" options="-parameters" />
       <module name="theta-demo" options="-parameters" />
       <module name="theta-mq" options="-parameters" />
-      <module name="theta-parent" options="-parameters" />
+      <module name="theta-parent" options="" />
       <module name="theta-redis" options="-parameters" />
       <module name="theta-segment" options="-parameters" />
       <module name="theta-utils" options="-parameters" />

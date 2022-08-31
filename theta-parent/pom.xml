@@ -76,11 +76,17 @@
         <sun-jaxb.version>2.3.0.1</sun-jaxb.version>
         <rocketmq.version>4.8.0</rocketmq.version>
         <redis.version>2.6.8</redis.version>
+        <redisson.version>3.16.4</redisson.version>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-data-23</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
