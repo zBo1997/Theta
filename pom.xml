@@ -24,6 +24,7 @@
         <module>theta-common</module>
         <module>theta-core</module>
         <module>theta-base</module>
+        <module>theta-redis</module>
     </modules>
 
     <licenses>

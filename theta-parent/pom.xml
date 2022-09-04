@@ -20,12 +20,11 @@
         <seata.version>1.4.2</seata.version>
         <nacos.version>2.0.4</nacos.version>
         <sentinel.version>1.8.2</sentinel.version>
-        <spring-boot-admin.version>2.6.7</spring-boot-admin.version>
+        <spring-boot-admin.version>2.6.8</spring-boot-admin.version>
         <dockerfile-maven-plugin.version>1.4.12</dockerfile-maven-plugin.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <hutool.version>5.8.1</hutool.version>
         <druid.version>1.2.8</druid.version>
         <mysql.version>8.0.28</mysql.version>
@@ -76,13 +75,23 @@
         <JustAuth.version>1.13.2</JustAuth.version>
         <sun-jaxb.version>2.3.0.1</sun-jaxb.version>
         <rocketmq.version>4.8.0</rocketmq.version>
+        <redis.version>2.6.8</redis.version>
+        <redisson.version>3.16.4</redisson.version>
     </properties>
 
 
     <dependencyManagement>
-
         <dependencies>
-
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-data-23</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${redis.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-client</artifactId>
@@ -474,13 +483,11 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
                 <version>${javassist.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>net.logstash.logback</groupId>

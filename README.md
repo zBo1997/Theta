@@ -56,7 +56,7 @@ D -->|进行生成| F[获取最新无重复的主sequence]
     sharding:
       default-data-source-name: [这里指定的是默认的数据源]
 ```
- `ShardingSphere`官方文档[default-data-source-name](https://shardingsphere.apache.org/document/4.1.1/en/manual/sharding-jdbc/configuration/config-spring-namespace/#shardingsharding-rule-)
+ `ShardingSphere`官方文档[default-data-source-name](https://shardingsphere.apache.org/document/4.1.1/en/manual/sharding-jdbc/configuration/com.momo.theta.redis.config-spring-namespace/#shardingsharding-rule-)
 
   - *开始使用*:做好相关数据库的准备和数据源配置以后，就可以顺利的开始了。Theta依赖于Spring来使用，
   所以，当我么以来了Theta后,Spring就已经帮我门注入了所有常用的`Generator`，对于不同的`Generator`
@@ -160,7 +160,7 @@ package com.momo.theta.thetademo;
 
 import com.momo.theta.segment.api.Sequence;
 import com.momo.theta.segment.api.ThetaSegment;
-import com.momo.theta.segment.config.SegmentConfig;
+import com.momo.theta.segment.com.momo.theta.redis.config.SegmentConfig;
 import com.momo.theta.segment.generator.GenerateSegmentService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
