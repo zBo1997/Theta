@@ -77,11 +77,17 @@
         <rocketmq.version>4.8.0</rocketmq.version>
         <redis.version>2.6.8</redis.version>
         <redisson.version>3.16.4</redisson.version>
+        <sharding-jdbc.version>4.1.1</sharding-jdbc.version>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>${sharding-jdbc.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-data-23</artifactId>

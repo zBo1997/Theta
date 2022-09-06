@@ -25,6 +25,7 @@
         <module>theta-core</module>
         <module>theta-base</module>
         <module>theta-redis</module>
+        <module>theta-sharding</module>
     </modules>
 
     <licenses>
