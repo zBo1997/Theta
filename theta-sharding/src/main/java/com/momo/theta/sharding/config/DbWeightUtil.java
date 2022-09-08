@@ -71,14 +71,14 @@ public class DbWeightUtil {
             return null;
         }
         //只有bean初始化后会调用可以不是线程安全
-        weightList = new ArrayList<String>(MAXIMUM_CAPACITY);
+        weightList = new ArrayList<>(MAXIMUM_CAPACITY);
         //配置数据库名称
         Set<String> dbNames = dataBaseInfo.keySet();
         //权重求和
         int sum = dataBaseInfo.values().stream().mapToInt(Integer::valueOf).sum();
 
         int num = 0;
-        //获取订单表的数据库权重
+        //获取表的数据库权重
         for (Map.Entry<String, String> stringStringEntry : tableInfo.entrySet()) {
             sharingOrderDbs = getSharingOrderDbs(stringStringEntry.getValue());
         }
@@ -103,16 +103,18 @@ public class DbWeightUtil {
     }
 
     /**
+     * 例如若您的的表明为order 那么请在config中设置好您的表名称
+     * 配置数据的开始值 ds$->{1}.order_$->{0..2} start=1 end=2
      * 获取订单配置的数据库列表
      *
-     * @return
+     * @return Map<String,List<String>> 其MapKey 为对应其表名
      */
-    public Map<String, List<String>> getSharingOrderDbs(String tableName) {
+    public static Map<String, List<String>> getSharingOrderDbs(String tableName) {
         //拿到数据库配置的数据源
-        String groovyString = shardingRuleConfig.getTables().get(tableName).getActualDataNodes();
-        String[] orders = groovyString.split("." + tableName);
+        String test = "ds$->{1..100}.order_$->{0..255}";
+        //String groovyString = shardingRuleConfig.getTables().get(tableName).getActualDataNodes();
+        String[] orders = test.split("." + tableName);
         String substring = orders[0].substring(6, orders[0].length() - 1);
-        //配置数据的开始值 ds$->{1}.rebate_order_$->{0..2} start=1 end=2
         String[] dss = substring.split("\\.");
         int start = Integer.parseInt(dss[0]);
         //如果只配置了一个数据库情况 end = start
