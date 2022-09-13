@@ -7,10 +7,12 @@
     <file url="file://$PROJECT_DIR$/theta-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/theta-example/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-mq/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-redis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-segment/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-segment/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/theta-sharding/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-utils/src/main/resources" charset="UTF-8" />
   </component>

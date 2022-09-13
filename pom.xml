@@ -26,6 +26,7 @@
         <module>theta-base</module>
         <module>theta-redis</module>
         <module>theta-sharding</module>
+        <module>theta-example</module>
     </modules>
 
     <licenses>
