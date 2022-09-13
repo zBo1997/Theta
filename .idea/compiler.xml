@@ -11,6 +11,7 @@
         <module name="theta-common" />
         <module name="theta-segment" />
         <module name="theta-redis" />
+        <module name="theta-example" />
         <module name="theta-mq" />
         <module name="theta-base" />
         <module name="theta-utils" />
@@ -24,6 +25,7 @@
       <module name="theta-core" target="8" />
       <module name="theta-debug" target="8" />
       <module name="theta-demo" target="1.8" />
+      <module name="theta-example" target="8" />
       <module name="theta-mq" target="8" />
       <module name="theta-parent" target="8" />
       <module name="theta-redis" target="8" />
@@ -39,6 +41,7 @@
       <module name="theta-core" options="-parameters" />
       <module name="theta-debug" options="-parameters" />
       <module name="theta-demo" options="-parameters" />
+      <module name="theta-example" options="-parameters" />
       <module name="theta-mq" options="-parameters" />
       <module name="theta-parent" options="" />
       <module name="theta-redis" options="-parameters" />

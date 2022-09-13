@@ -1,0 +1,9 @@
+CREATE DATABASE theta_sequence;
+
+CREATE TABLE `sequence_config` (
+   `ID` varchar(128) NOT NULL,
+   `CURRENT` bigint(20) NOT NULL,
+   `MAXIMUM` varchar(255) NOT NULL,
+   `LAST_UPDATE_TIME` datetime(2) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(2),
+   PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
