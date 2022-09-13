@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  #nameserver
+  namesrv:
+    image: rocketmqinc/rocketmq:4.4.0
+    container_name: cluster_rmqnamesrv
+    ports:
+      - "9876:9876"
+    volumes:
+      - /usr/local/server/rocketmq_cluster/data_namesrv/namesrv/logs:/root/logs
+      - /usr/local/server/rocketmq/data_namesrv/namesrv/store:/root/store
+    command: sh mqnamesrv
+
+  #broker1
+  broker1:
+    image: rocketmqinc/rocketmq:4.4.0
+    container_name: cluster_rmqbroker1
+    links:
+      - namesrv
+    ports:
+      - "10909:10909"
+      - "10911:10911"
+      - "10912:10912"
+    environment:
+      - NAMESRV_ADDR=namesrv:9876
+    volumes:
+      - ./config/logs:/root/logs
+      - ./config/store:/root/store
+      - ./config/broker-1.conf:/opt/rocketmq-4.4.0/conf/broker.conf
+    command: sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
+  #broker2
+  broker2:
+    image: rocketmqinc/rocketmq:4.4.0
+    container_name: cluster_rmqbroker2
+    links:
+      - namesrv
+    ports:
+      - "10929:10909"
+      - "10931:10911"
+      - "10932:10912"
+    environment:
+      - NAMESRV_ADDR=namesrv:9876
+    volumes:
+      - ./config/logs:/root/logs
+      - ./config/store:/root/store
+      - ./config/broker-2.conf:/opt/rocketmq-4.4.0/conf/broker.conf
+    command: sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
+
+  rmqconsole:
+    image: pangliang/rocketmq-console-ng
+    container_name: rmqconsole
+    ports:
+      - "7001:7001"
+    environment:
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=localhost:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false -Dserver.port=7001"

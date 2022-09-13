@@ -1,0 +1,79 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    container_name: theta_my_sql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+      --max_allowed_packet=128M;
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/logs/mysql/data:/var/lib/mysql/
+      - ./data/logs/mysql/my.cnf:/etc/my.cnf
+      - ./data/logs/mysql/init:/docker-entrypoint-initdb.d/
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/logs/conf:/etc/redis/
+      - ./data/logs/data:/data
+      - ./data/logs/log/:/usr/local/redis/log/
+  rmqnamesrv:
+    image: foxiswho/rocketmq:server
+    container_name: theta_rmqnamesrv
+    ports:
+      - "9876:9876"
+    volumes:
+      - ./data/logs:/opt/logs
+      - ./data/store:/opt/store
+    networks:
+        local_network:
+          aliases:
+            - rmqnamesrv
+  rmqbroker:
+    image: foxiswho/rocketmq:broker
+    container_name: theta_rmqbroker
+    ports:
+      - "10909:10909"
+      - "10911:10911"
+    volumes:
+      - ./data/logs:/opt/logs
+      - ./data/store:/opt/store
+      - ./data/brokerconf/:/etc/rocketmq/
+    environment:
+        NAMESRV_ADDR: "【IP】:9876"
+        JAVA_OPTS: " -Duser.home=/opt"
+        JAVA_OPT_EXT: "-server -Xms128m -Xmx128m -Xmn128m"
+    command: mqbroker -c /etc/rocketmq/broker.conf
+    depends_on:
+      - rmqnamesrv
+    networks:
+      local_network:
+        aliases:
+          - rmqbroker
+  #可视化工具
+  rmqconsole:
+    image: styletang/rocketmq-console-ng
+    container_name: theta_rmqconsole
+    ports:
+      - "8089:8080"
+    environment:
+        JAVA_OPTS: "-Drocketmq.namesrv.addr=【IP】:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    depends_on:
+      - rmqnamesrv
+    networks:
+      local_network:
+        aliases:
+          - rmqconsole
+networks:
+  local_network:
+    driver: bridge
