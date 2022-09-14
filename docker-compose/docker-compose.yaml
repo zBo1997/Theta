@@ -16,64 +16,68 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./data/logs/mysql/data:/var/lib/mysql/
-      - ./data/logs/mysql/my.cnf:/etc/my.cnf
-      - ./data/logs/mysql/init:/docker-entrypoint-initdb.d/
+      - ./mysql/data/logs/mysql/data:/var/lib/mysql/
+      - ./mysql/data/logs/mysql/my.cnf:/etc/my.cnf
+      - ./mysql/data/logs/mysql/init:/docker-entrypoint-initdb.d/
   redis:
     image: redis
     ports:
       - "6379:6379"
     volumes:
-      - ./data/logs/conf:/etc/redis/
-      - ./data/logs/data:/data
-      - ./data/logs/log/:/usr/local/redis/log/
-  rmqnamesrv:
-    image: foxiswho/rocketmq:server
-    container_name: theta_rmqnamesrv
+      - ./redis/data/logs/conf:/etc/redis/
+      - ./redis/data/logs/data:/data
+      - ./redis/data/logs/log/:/usr/local/redis/log/
+  #nameserver
+  namesrv:
+    image: rocketmqinc/rocketmq:4.4.0
+    container_name: cluster_rmqnamesrv
     ports:
       - "9876:9876"
     volumes:
-      - ./data/logs:/opt/logs
-      - ./data/store:/opt/store
-    networks:
-        local_network:
-          aliases:
-            - rmqnamesrv
-  rmqbroker:
-    image: foxiswho/rocketmq:broker
-    container_name: theta_rmqbroker
+      - /usr/local/server/rocketmq_cluster/data_namesrv/namesrv/logs:/root/logs
+      - /usr/local/server/rocketmq/data_namesrv/namesrv/store:/root/store
+    command: sh mqnamesrv
+  #broker1
+  broker1:
+    image: rocketmqinc/rocketmq:4.4.0
+    container_name: cluster_rmqbroker1
+    links:
+      - namesrv
     ports:
       - "10909:10909"
       - "10911:10911"
+      - "10912:10912"
+    environment:
+      - NAMESRV_ADDR=namesrv:9876
     volumes:
-      - ./data/logs:/opt/logs
-      - ./data/store:/opt/store
-      - ./data/brokerconf/:/etc/rocketmq/
-    environment:
-        NAMESRV_ADDR: "【IP】:9876"
-        JAVA_OPTS: " -Duser.home=/opt"
-        JAVA_OPT_EXT: "-server -Xms128m -Xmx128m -Xmn128m"
-    command: mqbroker -c /etc/rocketmq/broker.conf
-    depends_on:
-      - rmqnamesrv
-    networks:
-      local_network:
-        aliases:
-          - rmqbroker
-  #可视化工具
-  rmqconsole:
-    image: styletang/rocketmq-console-ng
-    container_name: theta_rmqconsole
+      - ./rocketmq/config/logs/:/root/logs
+      - ./rocketmq/config/store/:/root/store
+      - ./rocketmq/config/broker-1.conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf
+    command: sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
+  #broker2
+  broker2:
+    image: rocketmqinc/rocketmq:4.4.0
+    container_name: cluster_rmqbroker2
+    links:
+      - namesrv
     ports:
-      - "8089:8080"
+      - "10929:10909"
+      - "10931:10911"
+      - "10932:10912"
     environment:
-        JAVA_OPTS: "-Drocketmq.namesrv.addr=【IP】:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
-    depends_on:
-      - rmqnamesrv
-    networks:
-      local_network:
-        aliases:
-          - rmqconsole
+      - NAMESRV_ADDR=namesrv:9876
+    volumes:
+      - ./rocketmq/config/logs/:/root/logs
+      - ./rocketmq/config/store/:/root/store
+      - ./rocketmq/config/broker-2.conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf
+    command: sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
+  rmq_theta_console:
+    image: pangliang/rocketmq-console-ng
+    container_name: rmqconsole
+    ports:
+      - "7001:7001"
+    environment:
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=localhost:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false -Dserver.port=7001"
 networks:
   local_network:
     driver: bridge
