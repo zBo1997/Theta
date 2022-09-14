@@ -75,14 +75,20 @@
         <JustAuth.version>1.13.2</JustAuth.version>
         <sun-jaxb.version>2.3.0.1</sun-jaxb.version>
         <rocketmq.version>4.8.0</rocketmq.version>
-        <redis.version>2.6.8</redis.version>
         <redisson.version>3.16.4</redisson.version>
         <sharding-jdbc.version>4.1.1</sharding-jdbc.version>
+        <redis.starter.version>2.6.8</redis.starter.version>
+        <test.starter.version>2.6.8</test.starter.version>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${test.starter.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.shardingsphere</groupId>
                 <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
@@ -96,7 +102,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>${redis.version}</version>
+                <version>${redis.starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>

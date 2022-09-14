@@ -52,6 +52,19 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-example</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-sharding</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.momo.basic</groupId>
                 <artifactId>theta-core</artifactId>
