@@ -10,7 +10,6 @@ services:
       - /usr/local/server/rocketmq_cluster/data_namesrv/namesrv/logs:/root/logs
       - /usr/local/server/rocketmq/data_namesrv/namesrv/store:/root/store
     command: sh mqnamesrv
-
   #broker1
   broker1:
     image: rocketmqinc/rocketmq:4.4.0
@@ -24,9 +23,9 @@ services:
     environment:
       - NAMESRV_ADDR=namesrv:9876
     volumes:
-      - ./config/logs:/root/logs
-      - ./config/store:/root/store
-      - ./config/broker-1.conf:/opt/rocketmq-4.4.0/conf/broker.conf
+      - ./config/logs/:/root/logs
+      - ./config/store/:/root/store
+      - ./config/broker-1.conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf
     command: sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
   #broker2
   broker2:
@@ -41,12 +40,11 @@ services:
     environment:
       - NAMESRV_ADDR=namesrv:9876
     volumes:
-      - ./config/logs:/root/logs
-      - ./config/store:/root/store
-      - ./config/broker-2.conf:/opt/rocketmq-4.4.0/conf/broker.conf
+      - ./config/logs/:/root/logs
+      - ./config/store/:/root/store
+      - ./config/broker-2.conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf
     command: sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
-
-  rmqconsole:
+  rmq_theta_console:
     image: pangliang/rocketmq-console-ng
     container_name: rmqconsole
     ports:
