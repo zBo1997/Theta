@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="theta-core" />
+        <module name="theta-sharding" />
         <module name="theta-common" />
         <module name="theta-segment" />
         <module name="theta-redis" />
@@ -30,6 +31,7 @@
       <module name="theta-parent" target="8" />
       <module name="theta-redis" target="8" />
       <module name="theta-segment" target="8" />
+      <module name="theta-sharding" target="8" />
       <module name="theta-utils" target="8" />
     </bytecodeTargetLevel>
   </component>
@@ -46,6 +48,7 @@
       <module name="theta-parent" options="" />
       <module name="theta-redis" options="-parameters" />
       <module name="theta-segment" options="-parameters" />
+      <module name="theta-sharding" options="-parameters" />
       <module name="theta-utils" options="-parameters" />
     </option>
   </component>

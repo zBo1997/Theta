@@ -1,11 +1,14 @@
 package com.momo.example.segment;
 
 import com.momo.theta.example.ThetaExampleSpringBootApplication;
+import com.momo.theta.segment.api.Sequence;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.HashMap;
 
 @SpringBootTest(classes = ThetaExampleSpringBootApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)

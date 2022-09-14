@@ -58,8 +58,6 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.63" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.20" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.20" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.6.8" level="project" />
-    <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.7" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.83" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.36" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus:3.5.1" level="project" />

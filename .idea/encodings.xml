@@ -12,7 +12,6 @@
     <file url="file://$PROJECT_DIR$/theta-redis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-segment/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-segment/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/theta-sharding/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-utils/src/main/resources" charset="UTF-8" />
   </component>
