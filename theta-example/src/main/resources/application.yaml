@@ -1,0 +1,40 @@
+server:
+  port: 8338
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://119.3.175.183:3307/zbo_1997_test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: zhuyun@Dev2021
+theta:
+  sequence:
+    available: true
+    sequenceConfigs:
+      - id: myCompositeString
+        type: compositeString
+        segmentConfigs:
+          - id: date
+            type: dateSegment
+            args: {pattern: 'yyyyMMddHHmmss'}
+          - id: db
+            type: dbNumberSegment
+            args: {id: 'myDbNumberSegment', maxSequenceValue: '9999999999', length: '10',step: '1000'}
+          - id: type
+            type: fixedStringSegment
+            args: {segmentString: 'THETA'}
+            # 这里可以通过数据库进行Hash
+          - id: databaseIndex
+            type: hashSegment
+            args: {length: '2', defaultMod: '2', hashField: '2'}
+            # 这里可以通过表下表进行索引Hash
+          - id: tableIndex
+            type: hashSegment
+            args: {length: '3', defaultMod: '128', hashField: '128'}
+            # 当前应用的节点编号
+          - id: nodeNo
+            type: fixedStringSegment
+            args: {propertyName: 'nodeNo', length: '1', segmentString: '1'}
+            # 生产一个6位随机数
+          - id: random
+            type: randomStringSegment
+            args: {length: '6'}
