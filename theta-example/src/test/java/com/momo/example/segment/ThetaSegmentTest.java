@@ -24,8 +24,6 @@ public class ThetaSegmentTest {
                 System.out.println(sequence.getSequence(args));
             }).start();
         }
-        log.info("I am test");
-
     }
 
 
