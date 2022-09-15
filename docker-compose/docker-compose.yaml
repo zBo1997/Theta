@@ -29,7 +29,7 @@ services:
       - ./redis/data/logs/log/:/usr/local/redis/log/
   #nameserver
   namesrv:
-    image: rocketmqinc/rocketmq:4.4.0
+    image: foxiswho/rocketmq:4.8.0
     container_name: cluster_rmqnamesrv
     ports:
       - "9876:9876"
@@ -39,7 +39,7 @@ services:
     command: sh mqnamesrv
   #broker1
   broker1:
-    image: rocketmqinc/rocketmq:4.4.0
+    image: foxiswho/rocketmq:4.8.0
     container_name: cluster_rmqbroker1
     links:
       - namesrv
@@ -52,11 +52,11 @@ services:
     volumes:
       - ./rocketmq/config/logs/:/root/logs
       - ./rocketmq/config/store/:/root/store
-      - ./rocketmq/config/broker-1.conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf
-    command: sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
+      - ./rocketmq/config/broker-1.conf/broker.conf:/opt/rocketmq-4.8.0/conf/broker.conf
+    command: sh mqbroker -c /opt/rocketmq-4.8.0/conf/broker.conf
   #broker2
   broker2:
-    image: rocketmqinc/rocketmq:4.4.0
+    image: foxiswho/rocketmq:4.8.0
     container_name: cluster_rmqbroker2
     links:
       - namesrv
@@ -69,15 +69,19 @@ services:
     volumes:
       - ./rocketmq/config/logs/:/root/logs
       - ./rocketmq/config/store/:/root/store
-      - ./rocketmq/config/broker-2.conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf
-    command: sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
+      - ./rocketmq/config/broker-2.conf/broker.conf:/opt/rocketmq-4.8.0/conf/broker.conf
+    command: sh mqbroker -c /opt/rocketmq-4.8.0/conf/broker.conf
   rmq_theta_console:
-    image: pangliang/rocketmq-console-ng
+    image: styletang/rocketmq-console-ng:1.0.0
     container_name: rmqconsole
+    links:
+      - namesrv
+      - broker1
+      - broker2
     ports:
-      - "7001:7001"
+      - "8180:8080"
     environment:
-      JAVA_OPTS: "-Drocketmq.namesrv.addr=localhost:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false -Dserver.port=7001"
+      JAVA_OPTS: "-Drocketmq.config.namesrvAddr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
 networks:
   local_network:
     driver: bridge
