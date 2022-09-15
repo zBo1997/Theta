@@ -6,9 +6,9 @@ spring:
   shardingsphere:
     datasource:
       ds0:
-        url: jdbc:mysql://rm-2zenxb8io2rv7tunk.mysql.rds.aliyuncs.com:3306/isv_prodali?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
-        username: isv
-        password: ENC(CDrlqCI+N0PKPJjikebD2GUqQrYSHob4)
+        url: jdbc:mysql://localhost:3306/isv_prodali?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+        username: root
+        password: 123456
   application:
     name: @spring.profiles.name@
   profiles:
