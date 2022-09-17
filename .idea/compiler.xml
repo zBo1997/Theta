@@ -16,10 +16,10 @@
         <module name="theta-mq" />
         <module name="theta-base" />
         <module name="theta-utils" />
-        <module name="theta-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="theta" target="8" />
       <module name="Theta" target="8" />
       <module name="theta-base" target="8" />
       <module name="theta-common" target="8" />
@@ -45,7 +45,7 @@
       <module name="theta-demo" options="-parameters" />
       <module name="theta-example" options="-parameters" />
       <module name="theta-mq" options="-parameters" />
-      <module name="theta-parent" options="" />
+      <module name="theta-parent" options="-parameters" />
       <module name="theta-redis" options="-parameters" />
       <module name="theta-segment" options="-parameters" />
       <module name="theta-sharding" options="-parameters" />
