@@ -76,7 +76,7 @@
         <sun-jaxb.version>2.3.0.1</sun-jaxb.version>
         <rocketmq.version>4.8.0</rocketmq.version>
         <redisson.version>3.16.4</redisson.version>
-        <sharding-jdbc.version>4.1.1</sharding-jdbc.version>
+        <sharding-jdbc.version>4.0.0-RC1</sharding-jdbc.version>
         <redis.starter.version>2.6.8</redis.starter.version>
         <test.starter.version>2.6.8</test.starter.version>
     </properties>

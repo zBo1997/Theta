@@ -7,3 +7,4 @@ com.momo.theta.segment.segments.VariableSequenceSegmentGenerator
 com.momo.theta.segment.segments.DbNumberSegmentGenerator
 com.momo.theta.segment.composite.DefaultStringSequenceGenerator
 com.momo.theta.segment.composite.JvmUUIDStringSequenceGenerator
+com.momo.theta.segment.composite.CompositeStringSequenceGenerator
