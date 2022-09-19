@@ -27,7 +27,7 @@ spring:
         slowSqlMillis: 1000
         logSlowSql: true
         filters: stat
-        url: jdbc:mysql://localhost:3306/theta?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        url: jdbc:mysql://localhost:3306/theta_sequence?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
         username: root
         password: 123456
     sharding:
@@ -66,6 +66,7 @@ theta:
           - id: random
             type: randomStringSegment
             args: {length: '6'}
+
 rocketmq:
   #rocketmq 总开关，默认为false
   enable: true
@@ -87,7 +88,7 @@ rocketmq:
     queue:
       enable: true
     #消息文件存储路径
-    filePath: ../rocketmqfile
+    filePath: C:\Users\zhubo\logs\rocketmq_file
   #消费者信息
   consumer:
     #消费者总开关，默认为 false
@@ -119,6 +120,6 @@ rocketmq:
         tag: "*"
         listenerType: orderly
         consumerGroup: demo-consumer-group
-        msgHandler: com.momo.theta.example.service.DemoRocketMQMsgHandler
+        msgHandler: com.hulu.starter.demo.service.DemoRocketMQMsgHandler
         pullBatchSize: 32
         consumeMessageBatchMaxSize: 32

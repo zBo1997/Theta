@@ -10,6 +10,7 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.remoting.exception.RemotingException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,10 +25,10 @@ import java.util.concurrent.TimeUnit;
 public class MqController {
 
 
-    @Resource
+    @Autowired
     private DefaultMQProducer defaultMQProducer;
 
-    @Resource
+    @Autowired
     private MsgQueue msgQueue;
 
     @GetMapping("queueNormalDelay")
