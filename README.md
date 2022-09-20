@@ -158,10 +158,10 @@ D -->|进行生成| F[获取最新无重复的主sequence]
 ```java
 package com.momo.theta.thetademo;
 
-import com.momo.theta.segment.api.Sequence;
-import com.momo.theta.segment.api.ThetaSegment;
+import Sequence;
+import ThetaSegment;
 import com.momo.theta.segment.com.momo.theta.redis.config.SegmentConfig;
-import com.momo.theta.segment.generator.GenerateSegmentService;
+import GenerateSegmentService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;

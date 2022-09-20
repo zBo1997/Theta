@@ -55,7 +55,7 @@ theta:
             args: {segmentString: 'RE'}
           - id: databaseIndex
             type: hashSegment
-            args: {length: '2', defaultMod: '2', hashField: 'isvId', defaultValueField: 'databaseDefaultValue'}
+            args: {length: '2', defaultMod: '2' , defaultValue: '100'}
           - id: tableIndex
             type: hashSegment
             #type: subStringSegment
@@ -71,7 +71,7 @@ rocketmq:
   #rocketmq 总开关，默认为false
   enable: true
   #namesrv地址，支持一个或多个节点，如果多个节点，节点之间 ; 分隔
-  namesrvAddr: localhost:9876
+  namesrvAddr: localhost:9876;localhost:9876
   #生产者信息
   producer:
     #生产者开关，默认为 false
