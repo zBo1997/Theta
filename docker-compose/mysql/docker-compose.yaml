@@ -17,7 +17,7 @@ services:
       - "3306:3306"
     volumes:
       - ./data/logs/mysql/data:/var/lib/mysql/
-      - ./data/logs/mysql/my.cnf:/etc/my.cnf
+      - ./data/logs/mysql/mycnf:/etc/mycnf
       - ./data/logs/mysql/init:/docker-entrypoint-initdb.d/
 networks:
   local_network:

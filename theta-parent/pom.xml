@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.8</version>
+        <version>2.3.2.RELEASE</version>
         <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -26,7 +26,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hutool.version>5.8.1</hutool.version>
-        <druid.version>1.2.8</druid.version>
+        <druid.version>1.1.22</druid.version>
         <mysql.version>8.0.28</mysql.version>
         <mybatis.version>3.5.9</mybatis.version>
         <mybatis-spring.version>2.0.6</mybatis-spring.version>
@@ -76,7 +76,7 @@
         <sun-jaxb.version>2.3.0.1</sun-jaxb.version>
         <rocketmq.version>4.8.0</rocketmq.version>
         <redisson.version>3.16.4</redisson.version>
-        <sharding-jdbc.version>4.1.1</sharding-jdbc.version>
+        <sharding-jdbc.version>4.0.0-RC1</sharding-jdbc.version>
         <redis.starter.version>2.6.8</redis.starter.version>
         <test.starter.version>2.6.8</test.starter.version>
     </properties>

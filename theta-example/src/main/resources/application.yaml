@@ -1,47 +1,125 @@
 server:
   port: 8338
 spring:
+  main:
+    allow-bean-definition-overriding: true
   lifecycle:
     timeout-per-shutdown-phase: 60s
   shardingsphere:
     datasource:
+      names: ds0
       ds0:
-        url: jdbc:mysql://rm-2zenxb8io2rv7tunk.mysql.rds.aliyuncs.com:3306/isv_prodali?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
-        username: isv
-        password: ENC(CDrlqCI+N0PKPJjikebD2GUqQrYSHob4)
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        validationQuery: select 1
+        testWhileIdle: true
+        testOnBorrow: true
+        minIdle: 5
+        maxActive: 1000
+        initialSize: 10
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 6000
+        poolPreparedStatements: true
+        logAbandoned: true
+        removeAbandoned: true
+        #连接从池获取后应该由应用主动释放，为避免泄漏，开启被动归还
+        removeAbandonedTimeout: 1800
+        slowSqlMillis: 1000
+        logSlowSql: true
+        filters: stat
+        url: jdbc:mysql://localhost:3306/theta_sequence?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+    sharding:
+      default-data-source-name: ds0
   application:
     name: @spring.profiles.name@
   profiles:
     active: @spring.profiles.active@
+
 theta:
   sequence:
     available: true
     sequenceConfigs:
-      - id: myCompositeString
+      - id: commonSequence
         type: compositeString
         segmentConfigs:
           - id: date
             type: dateSegment
-            args: {pattern: 'yyyyMMddHHmmss'}
+            args: {pattern: 'yyyyMMdd'}
           - id: db
             type: dbNumberSegment
-            args: {id: 'myDbNumberSegment', maxSequenceValue: '9999999999', length: '10',step: '1000'}
+            args: {id: 'rebateOrderSequence', maxSequenceValue: '9999999999', length: '10'}
           - id: type
             type: fixedStringSegment
-            args: {segmentString: 'THETA'}
-            # 这里可以通过数据库进行Hash
+            args: {segmentString: 'RE'}
           - id: databaseIndex
             type: hashSegment
-            args: {length: '2', defaultMod: '2', hashField: '2'}
-            # 这里可以通过表下表进行索引Hash
+            args: {length: '2', defaultMod: '2' , defaultValue: '100'}
           - id: tableIndex
             type: hashSegment
-            args: {length: '3', defaultMod: '128', hashField: '128'}
-            # 当前应用的节点编号
+            #type: subStringSegment
+            args: {length: '3', defaultMod: '128', hashField: 'innerReqMsgId', startField: 'tableStart'}
           - id: nodeNo
             type: fixedStringSegment
             args: {propertyName: 'nodeNo', length: '1', segmentString: '1'}
-            # 生产一个6位随机数
           - id: random
             type: randomStringSegment
             args: {length: '6'}
+
+rocketmq:
+  #rocketmq 总开关，默认为false
+  enable: true
+  #namesrv地址，支持一个或多个节点，如果多个节点，节点之间 ; 分隔
+  namesrvAddr: localhost:9876;localhost:9876
+  #生产者信息
+  producer:
+    #生产者开关，默认为 false
+    enable: true
+    #生产者群组名称
+    groupName: producers
+    #消息最大长度 默认1024*4(4M)
+    maxMessageSize: 4096
+    #发送消息超时时间,默认3s
+    sendMsgTimeout: 3000
+    #发送消息失败重试次数，默认3
+    retryTimesWhenSendFailed: 2
+    #是否启动disruptor缓冲队列
+    queue:
+      enable: true
+    #消息文件存储路径
+    filePath: C:\Users\zhubo\logs\rocketmq_file
+  #消费者信息
+  consumer:
+    #消费者总开关，默认为 false
+    enable: true
+    #消费者启动线程数量，默认1
+    consumeThreadMin: 1
+    #消费者启最大线程数量，默认16，但由于使用的是ThreadPoolExecutor，且没有设置ThreadPoolExecutor队列边界，所以不会mq不会新建核心线程，因此该参数基本无用，但该参数必须大于consumeThreadMin
+    consumeThreadMax: 32
+    #批量从broker拉取消息数量，默认为32，且单纯在次数修改无效，如要修改此参数需修改mq启动参数（ sh mqadmin updateBrokerConfig -c 集群名称 -n namesrv  -k maxTransferCountOnMessageInMemory -v 400）
+    pullBatchSize: 32
+    #批量消费消息数量，默认1
+    consumeMessageBatchMaxSize: 32
+    #需消费订阅的topic组
+    topics:
+      #消费者topic名称，即rocketmq中定义的topic
+      - topicName: concurrently-topic
+        #topic开关，默认为 false
+        enable: true
+        #订阅topic的tag信息
+        tag: "*"
+        #消费类型 concurrently:并发消费，orderly:顺序消费
+        listenerType: concurrently
+        #消费者组名称
+        consumerGroup: test-consumer-group
+        #消费消息处理类信息
+        msgHandler: defaultRocketMQMsgHandler
+      - topicName: orderly-topic
+        enable: true
+        tag: "*"
+        listenerType: orderly
+        consumerGroup: demo-consumer-group
+        msgHandler: com.hulu.starter.demo.service.DemoRocketMQMsgHandler
+        pullBatchSize: 32
+        consumeMessageBatchMaxSize: 32

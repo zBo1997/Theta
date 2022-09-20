@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.momo.theta.segment.auto.SequenceAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.momo.theta.auto.SequenceAutoConfiguration
