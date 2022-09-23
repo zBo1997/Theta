@@ -120,6 +120,6 @@ rocketmq:
         tag: "*"
         listenerType: orderly
         consumerGroup: demo-consumer-group
-        msgHandler: com.hulu.starter.demo.service.DemoRocketMQMsgHandler
+        msgHandler: com.momo.theta.service.DemoRocketMQMsgHandler
         pullBatchSize: 32
         consumeMessageBatchMaxSize: 32
