@@ -40,7 +40,7 @@ D -->|进行生成| F[获取最新无重复的主sequence]
 - 关于Theta的使用  
   - *准备工作*:首先你要使用Theta你需要准备一个数据库。当然若用户本地以及安装了docker、docker-compose，
   可已使用笔者为你提供的docker-compose进行一键启动项目所需的运行环境。docker的安装请移步 
-  `Docker`官方[default-data-source-name](https://www.docker.com/) 所有的环境都准备好了以后，执行项目路径下的
+  `Docker`官方：[Docket安装](https://www.docker.com/) 所有的环境都准备好了以后，执行项目路径下的
    sql/example.sql 就可以启动example项目了。
   ```SQL
   CREATE TABLE `sequence_config` (
