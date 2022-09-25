@@ -15,8 +15,8 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
-        <spring-cloud-alibaba-dependencies.version>2021.0.1.0</spring-cloud-alibaba-dependencies.version>
+        <spring-cloud-dependencies.version>Hoxton.SR8</spring-cloud-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>2.2.5.RELEASE</spring-cloud-alibaba-dependencies.version>
         <seata.version>1.4.2</seata.version>
         <nacos.version>2.0.4</nacos.version>
         <sentinel.version>1.8.2</sentinel.version>

@@ -27,7 +27,6 @@ import java.util.Properties;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(ThetaSegmentConfig.class)
-@ComponentScan("com.momo.theta.segment.config")
 @ConditionalOnProperty(name = "available", prefix = "theta.sequence", havingValue = "true")
 public class SequenceAutoConfiguration implements ApplicationContextAware {
 
@@ -41,6 +40,10 @@ public class SequenceAutoConfiguration implements ApplicationContextAware {
     private BeanNameGenerator beanNameGenerator = new AnnotationBeanNameGenerator();
 
     private ApplicationContext applicationContext;
+
+    public SequenceAutoConfiguration() {
+        log.info("hhhh");
+    }
 
     /**
      * 接受分页插件额外的属性
