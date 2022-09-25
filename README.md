@@ -64,9 +64,10 @@ D -->|进行生成| F[获取最新无重复的主sequence]
  `ShardingSphere`官方文档[default-data-source-name](https://shardingsphere.apache.org/document/4.1.1/en/manual/sharding-jdbc/configuration/com.momo.theta.redis.config-spring-namespace/#shardingsharding-rule-)
 
   - *开始使用*:做好相关数据库的准备和数据源配置以后，就可以顺利的开始了。Theta依赖于Spring来使用，
-  所以，当我么以来了Theta后,Spring就已经帮我门注入了所有常用的`Generator`，对于不同的`Generator`
+  所以，当引入了Theta后,Spring就已经帮我门注入了所有常用的`Generator`，对于不同的`Generator`
   我们采取的生成策略是不一样的，当然了为了方便拓展，也可以通过实现`Segment`这个接口，com.momo.theta.api.ThetaSegment 
-  来实现不同的一个客制化的生成策略,下面是一个使用Theta-sequence所需要的一个.yaml文件示例。
+  来实现不同的一个客制化的生成策略。
+  - 下面是一个使用Theta-sequence所需要的一个.yaml文件示例。
   ```yaml
   theta:
     sequence:
