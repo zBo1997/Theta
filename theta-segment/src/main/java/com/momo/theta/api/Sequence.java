@@ -1,13 +1,11 @@
 package com.momo.theta.api;
 
-import com.momo.theta.config.SpringContextHolder;
 import com.momo.theta.composite.CompositeStringSequenceGenerator;
 import com.momo.theta.config.SegmentConfig;
-import com.momo.theta.segments.DbNumberSegmentGenerator;
+import com.momo.theta.config.SpringContextHolder;
 import org.springframework.util.StringUtils;
 
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -15,8 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Sequence implements ThetaSegment {
     private final String id;
-    private ThetaSegment sequence;
-    private Map<String, DbNumberSegmentGenerator> dbNumberSegmentGeneratorMap = new ConcurrentHashMap<>();
+    private volatile ThetaSegment sequence;
     private String subTableName;
     private String subStep = "100";
     private String subLength = "6";
@@ -94,7 +91,7 @@ public class Sequence implements ThetaSegment {
             return subSeq;
         }
         int p = parentSeq.length() - subSeq.length();
-        result.append(parentSeq.substring(0, p));
+        result.append(parentSeq, 0, p);
         result.append(subSeq);
         return result.toString();
     }
@@ -103,10 +100,12 @@ public class Sequence implements ThetaSegment {
      * 初始化检查
      */
     public void checkInit() {
+        sequence = segmentMap.get(id);
         if (sequence == null) {
             synchronized (this) {
                 if (sequence == null) {
                     sequence = SpringContextHolder.getBean(id, ThetaSegment.class);
+                    segmentMap.put(id, sequence);
                 }
             }
         }

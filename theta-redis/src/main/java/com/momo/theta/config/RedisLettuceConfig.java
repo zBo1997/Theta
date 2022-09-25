@@ -48,10 +48,10 @@ public class RedisLettuceConfig {
         config.setMaxIdle(properties.getMaxIdle());
         config.setMinIdle(properties.getMinIdle());
         if (properties.getTimeBetweenEvictionRuns() != null) {
-            config.setTimeBetweenEvictionRuns(properties.getTimeBetweenEvictionRuns());
+            config.setTimeBetweenEvictionRunsMillis(properties.getTimeBetweenEvictionRuns().toMillis());
         }
         if (properties.getMaxWait() != null) {
-            config.setMaxWait(properties.getMaxWait());
+            config.setMaxWaitMillis(properties.getMaxWait().toMillis());
         }
         return config;
     }
