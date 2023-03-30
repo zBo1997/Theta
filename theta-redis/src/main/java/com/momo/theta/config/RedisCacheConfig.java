@@ -35,6 +35,11 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
     private RedisCacheProperties cacheProperties;
 
 
+    /**
+     * 这个是@Cacheable 相关使用
+     * @param redisConnectionFactory
+     * @return
+     */
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         RedisCacheConfiguration configuration = RedisCacheConfiguration.defaultCacheConfig();
@@ -49,6 +54,5 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
                 .computePrefixWith(cacheName -> cacheProperties.getPrefix() + "_" + cacheName + "::");
         return RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(config).build();
     }
-
 
 }
