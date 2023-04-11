@@ -25,24 +25,44 @@ spring:
         slowSqlMillis: 1000
         logSlowSql: true
         filters: stat
-        url: jdbc:mysql://localhost:3306/theta_sequence?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        url: jdbc:mysql://localhost:3306/test_performance?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
         username: root
         password: 123456
-    sharding:
       default-data-source-name: ds0
+  redis:
+    # 使用开关
+    switch: true
+    #使用驱动 支持 [ jedis | lettuce ] ，缺省为 lettuce
+    driver: jedis
+    redisson:
+      enable: true
+    #是否是cluster模式，[true|false] ，缺省为false，即是单节点模式
+    multi-nodes: false
+    host: localhost
+    #password: momo@1234
+    port: 6379
+    cluster:
+      nodes: 12.3.35.31:8001,12.3.35.31:8002,12.3.35.32:8001,12.3.35.32:8002,12.3.35.33:8001,12.3.35.33:8002
+      max-redirects: 3
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 5
+        min-idle: 1
+    timeout: 3000
   application:
     name: @spring.profiles.name@
   profiles:
     active: @spring.profiles.active@
 rocketmq:
   #rocketmq 总开关，默认为false
-  enable: true
+  enable: false
   #namesrv地址，支持一个或多个节点，如果多个节点，节点之间 ; 分隔
-  namesrvAddr: localhost:9876;localhost:9876
+  namesrvAddr: localhost:9876;localhost:9877
   #生产者信息
   producer:
     #生产者开关，默认为 false
-    enable: true
+    enable: false
     #生产者群组名称
     groupName: producers
     #消息最大长度 默认1024*4(4M)
@@ -53,13 +73,13 @@ rocketmq:
     retryTimesWhenSendFailed: 2
     #是否启动disruptor缓冲队列
     queue:
-      enable: true
+      enable: false
     #消息文件存储路径
     filePath: C:\Users\zhubo\logs\rocketmq_file
   #消费者信息
   consumer:
     #消费者总开关，默认为 false
-    enable: true
+    enable: false
     #消费者启动线程数量，默认1
     consumeThreadMin: 1
     #消费者启最大线程数量，默认16，但由于使用的是ThreadPoolExecutor，且没有设置ThreadPoolExecutor队列边界，所以不会mq不会新建核心线程，因此该参数基本无用，但该参数必须大于consumeThreadMin
@@ -73,7 +93,7 @@ rocketmq:
       #消费者topic名称，即rocketmq中定义的topic
       - topicName: concurrently-topic
         #topic开关，默认为 false
-        enable: true
+        enable: false
         #订阅topic的tag信息
         tag: "*"
         #消费类型 concurrently:并发消费，orderly:顺序消费
@@ -83,11 +103,12 @@ rocketmq:
         #消费消息处理类信息
         msgHandler: defaultRocketMQMsgHandler
       - topicName: orderly-topic
-        enable: true
+        enable: false
         tag: "*"
         listenerType: orderly
         consumerGroup: demo-consumer-group
         msgHandler: com.momo.theta.service.DemoRocketMQMsgHandler
         pullBatchSize: 32
         consumeMessageBatchMaxSize: 32
-
+mybatis-plus:
+  type-handlers-package: com.momo.theta.config

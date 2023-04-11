@@ -20,6 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="theta" target="8" />
       <module name="Theta" target="8" />
       <module name="theta-base" target="8" />
       <module name="theta-common" target="8" />
@@ -38,6 +39,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Theta" options="" />
+      <module name="theta" options="-parameters" />
       <module name="theta-base" options="-parameters" />
       <module name="theta-common" options="-parameters" />
       <module name="theta-core" options="-parameters" />
