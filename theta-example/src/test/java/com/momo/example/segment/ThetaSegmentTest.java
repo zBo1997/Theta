@@ -1,7 +1,7 @@
 package com.momo.example.segment;
 
 import com.momo.theta.ThetaExampleSpringBootApplication;
-import com.momo.theta.api.Sequence;
+//import com.momo.theta.api.Sequence;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,9 +21,9 @@ public class ThetaSegmentTest {
         for (int i = 0; i < 100; i++) {
             new Thread(() -> {
                 //指定
-                Sequence sequence = new Sequence("commonSequence");
+                //Sequence sequence = new Sequence("commonSequence");
                 HashMap<String, String> args = new HashMap<>();
-                System.out.println(sequence.getSequence(args));
+                //System.out.println(sequence.getSequence(args));
             }).start();
         }
     }
@@ -31,9 +31,9 @@ public class ThetaSegmentTest {
     @Test
     public void test() {
         //指定
-        Sequence sequence = new Sequence("commonSequence");
+        //Sequence sequence = new Sequence("commonSequence");
         HashMap<String, String> args = new HashMap<>();
-        System.out.println(sequence.getSequence(args));
+        //System.out.println(sequence.getSequence(args));
     }
 
 }

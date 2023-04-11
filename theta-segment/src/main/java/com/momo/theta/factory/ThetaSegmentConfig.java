@@ -1,4 +1,4 @@
-package com.momo.theta.auto;
+package com.momo.theta.factory;
 
 import com.momo.theta.config.SegmentConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;

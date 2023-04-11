@@ -1,6 +1,5 @@
 package com.momo.theta.api;
 
-
 import com.momo.theta.config.SegmentConfig;
 
 import java.util.Map;

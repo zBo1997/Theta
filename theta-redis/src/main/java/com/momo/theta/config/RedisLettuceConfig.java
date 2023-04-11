@@ -70,9 +70,9 @@ public class RedisLettuceConfig {
                 // 开启全部自适应刷新
                 .enableAllAdaptiveRefreshTriggers()
                 // 自适应刷新超时时间(默认30秒)
-                .adaptiveRefreshTriggersTimeout(Duration.ofSeconds(3))
+                .adaptiveRefreshTriggersTimeout(Duration.ofSeconds(30))
                 // 开周期刷新
-                .enablePeriodicRefresh(Duration.ofSeconds(3))
+                .enablePeriodicRefresh(Duration.ofSeconds(20))
                 .build();
 
         ClientOptions clientOptions = ClusterClientOptions.builder()
@@ -115,9 +115,11 @@ public class RedisLettuceConfig {
         standaloneConfiguration.setPassword(redisProperties.getPassword());
         LettuceClientConfiguration clientConfig = LettucePoolingClientConfiguration.builder()
                 .poolConfig(genericObjectPoolConfig(redisProperties.getLettuce().getPool()))
+                .commandTimeout(redisProperties.getTimeout())
+                .shutdownTimeout(redisProperties.getLettuce().getShutdownTimeout())
                 .build();
-
-        return new LettuceConnectionFactory(standaloneConfiguration, clientConfig);
+        LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory(standaloneConfiguration, clientConfig);
+        return lettuceConnectionFactory;
     }
 
     /**

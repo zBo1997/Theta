@@ -24,10 +24,10 @@ import java.util.concurrent.TimeUnit;
 public class MqController {
 
 
-    @Autowired
+    //@Autowired
     private DefaultMQProducer defaultMQProducer;
 
-    @Autowired
+   // @Autowired
     private MsgQueue msgQueue;
 
     @GetMapping("queueNormalDelay")

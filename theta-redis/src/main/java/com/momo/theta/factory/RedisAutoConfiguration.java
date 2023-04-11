@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
-import org.springframework.beans.PropertyValue;
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionReaderUtils;
@@ -20,8 +19,6 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.annotation.AnnotationScopeMetadataResolver;
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ScopeMetadata;
 import org.springframework.context.annotation.ScopeMetadataResolver;
@@ -33,7 +30,7 @@ import javax.annotation.PostConstruct;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(RedisProperties.class)
-@ConditionalOnProperty(prefix = "spring.redis", name = "driver", havingValue = "jedis")
+@ConditionalOnProperty(prefix = "spring.redis", name = "switch", havingValue = "true")
 public class RedisAutoConfiguration implements ApplicationContextAware {
 
     public static BeanDefinitionRegistry registry;
@@ -52,6 +49,9 @@ public class RedisAutoConfiguration implements ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 
+    /**
+     * 初始化默认的redis配置
+     */
     @PostConstruct
     public void initCacheService() {
         this.registerCacheBean(registry, null, DefaultRedisCache.class);
