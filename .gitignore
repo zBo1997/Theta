@@ -20,6 +20,8 @@ log.path_IS_UNDEFINED
 *.iws
 *.iml
 *.ipr
+*.imi
+.idea/libraries
 
 ### NetBeans ###
 nbproject/private/

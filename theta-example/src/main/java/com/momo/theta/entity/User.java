@@ -3,10 +3,13 @@ package com.momo.theta.entity;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -16,6 +19,7 @@ import lombok.experimental.Accessors;
 public class User {
 
     @Excel(name = "主键")
+    @TableId
     private String id;
     @Excel(name = "用户编号")
     private String userId;
@@ -28,6 +32,6 @@ public class User {
     @Excel(name = "区域id")
     private String regionId;
     @Excel(name = "创建时间")
-    private String createTime;
+    private Date createTime;
 
 }

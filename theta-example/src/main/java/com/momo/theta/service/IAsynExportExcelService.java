@@ -7,11 +7,8 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * @ClassName: IAsynExportExcelService
- * @Description:
- * @Author: WM
- * @Date: 2021-08-06 20:05
- **/
+ * IAsynExportExcelService
+ */
 public interface IAsynExportExcelService {
 
     /**
