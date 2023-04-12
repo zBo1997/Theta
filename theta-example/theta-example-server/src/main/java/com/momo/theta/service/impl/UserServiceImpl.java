@@ -61,8 +61,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         this.save(user);
         throw new RuntimeException("我测试错误");
     }
-
-    public static void main(String[] args) {
-        System.out.println(UUID.randomUUID());
-    }
 }

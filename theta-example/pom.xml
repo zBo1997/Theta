@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>theta-example</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>theta-example-api</module>
+        <module>theta-example-server</module>
+    </modules>
 
     <properties>
         <spring.profiles.name>${artifactId}</spring.profiles.name>
@@ -31,6 +36,8 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-context</artifactId>
         </dependency>
+
+
 
         <dependency>
             <groupId>junit</groupId>
