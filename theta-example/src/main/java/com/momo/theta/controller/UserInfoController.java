@@ -7,6 +7,7 @@ import com.momo.theta.service.AsynExcelExportUtil;
 import com.momo.theta.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -37,14 +38,17 @@ public class UserInfoController {
         asynExcelExportUtil.threadExcel(response);
     }
 
-
-
     @RequestMapping("/create")
     @ResponseBody
-    public String creat(@RequestBody UserForm userForm) {
+    public String create(@RequestBody UserForm userForm) {
         userService.createUser(userForm);
         return "success";
     }
 
-
+    @GetMapping("detail")
+    @Cacheable("id")
+    public String detail(String id) {
+        log.info("查询id：{}",id);
+        return JSONObject.toJSONString(userService.getById(id));
+    }
 }
