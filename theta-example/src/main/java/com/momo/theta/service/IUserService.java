@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.momo.theta.condition.UserCondition;
 import com.momo.theta.entity.User;
+import com.momo.theta.form.UserForm;
 
 import java.util.Map;
 import java.util.Queue;
@@ -23,8 +24,8 @@ public interface IUserService extends IService<User> {
 
     User getUser(User user);
 
-
     Long getCount();
 
+    void createUser(UserForm userForm);
 
 }

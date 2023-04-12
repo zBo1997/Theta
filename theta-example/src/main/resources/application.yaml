@@ -32,6 +32,9 @@ spring:
   redis:
     # 使用开关
     switch: true
+    #是否启用缓存
+    cache:
+      enable: true
     #使用驱动 支持 [ jedis | lettuce ] ，缺省为 lettuce
     driver: jedis
     redisson:

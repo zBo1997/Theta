@@ -2,14 +2,13 @@ package com.momo.theta.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.momo.theta.condition.UserCondition;
+import com.momo.theta.form.UserForm;
 import com.momo.theta.service.AsynExcelExportUtil;
 import com.momo.theta.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,8 +35,20 @@ public class UserInfoController {
     @RequestMapping("/exportUserInfo")
     @ResponseBody
     public void exportUserInfo(HttpServletResponse response) throws InterruptedException {
-            asynExcelExportUtil.threadExcel(response);
+        asynExcelExportUtil.threadExcel(response);
     }
 
+    @RequestMapping("/create")
+    @ResponseBody
+    public String create(@RequestBody UserForm userForm) {
+        userService.createUser(userForm);
+        return "success";
+    }
 
+    @GetMapping("detail")
+    @Cacheable("id")
+    public String detail(String id) {
+        log.info("查询id：{}",id);
+        return JSONObject.toJSONString(userService.getById(id));
+    }
 }
