@@ -1,21 +1,26 @@
 package com.momo.theta.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.momo.theta.api.UserInfoService;
 import com.momo.theta.condition.UserCondition;
+import com.momo.theta.dto.UserInfoDTO;
+import com.momo.theta.entity.User;
 import com.momo.theta.form.UserForm;
 import com.momo.theta.service.AsynExcelExportUtil;
 import com.momo.theta.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @RestController
-@RequestMapping("userInfo")
-public class UserInfoController {
+public class UserInfoController implements UserInfoService {
 
     @Autowired
     private IUserService userService;
@@ -38,17 +43,26 @@ public class UserInfoController {
         asynExcelExportUtil.threadExcel(response);
     }
 
-    @RequestMapping("/create")
-    @ResponseBody
-    public String create(@RequestBody UserForm userForm) {
+    @Override
+    public UserInfoDTO create(@RequestBody UserForm userForm) {
         userService.createUser(userForm);
-        return "success";
+        UserInfoDTO userInfoDTO = new UserInfoDTO();
+        userInfoDTO.setUserName(userForm.getUserName());
+        userInfoDTO.setPhone(userForm.getPhone());
+        userInfoDTO.setLanId(userForm.getLanId());
+        userInfoDTO.setRegionId(userForm.getRegionId());
+        return userInfoDTO;
     }
 
-    @GetMapping("detail")
-    @Cacheable("id")
-    public String detail(String id) {
-        log.info("查询id：{}",id);
-        return JSONObject.toJSONString(userService.getById(id));
+    @Override
+    public UserInfoDTO query(String userId) {
+        log.info("查询id：{}", userId);
+        UserInfoDTO userInfoDTO = new UserInfoDTO();
+        User byId = userService.getById(userId);
+        userInfoDTO.setUserName(byId.getUserName());
+        userInfoDTO.setPhone(byId.getPhone());
+        userInfoDTO.setLanId(byId.getLanId());
+        userInfoDTO.setRegionId(byId.getRegionId());
+        return userInfoDTO;
     }
 }
