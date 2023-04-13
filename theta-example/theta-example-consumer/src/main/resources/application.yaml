@@ -1,0 +1,65 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  lifecycle:
+    timeout-per-shutdown-phase: 60s
+  shardingsphere:
+    datasource:
+      names: ds0
+      ds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        #检查数据库是否可用
+        validationQuery: select 1
+        testWhileIdle: true
+        #当响连接池申请链接的时候都去判断链接是否可用
+        testOnBorrow: true
+        #最小空闲链接
+        minIdle: 5
+        #最大活跃数
+        maxActive: 1000
+        initialSize: 10
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 6000
+        poolPreparedStatements: true
+        logAbandoned: true
+        removeAbandoned: true
+        #连接从池获取后应该由应用主动释放，为避免泄漏，开启被动归还
+        removeAbandonedTimeout: 1800
+        slowSqlMillis: 1000
+        logSlowSql: true
+        filters: stat
+        url: jdbc:mysql://localhost:3306/test_performance?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+    #默认数据库
+    sharding:
+      default-data-source-name: ds0
+  redis:
+    # 使用开关
+    switch: true
+    #是否启用缓存
+    cache:
+      enable: true
+    #使用驱动 支持 [ jedis | lettuce ] ，缺省为 lettuce
+    driver: jedis
+    redisson:
+      enable: true
+    #是否是cluster模式，[true|false] ，缺省为false，即是单节点模式
+    multi-nodes: false
+    host: localhost
+    #password: momo@1234
+    port: 6379
+    cluster:
+      nodes: 12.3.35.31:8001,12.3.35.31:8002,12.3.35.32:8001,12.3.35.32:8002,12.3.35.33:8001,12.3.35.33:8002
+      max-redirects: 3
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 5
+        min-idle: 1
+    timeout: 3000
+  application:
+    name: @spring.profiles.name@
+  profiles:
+    active: @spring.profiles.active@
