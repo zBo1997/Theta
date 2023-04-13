@@ -39,7 +39,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Theta" options="" />
-      <module name="theta" options="-parameters" />
+      <module name="theta" options="" />
       <module name="theta-base" options="-parameters" />
       <module name="theta-common" options="-parameters" />
       <module name="theta-core" options="-parameters" />
