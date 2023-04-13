@@ -31,3 +31,4 @@ dist/
 nbdist/
 .nb-gradle/
 generatorConfig.xml
+.idea/compiler.xml

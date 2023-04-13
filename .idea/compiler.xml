@@ -50,7 +50,7 @@
       <module name="theta-core" options="-parameters" />
       <module name="theta-debug" options="-parameters" />
       <module name="theta-demo" options="-parameters" />
-      <module name="theta-example" options="" />
+      <module name="theta-example" options="-parameters" />
       <module name="theta-example-api" options="-parameters" />
       <module name="theta-example-consumer" options="-parameters" />
       <module name="theta-example-server" options="-parameters" />
