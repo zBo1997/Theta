@@ -35,7 +35,7 @@ public interface UserInfoService {
      * 详细看下一下这个 issue
      * https://github.com/spring-cloud/spring-cloud-netflix/issues/1253
      * SpringCloud官方给出解释
-     * @param userId
+     * @param userId 用户编号
      * @return
      */
     @Cacheable("userId")
