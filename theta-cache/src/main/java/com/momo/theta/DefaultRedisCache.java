@@ -4,6 +4,8 @@ import com.momo.theta.exception.TimeoutException;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -116,6 +118,12 @@ public class DefaultRedisCache implements Cache {
         return result;
     }
 
+    /**
+     * 默认超时时间的放入
+     *
+     * @param key
+     * @param value
+     */
     @Override
     public void put(Object key, Object value) {
         put(key, value, DEFAULT_EXPIRE);
@@ -143,9 +151,51 @@ public class DefaultRedisCache implements Cache {
         });
     }
 
+    /**
+     * @param key key 值
+     * @return
+     */
     @Override
     public Object get(Object key) {
-        return null;
+        return redisTemplate.execute(new RedisCallback() {
+            @Override
+            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+                byte[] k = redisTemplate.getKeySerializer().serialize(key);
+                if (k == null) {
+                    return null;
+                }
+                byte[] bytes = connection.get(k);
+                if (bytes == null) {
+                    return null;
+                }
+                return redisTemplate.getValueSerializer().deserialize(bytes);
+            }
+        });
+    }
+
+    /**
+     * 删除方法
+     *
+     * @param key 值
+     * @return 删除的值
+     */
+    @Override
+    public Object remove(Object key) {
+        return redisTemplate.execute(new RedisCallback() {
+            @Override
+            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+
+                RedisSerializer<Object> keySerializer = redisTemplate.getKeySerializer();
+
+                if (key == null) {
+                    return null;
+                }
+
+                byte[] bytes = keySerializer.serialize(key);
+
+                return connection.del(bytes);
+            }
+        });
     }
 
 

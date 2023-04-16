@@ -3,23 +3,23 @@ package com.momo.theta.condition;
 public class BaseCondition {
 
 
-    private int pageNo;
+    private long pageNo;
 
-    private int pageSize;
+    private long pageSize;
 
-    public int getPageNo() {
+    public long getPageNo() {
         return pageNo;
     }
 
-    public void setPageNo(int pageNo) {
+    public void setPageNo(long pageNo) {
         this.pageNo = pageNo;
     }
 
-    public int getPageSize() {
+    public long getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(long pageSize) {
         this.pageSize = pageSize;
     }
 }

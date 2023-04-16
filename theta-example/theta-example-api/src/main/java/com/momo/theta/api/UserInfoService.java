@@ -35,6 +35,7 @@ public interface UserInfoService {
      * 详细看下一下这个 issue
      * https://github.com/spring-cloud/spring-cloud-netflix/issues/1253
      * SpringCloud官方给出解释
+     *
      * @param userId 用户编号
      * @return
      */
@@ -42,5 +43,11 @@ public interface UserInfoService {
     @GetMapping(value = "/api/user/getUserInfo")
     UserInfoDTO query(@RequestParam String userId);
 
-
+    /**
+     * 测试分布式锁
+     *
+     * @param userForm
+     * @return 返回更新后的结果
+     */
+    UserInfoDTO update(@Validated @RequestBody UserForm userForm);
 }

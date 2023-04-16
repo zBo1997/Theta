@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.momo.theta.condition.UserCondition;
+import com.momo.theta.dto.UserInfoDTO;
 import com.momo.theta.entity.User;
 import com.momo.theta.form.UserForm;
 import com.momo.theta.mapper.UserMapper;
@@ -60,5 +61,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         user.setCreateTime(new Date());
         this.save(user);
         throw new RuntimeException("我测试错误");
+    }
+
+    @Override
+    public UserInfoDTO update(UserForm userForm) {
+        return null;
     }
 }

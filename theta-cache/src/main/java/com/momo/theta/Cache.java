@@ -19,7 +19,7 @@ public interface Cache {
     <T> T acquireForRedissonCallable(final String lockKey,final Long expire,final LockCallback<T> callback,final Long timeout) throws TimeoutException;
 
     /**
-     * 添加没有延迟时间
+     * 添加使用默认延迟延迟时间
      *
      * @param key
      * @param value
@@ -42,6 +42,16 @@ public interface Cache {
      * @return data
      */
     Object get(Object key);
+
+
+    /**
+     * 移除key
+     *
+     * @param key 值
+     * @return 删除对应的数据
+     */
+    Object remove(Object key);
+
 
 
 }

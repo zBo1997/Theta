@@ -1,6 +1,7 @@
 package com.momo.theta.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.momo.theta.condition.UserCondition;
 import com.momo.theta.entity.User;
 import com.momo.theta.utils.ZipUtils;
@@ -43,7 +44,7 @@ public class AsynExcelExportUtil {
     /**
      * 每批次处理的数据量
      */
-    private static final int LIMIT = 50000;
+    private static final int LIMIT = 5000;
 
     public static Queue<Map<String, Object>> queue;
 
@@ -63,6 +64,9 @@ public class AsynExcelExportUtil {
         // 数据的总数
         long dataTotalCount = userService.getCount();
         int listCount = (int) dataTotalCount;
+        //if (dataTotalCount >= 5000){
+        //    listCount = 5000;
+        //}
         // 计算出多少页，即循环次数
         int count = listCount / LIMIT + (listCount % LIMIT > 0 ? 1 : 0);
 
@@ -70,12 +74,8 @@ public class AsynExcelExportUtil {
         try {
             CountDownLatch cdl = new CountDownLatch(count);
             for (int i = 1; i <= count; i++) {
-                UserCondition user = new UserCondition();
-                user.setPageNo(i);
-                user.setPageSize(LIMIT);
-                IPage<User> query = userService.query(user);
-                List<User> records = query.getRecords();
-                asynExportExcelService.executeAsyncTask(records, filePath, cdl, i);
+                Page<User> page = Page.<User>of(i, LIMIT);
+                asynExportExcelService.executeAsyncTask(page, filePath, cdl);
             }
             cdl.await();
             log.info("excel导出完成·······················");

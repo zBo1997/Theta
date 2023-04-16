@@ -3,6 +3,7 @@ package com.momo.theta.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.momo.theta.condition.UserCondition;
+import com.momo.theta.dto.UserInfoDTO;
 import com.momo.theta.entity.User;
 import com.momo.theta.form.UserForm;
 
@@ -27,5 +28,7 @@ public interface IUserService extends IService<User> {
     Long getCount();
 
     void createUser(UserForm userForm);
+
+    UserInfoDTO update(UserForm userForm);
 
 }

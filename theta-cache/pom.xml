@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>theta-redis</artifactId>
+    <artifactId>theta-cache</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
