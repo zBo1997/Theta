@@ -33,7 +33,6 @@ import java.util.Set;
 
 @Slf4j
 @AllArgsConstructor
-@Configuration
 @EnableConfigurationProperties(RedisProperties.class)
 @ConditionalOnProperty(prefix = "spring.redis", name = "driver", havingValue = "lettuce", matchIfMissing = true)
 public class RedisLettuceConfig {

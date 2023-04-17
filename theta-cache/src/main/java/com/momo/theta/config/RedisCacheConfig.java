@@ -25,7 +25,6 @@ import java.time.Duration;
 
 @Slf4j
 @AllArgsConstructor
-@Configuration
 @EnableCaching
 @EnableConfigurationProperties(RedisCacheProperties.class)
 @ConditionalOnProperty(prefix = "spring.redis.cache", name = "enable", havingValue = "true")

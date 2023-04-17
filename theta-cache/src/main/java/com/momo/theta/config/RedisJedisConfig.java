@@ -23,7 +23,6 @@ import redis.clients.jedis.JedisPoolConfig;
 
 @Slf4j
 @AllArgsConstructor
-@Configuration
 @EnableConfigurationProperties(RedisProperties.class)
 @ConditionalOnProperty(prefix = "spring.redis", name = "driver", havingValue = "jedis")
 public class RedisJedisConfig {
