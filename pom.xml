@@ -27,6 +27,7 @@
         <module>theta-cache</module>
         <module>theta-sharding</module>
         <module>theta-example</module>
+        <module>theta-ocr</module>
     </modules>
 
     <licenses>
