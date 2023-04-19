@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -23,7 +24,7 @@ public class UserInfoController {
      * 测试查询
      */
     @GetMapping("query")
-    public String query(String userId) {
+    public String query(@RequestParam String userId) {
         return JSONObject.toJSONString(userFeign.query(userId));
     }
 
@@ -33,6 +34,7 @@ public class UserInfoController {
      */
     @PostMapping("update")
     public String update(@RequestBody UserForm userForm) {
+        log.info("consumer update form ：{}",JSONObject.toJSONString(userForm));
         return JSONObject.toJSONString(userFeign.update(userForm));
     }
 

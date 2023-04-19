@@ -58,6 +58,10 @@ public class UserInfoController implements UserInfoService {
         log.info("查询id：{}", userId);
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         User byId = userBusiness.getById(userId);
+        userInfoDTO.setUserName(byId.getUserName());
+        userInfoDTO.setPhone(byId.getPhone());
+        userInfoDTO.setRegionId(byId.getRegionId());
+        userInfoDTO.setLanId(byId.getLanId());
         return userInfoDTO;
     }
 

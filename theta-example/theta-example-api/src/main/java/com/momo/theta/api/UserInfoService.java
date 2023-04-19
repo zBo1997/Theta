@@ -49,5 +49,6 @@ public interface UserInfoService {
      * @param userForm
      * @return 返回更新后的结果
      */
+    @PostMapping(value = "/api/user/updateUserInfo")
     UserInfoDTO update(@Validated @RequestBody UserForm userForm);
 }
