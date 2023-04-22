@@ -23,7 +23,7 @@ public class AsyncTaskPoolConfig {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(i);
         taskExecutor.setMaxPoolSize(i);
-        taskExecutor.setQueueCapacity(99999);
+        taskExecutor.setQueueCapacity(Integer.MAX_VALUE);
         taskExecutor.setKeepAliveSeconds(60);
         taskExecutor.setThreadNamePrefix("exportTaskExecutor--");
         taskExecutor.setWaitForTasksToCompleteOnShutdown(true);

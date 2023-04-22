@@ -1,6 +1,4 @@
 spring:
-  main:
-    allow-bean-definition-overriding: true
   lifecycle:
     timeout-per-shutdown-phase: 60s
   shardingsphere:
@@ -30,6 +28,8 @@ spring:
         password: 123456
       default-data-source-name: ds0
   redis:
+    redisson:
+      enable: true
     # 使用开关
     switch: true
     #是否启用缓存
@@ -37,8 +37,6 @@ spring:
       enable: true
     #使用驱动 支持 [ jedis | lettuce ] ，缺省为 lettuce
     driver: jedis
-    redisson:
-      enable: true
     #是否是cluster模式，[true|false] ，缺省为false，即是单节点模式
     multi-nodes: false
     host: localhost

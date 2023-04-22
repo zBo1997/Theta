@@ -24,7 +24,7 @@
         <module>theta-common</module>
         <module>theta-core</module>
         <module>theta-base</module>
-        <module>theta-redis</module>
+        <module>theta-cache</module>
         <module>theta-sharding</module>
         <module>theta-example</module>
     </modules>
@@ -97,7 +97,7 @@
 
             <dependency>
                 <groupId>com.momo.basic</groupId>
-                <artifactId>theta-redis</artifactId>
+                <artifactId>theta-cache</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

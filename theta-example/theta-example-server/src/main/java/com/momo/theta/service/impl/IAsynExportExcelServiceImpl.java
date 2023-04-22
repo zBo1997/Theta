@@ -1,6 +1,9 @@
 package com.momo.theta.service.impl;
 
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.momo.theta.condition.UserCondition;
 import com.momo.theta.entity.User;
 import com.momo.theta.service.IAsynExportExcelService;
 import com.momo.theta.service.IUserService;
@@ -30,19 +33,24 @@ public class IAsynExportExcelServiceImpl implements IAsynExportExcelService {
 
     @Override
     @Async("exportTaskExecutor")
-    public void executeAsyncTask(List<User> data, String path, CountDownLatch cdl, Integer no) {
+    public void executeAsyncTask(Page page, String path, CountDownLatch cdl) {
         long start = System.currentTimeMillis();
+        UserCondition user = new UserCondition();
+        user.setPageSize(page.getSize());
+        user.setPageNo(page.getCurrent());
+        IPage<User> query = userService.query(user);
         log.info("线程：" + Thread.currentThread().getName() + " , 读取数据，耗时 ：" + (System.currentTimeMillis() - start));
-        String filePath = path + no + ".xlsx";
+        List<User> records = query.getRecords();
+        String filePath = path + cdl.getCount() + ".xlsx";
         // 调用导出的文件方法
-        Workbook workbook = MyExcelExportUtil.getWorkbook("计算机一班学生", "学生", User.class, data, ExcelType.XSSF);
+        Workbook workbook = MyExcelExportUtil.getWorkbook("计算机一班学生", "学生", User.class, records, ExcelType.XSSF);
         File file = new File(filePath);
         MyExcelExportUtil.exportExcel2(workbook, file);
         long end = System.currentTimeMillis();
-        log.info("线程：" + Thread.currentThread().getName() + " , 导出excel" + no + ".xlsx成功 , 导出数据：" + data.size() + " ,耗时 ：" + (end - start) + "ms");
+        log.info("线程：" + Thread.currentThread().getName() + " , 导出excel" + cdl.getCount() + ".xlsx成功 , 导出数据：" + records.size() + " ,耗时 ：" + (end - start) + "ms");
         // 执行完线程数减1
         cdl.countDown();
-        log.info("剩余任务数  ===========================> " + cdl.getCount());
+        log.info("剩余任务数  ===========================>:{} " + cdl.getCount());
     }
 
 }

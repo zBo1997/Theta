@@ -67,7 +67,7 @@
 
         <dependency>
             <groupId>com.momo.basic</groupId>
-            <artifactId>theta-redis</artifactId>
+            <artifactId>theta-cache</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 

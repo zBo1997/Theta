@@ -1,5 +1,6 @@
 package com.momo.theta.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.momo.theta.entity.User;
 
 import java.util.List;
@@ -16,5 +17,5 @@ public interface IAsynExportExcelService {
      *
      * @param countDownLatch
      */
-    void executeAsyncTask(List<User> data, String filePath, CountDownLatch countDownLatch,Integer no);
+    void executeAsyncTask(Page page, String filePath, CountDownLatch countDownLatch);
 }

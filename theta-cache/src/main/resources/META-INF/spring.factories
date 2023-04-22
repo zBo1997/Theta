@@ -1,0 +1,2 @@
+#-------starter自动装配--------- RedisJedisConfig,
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.momo.theta.config.RedissonConfig,com.momo.theta.config.RedisCacheConfig,com.momo.theta.config.RedisJedisConfig,com.momo.theta.config.RedisLettuceConfig
