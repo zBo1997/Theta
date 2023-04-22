@@ -39,7 +39,7 @@ public interface UserInfoService {
      * @param userId 用户编号
      * @return
      */
-    @Cacheable("userId")
+    @Cacheable(value = "userId",sync = true)
     @GetMapping(value = "/api/user/getUserInfo")
     UserInfoDTO query(@RequestParam String userId);
 
