@@ -12,10 +12,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.InputStream;
 
 @Slf4j
 @RestController
@@ -69,5 +73,10 @@ public class UserInfoController implements UserInfoService {
     public UserInfoDTO update(UserForm userForm) {
         log.info("更新参数：{}", JSONObject.toJSONString(userForm));
         return userBusiness.update(userForm);
+    }
+
+    @Override
+    public String uploadFile(@RequestPart("file") MultipartFile file) {
+        return file.getOriginalFilename();
     }
 }

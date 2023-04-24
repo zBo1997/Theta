@@ -3,11 +3,16 @@ package com.momo.theta.api;
 import com.momo.theta.dto.UserInfoDTO;
 import com.momo.theta.form.UserForm;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.InputStream;
 
 /**
  * @Author ZhuBo
@@ -51,4 +56,14 @@ public interface UserInfoService {
      */
     @PostMapping(value = "/api/user/updateUserInfo")
     UserInfoDTO update(@Validated @RequestBody UserForm userForm);
+
+
+    /**
+     * 测试传递图片
+     *
+     * @param file
+     * @return 返回更新后的结果
+     */
+    @PostMapping(value = "/api/user/uploadFile",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    String uploadFile(@RequestPart("file") MultipartFile file);
 }

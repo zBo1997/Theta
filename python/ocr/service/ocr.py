@@ -6,4 +6,4 @@ def open_file(file_path):
     print(file_path)
     # 输出结果保存路径
     result = ocr.ocr(file_path, cls=True)
-    print(result)
+    return result
