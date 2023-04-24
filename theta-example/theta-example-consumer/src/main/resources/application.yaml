@@ -63,3 +63,9 @@ spring:
     name: @spring.profiles.name@
   profiles:
     active: @spring.profiles.active@
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 6000

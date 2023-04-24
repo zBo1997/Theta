@@ -22,10 +22,6 @@ public class UserBusiness {
     @Autowired
     private Cache cache;
 
-    public UserBusiness() {
-        log.info("初始化UserBiz");
-    }
-
     public UserBusiness(IUserService userInfoService, Cache cache) {
         this.userInfoService = userInfoService;
         this.cache = cache;

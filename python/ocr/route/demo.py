@@ -27,12 +27,10 @@ def demo_rest_get_request():
 
 
 
-@server.route('/upload/File', methods=['post'])
+@server.route('/ocr/test', methods=['post'])
 def demo_rest_post_request():
-    f = request.files['file']
+    f = request.files.get("file")
     basepath = os.path.dirname(__file__)
     upload_path = os.path.join(basepath, 'static',secure_filename(f.filename))
     f.save(upload_path)
-    open_file(upload_path)
-    return jsonify(f.filename)
-
+    return jsonify(open_file(upload_path))
