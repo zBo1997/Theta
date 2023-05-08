@@ -13,4 +13,5 @@ import com.momo.theta.entity.User;
  * @since 2021-09-07
  */
 public interface UserMapper extends BaseMapper<User> {
+
 }

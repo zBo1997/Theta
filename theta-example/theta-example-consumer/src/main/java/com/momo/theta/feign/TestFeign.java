@@ -1,6 +1,6 @@
 package com.momo.theta.feign;
 
-import com.momo.theta.api.UserInfoService;
+import com.momo.theta.api.TestService;
 import org.springframework.cloud.openfeign.FeignClient;
 
 
@@ -8,6 +8,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author zhubo
  */
 @FeignClient(name = "theta-example-server")
-public interface UserFeign extends UserInfoService {
+public interface TestFeign extends TestService {
 
 }

@@ -5,86 +5,87 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SegmentConfig {
-    /**
-     * 主键配置Id
-     */
-    private String id;
 
-    /**
-     *分片类型
-     */
-    private String type;
+  /**
+   * 主键配置Id
+   */
+  private String id;
 
-    /**
-     * 参数
-     */
-    private Map<String, Object> args;
+  /**
+   * 分片类型
+   */
+  private String type;
 
-    /**
-     * 嵌套配置参数
-     */
-    private SegmentConfig[] segmentConfigs;
+  /**
+   * 参数
+   */
+  private Map<String, Object> args;
 
-    /**
-     * 初始话参数
-     */
-    private Map<String, Object> initArgs = new HashMap<>();
+  /**
+   * 嵌套配置参数
+   */
+  private SegmentConfig[] segmentConfigs;
 
-    public String getId() {
-        return id;
-    }
+  /**
+   * 初始话参数
+   */
+  private Map<String, Object> initArgs = new HashMap<>();
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public Map<String, Object> getArgs() {
-        return args;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public void setArgs(Map<String, Object> args) {
-        this.args = args;
-    }
+  public Map<String, Object> getArgs() {
+    return args;
+  }
 
-    public SegmentConfig[] getSegmentConfigs() {
-        return segmentConfigs;
-    }
+  public void setArgs(Map<String, Object> args) {
+    this.args = args;
+  }
 
-    public void setSegmentConfigs(SegmentConfig[] segmentConfigs) {
-        this.segmentConfigs = segmentConfigs;
-    }
+  public SegmentConfig[] getSegmentConfigs() {
+    return segmentConfigs;
+  }
 
-    public void addInitArg(String name, Object value) {
-        initArgs.put(name, value);
-    }
+  public void setSegmentConfigs(SegmentConfig[] segmentConfigs) {
+    this.segmentConfigs = segmentConfigs;
+  }
 
-    public Object getInitArg(String name) {
-        return initArgs.get(name);
-    }
+  public void addInitArg(String name, Object value) {
+    initArgs.put(name, value);
+  }
 
-    public Map<String, Object> getInitArgs() {
-        return initArgs;
-    }
+  public Object getInitArg(String name) {
+    return initArgs.get(name);
+  }
 
-    public void setInitArgs(Map<String, Object> initArgs) {
-        this.initArgs = initArgs;
-    }
+  public Map<String, Object> getInitArgs() {
+    return initArgs;
+  }
 
-    @Override
-    public String toString() {
-        return "SequenceConfig{" +
-                "id='" + id + '\'' +
-                ", type='" + type + '\'' +
-                ", args=" + args +
-                ", segmentConfigs=" + Arrays.toString(segmentConfigs) +
-                '}';
-    }
+  public void setInitArgs(Map<String, Object> initArgs) {
+    this.initArgs = initArgs;
+  }
+
+  @Override
+  public String toString() {
+    return "SequenceConfig{" +
+        "id='" + id + '\'' +
+        ", type='" + type + '\'' +
+        ", args=" + args +
+        ", segmentConfigs=" + Arrays.toString(segmentConfigs) +
+        '}';
+  }
 }

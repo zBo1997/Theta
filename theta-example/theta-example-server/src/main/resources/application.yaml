@@ -113,3 +113,8 @@ rocketmq:
         consumeMessageBatchMaxSize: 32
 mybatis-plus:
   type-handlers-package: com.momo.theta.config
+opencv:
+  license:
+    enable: true
+  detectionModelPath: models/plate_detect.onnx
+  recognitionModelPath: models/plate_rec_color.onnx

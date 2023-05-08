@@ -1,55 +1,106 @@
 package com.momo.theta.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.base.Stopwatch;
+import com.momo.theta.api.TestService;
+import com.momo.theta.biz.UserBusiness;
+import com.momo.theta.condition.UserCondition;
+import com.momo.theta.domain.ExtParam;
+import com.momo.theta.domain.ImageMat;
+import com.momo.theta.domain.PlateImage;
+import com.momo.theta.dto.UserInfoDTO;
 import com.momo.theta.entity.User;
-import com.momo.theta.mapper.UserMapper;
+import com.momo.theta.extract.PlateExtractor;
+import com.momo.theta.form.UserForm;
+import com.momo.theta.service.AsynExcelExportUtil;
+import java.io.IOException;
+import java.util.HashMap;
+import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @RestController
-@RequestMapping("test")
-public class TestController {
+public class TestController implements TestService {
 
-    @Autowired
-    UserMapper userMapper;
+  @Autowired
+  private UserBusiness userBusiness;
+
+  @Autowired
+  private AsynExcelExportUtil asynExcelExportUtil;
+
+  @Autowired
+  private PlateExtractor plateExtractor;
 
 
-    /**
-     * 这是一个业务处理的请求
-     */
-    @GetMapping("gcTest")
-    public void queueNormalDelay() {
-        //创建一个监听器
-        Stopwatch started = Stopwatch.createStarted();
-        Int sum = new Int();
-        for (int i = 0; i <Integer.MAX_VALUE; i++) {
-            sum.add(1);
-        }
-        started.stop();
-        log.info("waste time :{}", JSONObject.toJSONString(started.toString()));
+  /**
+   * 分页查询
+   */
+  @GetMapping("query")
+  public String query(UserCondition userCondition) {
+    return JSONObject.toJSONString(userBusiness.query(userCondition));
+  }
+
+  @RequestMapping("/exportUserInfo")
+  @ResponseBody
+  public void exportUserInfo(HttpServletResponse response) throws InterruptedException {
+    asynExcelExportUtil.threadExcel(response);
+  }
+
+  @Override
+  public UserInfoDTO create(UserForm userForm) {
+    userBusiness.createUser(userForm);
+    UserInfoDTO userInfoDTO = new UserInfoDTO();
+    userInfoDTO.setUserName(userForm.getUserName());
+    userInfoDTO.setPhone(userForm.getPhone());
+    userInfoDTO.setLanId(userForm.getLanId());
+    userInfoDTO.setRegionId(userForm.getRegionId());
+    return userInfoDTO;
+  }
+
+  @Override
+  public UserInfoDTO query(String userId) {
+    log.info("查询id：{}", userId);
+    UserInfoDTO userInfoDTO = new UserInfoDTO();
+    User byId = userBusiness.getById(userId);
+    userInfoDTO.setUserName(byId.getUserName());
+    userInfoDTO.setPhone(byId.getPhone());
+    userInfoDTO.setRegionId(byId.getRegionId());
+    userInfoDTO.setLanId(byId.getLanId());
+    return userInfoDTO;
+  }
+
+  @Override
+  public UserInfoDTO update(UserForm userForm) {
+    log.info("更新参数：{}", JSONObject.toJSONString(userForm));
+    return userBusiness.update(userForm);
+  }
+
+  @Override
+  public String uploadFile(@RequestPart("file") MultipartFile file) {
+    return file.getOriginalFilename();
+  }
+
+  @Override
+  public String plateRecognition(@RequestPart("file") MultipartFile file) {
+    ImageMat imageMat = null;
+    PlateImage extract = null;
+    try {
+      imageMat = ImageMat.fromInputStream(file.getInputStream());
+      ExtParam extParam = ExtParam.build().setTopK(5);
+      extract = plateExtractor.extract(imageMat, extParam, new HashMap<>(2));
+    } catch (IOException e) {
+      log.error("图片读取失败");
+    } finally {
+      if (null != imageMat) {
+        imageMat.release();
+      }
     }
-
-    class Int {
-        public int val = 0;
-
-        public void add(int delta) {
-            val += delta;
-        }
-    }
-
-
-    /**
-     * 这是一个业务处理的请求
-     */
-    @GetMapping("test")
-    public void test() {
-        User user = userMapper.selectById(1);
-        log.info("waste time :{}", JSONObject.toJSONString(user));
-    }
-
+    return JSONObject.toJSONString(extract);
+  }
 }

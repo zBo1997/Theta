@@ -8,8 +8,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class ThetaExampleSpringBootApplication {
 
-    public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(ThetaExampleSpringBootApplication.class);
-        application.run(args);
-    }
+  public static void main(String[] args) {
+    SpringApplication application = new SpringApplication(ThetaExampleSpringBootApplication.class);
+    application.run(args);
+  }
 }

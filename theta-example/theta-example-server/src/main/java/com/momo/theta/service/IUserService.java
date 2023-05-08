@@ -7,10 +7,6 @@ import com.momo.theta.dto.UserInfoDTO;
 import com.momo.theta.entity.User;
 import com.momo.theta.form.UserForm;
 
-import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.CountDownLatch;
-
 /**
  * <p>
  * User服务
@@ -21,14 +17,14 @@ import java.util.concurrent.CountDownLatch;
  */
 public interface IUserService extends IService<User> {
 
-    IPage<User> query(UserCondition user);
+  IPage<User> query(UserCondition user);
 
-    User getUser(User user);
+  User getUser(User user);
 
-    Long getCount();
+  Long getCount();
 
-    void createUser(UserForm userForm);
+  void createUser(UserForm userForm);
 
-    UserInfoDTO update(UserForm userForm);
+  UserInfoDTO update(UserForm userForm);
 
 }

@@ -5,6 +5,6 @@ package com.momo.theta.api;
  */
 public interface StrategyService {
 
-    String getType();
+  String getType();
 
 }

@@ -6,9 +6,10 @@ package com.momo.theta;
 @FunctionalInterface
 public interface LockCallback<T> {
 
-    /**
-     * 回调执行的方法
-     * @return 返回指定类型
-     */
-     T callBack();
+  /**
+   * 回调执行的方法
+   *
+   * @return 返回指定类型
+   */
+  T callBack();
 }

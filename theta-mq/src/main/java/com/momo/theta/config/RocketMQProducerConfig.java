@@ -17,60 +17,60 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(prefix = "rocketmq", value = "enable", havingValue = "true")
 public class RocketMQProducerConfig {
 
-    private RocketMQProperty property;
+  private RocketMQProperty property;
 
-    public RocketMQProducerConfig(RocketMQProperty property) {
-        this.property = property;
+  public RocketMQProducerConfig(RocketMQProperty property) {
+    this.property = property;
+  }
+
+
+  /**
+   * 注入默认生产者
+   *
+   * @return
+   * @throws MQClientException
+   */
+  @Bean
+  @ConditionalOnProperty(prefix = "rocketmq.producer", value = "enable", havingValue = "true")
+  public DefaultMQProducer getRocketMQProducer() throws MQClientException {
+
+    DefaultMQProducer producer = new DefaultMQProducer(property.getProducer().getGroupName());
+    producer.setNamesrvAddr(property.getNamesrvAddr());
+    producer.setMaxMessageSize(property.getProducer().getMaxMessageSize());
+    producer.setSendMsgTimeout(property.getProducer().getSendMsgTimeout());
+    producer.setRetryTimesWhenSendFailed(property.getProducer().getRetryTimesWhenSendFailed());
+    producer.setRetryTimesWhenSendAsyncFailed(property.getProducer().getRetryTimesWhenSendFailed());
+    producer.setRetryAnotherBrokerWhenNotStoreOK(true);
+
+    try {
+      producer.start();
+      log.info("producer is start at :{} , groupName:{}", property.getNamesrvAddr(),
+          property.getProducer().getGroupName());
+    } catch (MQClientException e) {
+      log.error("producer is error {}", e.getMessage(), e);
+      throw e;
     }
+    return producer;
+  }
 
 
-    /**
-     * 注入默认生产者
-     *
-     * @return
-     * @throws MQClientException
-     */
-    @Bean
-    @ConditionalOnProperty(prefix = "rocketmq.producer", value = "enable", havingValue = "true")
-    public DefaultMQProducer getRocketMQProducer() throws MQClientException {
+  @Bean
+  @ConditionalOnProperty(prefix = "rocketmq.producer", value = "enable", havingValue = "true")
+  public MqProducer getThetaMqProducer(DefaultMQProducer defaultMQProducer) {
+    MqProducer mqProducer = new MqProducer();
+    mqProducer.setMqProducer(defaultMQProducer);
+    return mqProducer;
+  }
 
 
-        DefaultMQProducer producer = new DefaultMQProducer(property.getProducer().getGroupName());
-        producer.setNamesrvAddr(property.getNamesrvAddr());
-        producer.setMaxMessageSize(property.getProducer().getMaxMessageSize());
-        producer.setSendMsgTimeout(property.getProducer().getSendMsgTimeout());
-        producer.setRetryTimesWhenSendFailed(property.getProducer().getRetryTimesWhenSendFailed());
-        producer.setRetryTimesWhenSendAsyncFailed(property.getProducer().getRetryTimesWhenSendFailed());
-        producer.setRetryAnotherBrokerWhenNotStoreOK(true);
+  @Bean
+  @ConditionalOnProperty(prefix = "rocketmq.producer.queue", value = "enable", havingValue = "true")
+  public MsgQueue configThetaQueue(MqProducer mqProducer) {
+    MsgQueue msgQueue = new MsgQueue(mqProducer);
+    msgQueue.setFilePath(property.getProducer().getFilePath());
+    msgQueue.init();
+    return msgQueue;
 
-        try {
-            producer.start();
-            log.info("producer is start at :{} , groupName:{}", property.getNamesrvAddr(), property.getProducer().getGroupName());
-        } catch (MQClientException e) {
-            log.error("producer is error {}", e.getMessage(), e);
-            throw e;
-        }
-        return producer;
-    }
-
-
-    @Bean
-    @ConditionalOnProperty(prefix = "rocketmq.producer", value = "enable", havingValue = "true")
-    public MqProducer getThetaMqProducer(DefaultMQProducer defaultMQProducer) {
-        MqProducer mqProducer = new MqProducer();
-        mqProducer.setMqProducer(defaultMQProducer);
-        return mqProducer;
-    }
-
-
-    @Bean
-    @ConditionalOnProperty(prefix = "rocketmq.producer.queue", value = "enable", havingValue = "true")
-    public MsgQueue configThetaQueue(MqProducer mqProducer) {
-        MsgQueue msgQueue = new MsgQueue(mqProducer);
-        msgQueue.setFilePath(property.getProducer().getFilePath());
-        msgQueue.init();
-        return msgQueue;
-
-    }
+  }
 
 }

@@ -8,10 +8,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface OcrService {
 
-    @GetMapping("/simulation/analysis?name=zhubo")
-    String demoTest();
+  @GetMapping("/simulation/analysis?name=zhubo")
+  String demoTest();
 
-    @PostMapping(value = "/ocr/test",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    String ocr(@RequestPart("file") MultipartFile file);
+  @PostMapping(value = "/ocr/test", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  String ocr(@RequestPart("file") MultipartFile file);
 
 }
