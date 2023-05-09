@@ -79,6 +79,9 @@
         <sharding-jdbc.version>4.0.0-RC1</sharding-jdbc.version>
         <redis.starter.version>2.6.8</redis.starter.version>
         <test.starter.version>2.6.8</test.starter.version>
+        <opencv.version>4.6.0-0</opencv.version>
+        <onnxruntime.version>1.13.1</onnxruntime.version>
+        <commons-math3.version>3.6.1</commons-math3.version>
     </properties>
 
 
@@ -514,6 +517,23 @@
                 <version>3.9.0</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.openpnp</groupId>
+                <artifactId>opencv</artifactId>
+                <version>${opencv.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.microsoft.onnxruntime</groupId>
+                <artifactId>onnxruntime</artifactId>
+                <version>${onnxruntime.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-math3</artifactId>
+                <version>${commons-math3.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

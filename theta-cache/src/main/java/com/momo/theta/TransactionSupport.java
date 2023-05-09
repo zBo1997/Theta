@@ -6,8 +6,8 @@ package com.momo.theta;
 @FunctionalInterface
 public interface TransactionSupport {
 
-    /**
-     * 执行方法
-     */
-    void process();
+  /**
+   * 执行方法
+   */
+  void process();
 }

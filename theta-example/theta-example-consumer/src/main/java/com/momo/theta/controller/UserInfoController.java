@@ -1,7 +1,7 @@
 package com.momo.theta.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.momo.theta.feign.UserFeign;
+import com.momo.theta.feign.TestFeign;
 import com.momo.theta.form.UserForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +17,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("userInfo")
 public class UserInfoController {
 
-    @Autowired
-    private UserFeign userFeign;
+  @Autowired
+  private TestFeign testFeign;
 
-    /**
-     * 测试查询
-     */
-    @GetMapping("query")
-    public String query(@RequestParam String userId) {
-        return JSONObject.toJSONString(userFeign.query(userId));
-    }
+  /**
+   * 测试查询
+   */
+  @GetMapping("query")
+  public String query(@RequestParam String userId) {
+    return JSONObject.toJSONString(testFeign.query(userId));
+  }
 
 
-    /**
-     * 测试查询
-     */
-    @PostMapping("update")
-    public String update(@RequestBody UserForm userForm) {
-        log.info("consumer update form ：{}",JSONObject.toJSONString(userForm));
-        return JSONObject.toJSONString(userFeign.update(userForm));
-    }
+  /**
+   * 测试查询
+   */
+  @PostMapping("update")
+  public String update(@RequestBody UserForm userForm) {
+    log.info("consumer update form ：{}", JSONObject.toJSONString(userForm));
+    return JSONObject.toJSONString(testFeign.update(userForm));
+  }
 
 
 }

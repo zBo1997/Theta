@@ -6,5 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "spring.redis.redisson")
 public class RedissonProperties {
-    private boolean enable;
+
+  private boolean enable;
 }

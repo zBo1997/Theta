@@ -7,14 +7,15 @@ import lombok.Getter;
  */
 @Getter
 public class MqDataEvent {
-    private MqData value;
 
-    public void set(MqData value) {
-        this.value = value;
-    }
+  private MqData value;
 
-    public void clear() {
-        this.value = null;
-    }
+  public void set(MqData value) {
+    this.value = value;
+  }
+
+  public void clear() {
+    this.value = null;
+  }
 
 }

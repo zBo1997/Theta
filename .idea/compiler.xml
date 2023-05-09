@@ -11,13 +11,14 @@
         <module name="theta-example-api" />
         <module name="theta-example-server" />
         <module name="theta-sharding" />
-        <module name="theta-common" />
-        <module name="theta-segment" />
-        <module name="theta-redis" />
         <module name="theta-mq" />
         <module name="theta-example-consumer" />
         <module name="theta-base" />
         <module name="theta-utils" />
+        <module name="theta-cache" />
+        <module name="theta-common" />
+        <module name="theta-segment" />
+        <module name="theta-cv" />
         <module name="theta-demo" />
       </profile>
     </annotationProcessing>
@@ -25,8 +26,10 @@
       <module name="theta" target="8" />
       <module name="Theta" target="8" />
       <module name="theta-base" target="8" />
+      <module name="theta-cache" target="8" />
       <module name="theta-common" target="8" />
       <module name="theta-core" target="8" />
+      <module name="theta-cv" target="8" />
       <module name="theta-debug" target="8" />
       <module name="theta-demo" target="1.8" />
       <module name="theta-example" target="8" />
@@ -34,8 +37,8 @@
       <module name="theta-example-consumer" target="8" />
       <module name="theta-example-server" target="8" />
       <module name="theta-mq" target="8" />
+      <module name="theta-ocr" target="8" />
       <module name="theta-parent" target="8" />
-      <module name="theta-redis" target="8" />
       <module name="theta-segment" target="8" />
       <module name="theta-sharding" target="8" />
       <module name="theta-utils" target="8" />
@@ -46,8 +49,10 @@
       <module name="Theta" options="" />
       <module name="theta" options="" />
       <module name="theta-base" options="-parameters" />
+      <module name="theta-cache" options="-parameters" />
       <module name="theta-common" options="-parameters" />
       <module name="theta-core" options="-parameters" />
+      <module name="theta-cv" options="-parameters" />
       <module name="theta-debug" options="-parameters" />
       <module name="theta-demo" options="-parameters" />
       <module name="theta-example" options="-parameters" />
@@ -55,8 +60,8 @@
       <module name="theta-example-consumer" options="-parameters" />
       <module name="theta-example-server" options="-parameters" />
       <module name="theta-mq" options="-parameters" />
+      <module name="theta-ocr" options="-parameters" />
       <module name="theta-parent" options="" />
-      <module name="theta-redis" options="-parameters" />
       <module name="theta-segment" options="-parameters" />
       <module name="theta-sharding" options="-parameters" />
       <module name="theta-utils" options="-parameters" />

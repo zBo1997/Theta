@@ -14,29 +14,29 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @Slf4j
 public class ThetaRedisTest {
 
-    @Autowired
-    private Cache cache;
+  @Autowired
+  private Cache cache;
 
-    @Test
-    public void testAcquireRedission() {
-        cache.acquireForRedissonCallable("test", 200L, () -> {
-            log.info("执行逻辑");
-            return "";
+  @Test
+  public void testAcquireRedission() {
+    cache.acquireForRedissonCallable("test", 200L, () -> {
+      log.info("执行逻辑");
+      return "";
 
-        }, 200L);
-    }
+    }, 200L);
+  }
 
-    @Test
-    public void testSetValue() {
-        User user = new User();
-        user.setUserId("1");
-        user.setUserName("zhubo");
-        cache.put("test1", user, 10000);
-    }
+  @Test
+  public void testSetValue() {
+    User user = new User();
+    user.setUserId("1");
+    user.setUserName("zhubo");
+    cache.put("test1", user, 10000);
+  }
 
-    @Test
-    public void testGetValue() {
-        Object test = cache.get("test");
-        System.out.println(JSONObject.toJSONString(test));
-    }
+  @Test
+  public void testGetValue() {
+    Object test = cache.get("test");
+    System.out.println(JSONObject.toJSONString(test));
+  }
 }
