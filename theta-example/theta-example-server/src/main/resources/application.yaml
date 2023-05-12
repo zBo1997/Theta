@@ -3,7 +3,7 @@ spring:
     timeout-per-shutdown-phase: 60s
   shardingsphere:
     datasource:
-      names: ds0
+      names: ds0,ds1
       ds0:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
@@ -26,7 +26,39 @@ spring:
         url: jdbc:mysql://localhost:3306/test_performance?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
         username: root
         password: 123456
+      ds1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        validationQuery: select 1
+        testWhileIdle: true
+        testOnBorrow: true
+        minIdle: 5
+        maxActive: 1000
+        initialSize: 10
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 6000
+        poolPreparedStatements: true
+        logAbandoned: true
+        removeAbandoned: true
+        #连接从池获取后应该由应用主动释放，为避免泄漏，开启被动归还
+        removeAbandonedTimeout: 1800
+        slowSqlMillis: 1000
+        logSlowSql: true
+        filters: stat
+        url: jdbc:mysql://localhost:3307/test_performance?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
       default-data-source-name: ds0
+    props:
+      sql:
+        show: true
+      executor:
+        size: 2
+    sharding:
+      default-data-source-name: ds0
+      tables:
+        test_user:
+          actual-data-nodes: ds$->{0..1}.test_user
   redis:
     redisson:
       enable: true
