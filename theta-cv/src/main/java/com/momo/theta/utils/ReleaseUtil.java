@@ -2,8 +2,8 @@ package com.momo.theta.utils;
 
 import ai.onnxruntime.OnnxTensor;
 import ai.onnxruntime.OrtSession;
-import com.momo.theta.domain.BorderMat;
-import com.momo.theta.domain.ImageMat;
+import com.momo.theta.model.BorderMat;
+import com.momo.theta.model.ImageMat;
 import org.opencv.core.Mat;
 
 public class ReleaseUtil {

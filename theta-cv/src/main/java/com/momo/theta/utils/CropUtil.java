@@ -1,6 +1,6 @@
 package com.momo.theta.utils;
 
-import com.momo.theta.domain.PlateInfo;
+import com.momo.theta.model.PlateInfo;
 import java.util.ArrayList;
 import java.util.List;
 import org.opencv.core.CvType;

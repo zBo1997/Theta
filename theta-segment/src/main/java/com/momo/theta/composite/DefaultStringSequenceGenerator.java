@@ -8,7 +8,7 @@ import com.momo.theta.api.generator.NumberSequenceGenerator;
 import com.momo.theta.config.SegmentConfig;
 import com.momo.theta.constants.BasicConstants;
 import com.momo.theta.generator.GenerateSegmentService;
-import com.momo.theta.util.MapToBean;
+import com.momo.theta.utils.MapToBean;
 import java.util.Map;
 import org.springframework.util.Assert;
 

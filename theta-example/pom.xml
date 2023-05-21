@@ -86,5 +86,10 @@
       <artifactId>theta-cv</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.momo.basic</groupId>
+      <artifactId>theta-jwt</artifactId>
+    </dependency>
+
   </dependencies>
 </project>

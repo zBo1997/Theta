@@ -1,4 +1,4 @@
-nacos_host: "127.0.0.1:8848"
+nacos_host: localhost:8848
 nacos_namespace: "59656ea3-0252-4b9c-b9d2-3ae3eab5f631"
 server:
   port: 8338

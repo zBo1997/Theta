@@ -1,8 +1,8 @@
 package com.momo.theta;
 
-import com.momo.theta.domain.DrawImage;
-import com.momo.theta.domain.ImageMat;
-import com.momo.theta.domain.PlateInfo;
+import com.momo.theta.model.DrawImage;
+import com.momo.theta.model.ImageMat;
+import com.momo.theta.model.PlateInfo;
 import com.momo.theta.models.TorchPlateDetection;
 import java.awt.Color;
 import java.util.HashMap;

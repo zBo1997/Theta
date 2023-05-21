@@ -1,16 +1,16 @@
 package com.momo.theta.service.impl;
 
-import com.momo.theta.domain.ExtParam;
-import com.momo.theta.domain.ImageMat;
-import com.momo.theta.domain.LocationPoint;
-import com.momo.theta.domain.PlateColor;
-import com.momo.theta.domain.PlateImage;
-import com.momo.theta.domain.PlateInfo;
-import com.momo.theta.domain.PlateInfoRepVo;
-import com.momo.theta.domain.PlateInfoReqVo;
-import com.momo.theta.domain.PlateLayout;
-import com.momo.theta.domain.PlateLocation;
-import com.momo.theta.domain.RecognitionInfo;
+import com.momo.theta.model.ExtParam;
+import com.momo.theta.model.ImageMat;
+import com.momo.theta.model.LocationPoint;
+import com.momo.theta.model.PlateColor;
+import com.momo.theta.model.PlateImage;
+import com.momo.theta.model.PlateInfo;
+import com.momo.theta.model.PlateInfoRepVO;
+import com.momo.theta.model.PlateInfoReqVO;
+import com.momo.theta.model.PlateLayout;
+import com.momo.theta.model.PlateLocation;
+import com.momo.theta.model.RecognitionInfo;
 import com.momo.theta.extract.PlateExtractor;
 import com.momo.theta.service.PlateService;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class PlateServiceImpl implements PlateService {
 
 
   @Override
-  public List<PlateInfoRepVo> recognition(PlateInfoReqVo plateInfoReq) {
+  public List<PlateInfoRepVO> recognition(PlateInfoReqVO plateInfoReq) {
     //模型检测车牌信息
     ImageMat imageMat = null;
     PlateImage plateImage = null;
@@ -46,11 +46,11 @@ public class PlateServiceImpl implements PlateService {
       throw new RuntimeException("PlateExtractor extract error");
     }
     //转换模型结果，并输出
-    List<PlateInfoRepVo> plates = new ArrayList<>();
+    List<PlateInfoRepVO> plates = new ArrayList<>();
     if (null != plateImage.PlateInfos() && !plateImage.PlateInfos().isEmpty()) {
       for (PlateInfo plateInfo : plateImage.PlateInfos()) {
         //检测信息
-        PlateInfoRepVo plate = new PlateInfoRepVo();
+        PlateInfoRepVO plate = new PlateInfoRepVO();
         plate.setScore((float) Math.floor(plateInfo.score * 1000000) / 10000);
         PlateLocation location = new PlateLocation();
         location.setLeftTop(new LocationPoint(plateInfo.box.leftTop.x, plateInfo.box.leftTop.y));

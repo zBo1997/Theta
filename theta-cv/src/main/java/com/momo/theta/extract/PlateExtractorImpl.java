@@ -2,10 +2,10 @@ package com.momo.theta.extract;
 
 import com.momo.theta.base.PlateDetection;
 import com.momo.theta.base.PlateRecognition;
-import com.momo.theta.domain.ExtParam;
-import com.momo.theta.domain.ImageMat;
-import com.momo.theta.domain.PlateImage;
-import com.momo.theta.domain.PlateInfo;
+import com.momo.theta.model.ExtParam;
+import com.momo.theta.model.ImageMat;
+import com.momo.theta.model.PlateImage;
+import com.momo.theta.model.PlateInfo;
 import com.momo.theta.utils.CropUtil;
 import java.util.HashMap;
 import java.util.Iterator;

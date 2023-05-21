@@ -2,6 +2,7 @@ package com.momo.theta.factory;
 
 import com.momo.theta.api.ThetaSegment;
 import com.momo.theta.config.SegmentConfig;
+import com.momo.theta.constants.Constants;
 import com.momo.theta.generator.GenerateSegmentService;
 import java.util.List;
 import java.util.Properties;
@@ -35,6 +36,10 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 @ConditionalOnProperty(name = "available", prefix = "theta.sequence", havingValue = "true")
 public class SequenceAutoConfiguration implements ApplicationContextAware {
 
+  public static final String PREFIX_SQUENCE = Constants.PROJECT_PREFIX + ".sequence";
+
+  public static final String PREFIX_PAGE = Constants.PROJECT_PREFIX + ".page";
+
   public static BeanDefinitionRegistry registry;
 
   @Resource
@@ -55,7 +60,7 @@ public class SequenceAutoConfiguration implements ApplicationContextAware {
    * @return 返回分页插件的配置属性
    */
   @Bean
-  @ConfigurationProperties(prefix = "theta.sequence")
+  @ConfigurationProperties(prefix = PREFIX_PAGE)
   public Properties pageHelperProperties() {
     return new Properties();
   }
