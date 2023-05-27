@@ -1,5 +1,7 @@
 package com.momo.theta;
 
+import ai.onnxruntime.OrtEnvironment;
+import ai.onnxruntime.OrtSession;
 import com.momo.theta.model.DrawImage;
 import com.momo.theta.model.ExtParam;
 import com.momo.theta.model.ImageMat;
@@ -20,13 +22,14 @@ import org.opencv.imgcodecs.Imgcodecs;
 @Slf4j
 public class PlateExtractorTest extends BaseTest {
 
-  private static String plateDetectionPath = "open-anpr-core/src/main/resources/models/plate_detect.onnx";
-  private static String plateRecognitionPath = "open-anpr-core/src/main/resources/models/plate_rec_color.onnx";
+  private static String plateDetectionPath = "theta-cv/src/main/resources/models/plate_detect.onnx";
+  private static String plateRecognitionPath = "theta-cv/src/main/resources/models/plate_rec_color.onnx";
 
   public static void main(String[] args) {
-    TorchPlateDetection torchPlateDetection = new TorchPlateDetection(plateDetectionPath, 1);
+    TorchPlateDetection torchPlateDetection = new TorchPlateDetection(plateDetectionPath, 1,
+        OrtEnvironment.getEnvironment(),new OrtSession.SessionOptions());
     TorchPlateRecognition torchPlateRecognition = new TorchPlateRecognition(plateRecognitionPath,
-        1);
+        1,OrtEnvironment.getEnvironment(),new OrtSession.SessionOptions());
     PlateExtractor extractor = new PlateExtractorImpl(torchPlateDetection, torchPlateRecognition);
 
     String imagePath = "open-anpr-core/src/test/resources/images";

@@ -3,8 +3,9 @@ package com.momo.theta.base;
 import ai.onnxruntime.OrtEnvironment;
 import ai.onnxruntime.OrtLoggingLevel;
 import ai.onnxruntime.OrtSession;
+import ai.onnxruntime.OrtSession.SessionOptions;
 
-public abstract class BaseOnnxInfer extends OpenCVLoader {
+public abstract class BaseOnnxInfer {
 
   private OrtEnvironment env;
   private String[] inputNames;
@@ -16,10 +17,11 @@ public abstract class BaseOnnxInfer extends OpenCVLoader {
    * @param modelPath
    * @param threads
    */
-  public BaseOnnxInfer(String modelPath, int threads) {
+  public BaseOnnxInfer(String modelPath, int threads, OrtEnvironment ortEnvironment,
+      SessionOptions session) {
     try {
-      this.env = OrtEnvironment.getEnvironment();
-      OrtSession.SessionOptions opts = new OrtSession.SessionOptions();
+      this.env = ortEnvironment;
+      OrtSession.SessionOptions opts = session;
       opts.setInterOpNumThreads(threads);
       opts.setSessionLogLevel(OrtLoggingLevel.ORT_LOGGING_LEVEL_ERROR);
       opts.setOptimizationLevel(OrtSession.SessionOptions.OptLevel.BASIC_OPT);

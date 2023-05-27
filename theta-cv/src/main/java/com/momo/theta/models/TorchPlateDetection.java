@@ -1,7 +1,9 @@
 package com.momo.theta.models;
 
 import ai.onnxruntime.OnnxTensor;
+import ai.onnxruntime.OrtEnvironment;
 import ai.onnxruntime.OrtSession;
+import ai.onnxruntime.OrtSession.SessionOptions;
 import com.momo.theta.base.BaseOnnxInfer;
 import com.momo.theta.base.PlateDetection;
 import com.momo.theta.model.BorderMat;
@@ -34,8 +36,9 @@ public class TorchPlateDetection extends BaseOnnxInfer implements PlateDetection
   private final static int imageHeight = 640;
   private final static Scalar border = new Scalar(114, 114, 114);
 
-  public TorchPlateDetection(String modelPath, int threads) {
-    super(modelPath, threads);
+  public TorchPlateDetection(String modelPath, int threads, OrtEnvironment ortEnvironment,
+      SessionOptions session) {
+    super(modelPath, threads, ortEnvironment,session);
   }
 
   /**

@@ -1,7 +1,9 @@
 package com.momo.theta.models;
 
 import ai.onnxruntime.OnnxTensor;
+import ai.onnxruntime.OrtEnvironment;
 import ai.onnxruntime.OrtSession;
+import ai.onnxruntime.OrtSession.SessionOptions;
 import com.momo.theta.base.BaseOnnxInfer;
 import com.momo.theta.base.PlateRecognition;
 import com.momo.theta.model.ImageMat;
@@ -30,8 +32,9 @@ public class TorchPlateRecognition extends BaseOnnxInfer implements PlateRecogni
   private static float STD_VALUE = 0.193f;
   private static float MEAN_VALUE = 0.588f * 255;
 
-  public TorchPlateRecognition(String modelPath, int threads) {
-    super(modelPath, threads);
+  public TorchPlateRecognition(String modelPath, int threads, OrtEnvironment ortEnvironment,
+      SessionOptions session) {
+    super(modelPath, threads, ortEnvironment, session);
   }
 
   private static ImageMat splitAndMergePlate(ImageMat plate) {
