@@ -36,7 +36,7 @@ public class TorchPlateDetection extends BaseOnnxInfer implements PlateDetection
   private final static int imageHeight = 640;
   private final static Scalar border = new Scalar(114, 114, 114);
 
-  public TorchPlateDetection(String modelPath, int threads, OrtEnvironment ortEnvironment,
+  public TorchPlateDetection(byte[] modelPath, int threads, OrtEnvironment ortEnvironment,
       SessionOptions session) {
     super(modelPath, threads, ortEnvironment,session);
   }

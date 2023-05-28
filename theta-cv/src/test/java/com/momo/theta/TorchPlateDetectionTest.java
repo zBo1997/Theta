@@ -2,6 +2,7 @@ package com.momo.theta;
 
 import ai.onnxruntime.OrtEnvironment;
 import ai.onnxruntime.OrtSession;
+import cn.hutool.core.io.FileUtil;
 import com.momo.theta.model.DrawImage;
 import com.momo.theta.model.ImageMat;
 import com.momo.theta.model.PlateInfo;
@@ -14,7 +15,7 @@ public class TorchPlateDetectionTest {
 
   public static void main(String[] args) {
     TorchPlateDetection torchPlateDetection = new TorchPlateDetection(
-        "theta-cv/src/main/resources/models/plate_detect.onnx", 1, OrtEnvironment.getEnvironment(),
+        FileUtil.readBytes("C:\\Users\\zhubo\\IdeaProjects\\Theta\\theta-cv\\src\\main\\resources\\models\\plate_detect.onnx"), 1, OrtEnvironment.getEnvironment(),
         new OrtSession.SessionOptions());
 
     String imagePath = "theta-cv/src/test/resources/images/image002.jpg";

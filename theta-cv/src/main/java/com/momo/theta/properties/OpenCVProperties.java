@@ -1,7 +1,5 @@
 package com.momo.theta.properties;
 
-import ai.onnxruntime.OrtEnvironment;
-import com.momo.theta.base.OpenCVLoader;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -18,5 +16,16 @@ public class OpenCVProperties{
    * 模型加载线程数量
    */
   private Integer plateRecognitionThread = 1;
+
+  /**
+   * 车牌区域检测模型
+   */
+  private String detectionModelPath;
+
+  /**
+   * 车牌识别检测模型
+   */
+  private String recognitionModelPath;
+
 
 }

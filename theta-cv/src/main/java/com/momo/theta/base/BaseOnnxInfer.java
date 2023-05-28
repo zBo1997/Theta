@@ -14,10 +14,10 @@ public abstract class BaseOnnxInfer {
   /**
    * 构造函数
    *
-   * @param modelPath
-   * @param threads
+   * @param modelPath 模型路径的字节数组
+   * @param threads 读取线程数量
    */
-  public BaseOnnxInfer(String modelPath, int threads, OrtEnvironment ortEnvironment,
+  public BaseOnnxInfer(byte[] modelPath, int threads, OrtEnvironment ortEnvironment,
       SessionOptions session) {
     try {
       this.env = ortEnvironment;

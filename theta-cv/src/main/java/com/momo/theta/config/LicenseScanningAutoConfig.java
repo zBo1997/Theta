@@ -3,6 +3,7 @@ package com.momo.theta.config;
 import ai.onnxruntime.OrtEnvironment;
 import ai.onnxruntime.OrtSession;
 import ai.onnxruntime.OrtSession.SessionOptions;
+import cn.hutool.core.io.FileUtil;
 import com.momo.theta.base.OpenCVLoader;
 import com.momo.theta.base.PlateDetection;
 import com.momo.theta.base.PlateRecognition;
@@ -44,7 +45,8 @@ public class LicenseScanningAutoConfig extends OpenCVLoader {
   public PlateDetection getPlateDetection(
       @Qualifier("currentEnvironment") OrtEnvironment currentEnvironment,
       @Qualifier("currentSessionOptions") SessionOptions sessionOptions) {
-    return new TorchPlateDetection("theta-cv/src/main/resources/models/plate_detect.onnx",
+    byte[] modelPath = FileUtil.readBytes(super.getModelPath(openCvProperties.getDetectionModelPath()));
+    return new TorchPlateDetection(modelPath,
         openCvProperties.getPlateDetectionThread(), currentEnvironment,
         sessionOptions);
   }
@@ -53,7 +55,8 @@ public class LicenseScanningAutoConfig extends OpenCVLoader {
   public PlateRecognition getPlateRecognition(
       @Qualifier("currentEnvironment") OrtEnvironment currentEnvironment,
       @Qualifier("currentSessionOptions") SessionOptions sessionOptions) {
-    return new TorchPlateRecognition("theta-cv/src/main/resources/models/plate_rec_color.onnx",
+    byte[] modelPath = FileUtil.readBytes(super.getModelPath(openCvProperties.getRecognitionModelPath()));
+    return new TorchPlateRecognition(modelPath,
         openCvProperties.getPlateRecognitionThread(), currentEnvironment,
         sessionOptions);
   }

@@ -12,6 +12,10 @@ import com.momo.theta.extract.PlateExtractorImpl;
 import com.momo.theta.models.TorchPlateDetection;
 import com.momo.theta.models.TorchPlateRecognition;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +29,20 @@ public class PlateExtractorTest extends BaseTest {
   private static String plateDetectionPath = "theta-cv/src/main/resources/models/plate_detect.onnx";
   private static String plateRecognitionPath = "theta-cv/src/main/resources/models/plate_rec_color.onnx";
 
-  public static void main(String[] args) {
-    TorchPlateDetection torchPlateDetection = new TorchPlateDetection(plateDetectionPath, 1,
+  public static void main(String[] args) throws IOException {
+    File file = new File(
+        "C:\\Users\\zhubo\\IdeaProjects\\open-anpr\\open-anpr-core\\src\\main\\resources\\models\\plate_detect.onnx");
+    File filePlate = new File(
+        "C:\\Users\\zhubo\\IdeaProjects\\open-anpr\\open-anpr-core\\src\\main\\resources\\models\\plate_rec_color.onnx");
+    FileInputStream fis = new FileInputStream(file);
+    FileInputStream fisPlate = new FileInputStream(filePlate);
+    byte[] bytes = new byte[(int) file.length()];
+    byte[] bytesPlate = new byte[(int) filePlate.length()];
+    fis.read(bytes);
+    fisPlate.read(bytesPlate);
+    TorchPlateDetection torchPlateDetection = new TorchPlateDetection(bytes, 1,
         OrtEnvironment.getEnvironment(),new OrtSession.SessionOptions());
-    TorchPlateRecognition torchPlateRecognition = new TorchPlateRecognition(plateRecognitionPath,
+    TorchPlateRecognition torchPlateRecognition = new TorchPlateRecognition(bytesPlate,
         1,OrtEnvironment.getEnvironment(),new OrtSession.SessionOptions());
     PlateExtractor extractor = new PlateExtractorImpl(torchPlateDetection, torchPlateRecognition);
 
@@ -82,6 +96,8 @@ public class PlateExtractorTest extends BaseTest {
       }
       //show
       ImageMat.fromCVMat(drawImage.toMat()).imShow();
+      fis.close();
+      fisPlate.close();
       image.release();
     }
   }
