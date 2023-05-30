@@ -41,12 +41,31 @@ public class LicenseScanningAutoConfig extends OpenCVLoader {
     return new OrtSession.SessionOptions();
   }
 
+//  @Bean(name = "visualPlateDetection")
+//  public PlateDetection getPlateDetection(
+//      @Qualifier("currentEnvironment") OrtEnvironment currentEnvironment,
+//      @Qualifier("currentSessionOptions") SessionOptions sessionOptions) {
+//    byte[] modelPath = FileUtil.readBytes(super.getModelPath(openCvProperties.getDetectionModelPath()));
+//    return new TorchPlateDetection(modelPath,
+//        openCvProperties.getPlateDetectionThread(), currentEnvironment,
+//        sessionOptions);
+//  }
+//
+//  @Bean(name = "visualPlateRecognition")
+//  public PlateRecognition getPlateRecognition(
+//      @Qualifier("currentEnvironment") OrtEnvironment currentEnvironment,
+//      @Qualifier("currentSessionOptions") SessionOptions sessionOptions) {
+//    byte[] modelPath = FileUtil.readBytes(super.getModelPath(openCvProperties.getRecognitionModelPath()));
+//    return new TorchPlateRecognition(modelPath,
+//        openCvProperties.getPlateRecognitionThread(), currentEnvironment,
+//        sessionOptions);
+//  }
+
   @Bean(name = "visualPlateDetection")
   public PlateDetection getPlateDetection(
       @Qualifier("currentEnvironment") OrtEnvironment currentEnvironment,
       @Qualifier("currentSessionOptions") SessionOptions sessionOptions) {
-    byte[] modelPath = FileUtil.readBytes(super.getModelPath(openCvProperties.getDetectionModelPath()));
-    return new TorchPlateDetection(modelPath,
+    return new TorchPlateDetection(super.getModelPath(openCvProperties.getDetectionModelPath()),
         openCvProperties.getPlateDetectionThread(), currentEnvironment,
         sessionOptions);
   }
@@ -55,8 +74,7 @@ public class LicenseScanningAutoConfig extends OpenCVLoader {
   public PlateRecognition getPlateRecognition(
       @Qualifier("currentEnvironment") OrtEnvironment currentEnvironment,
       @Qualifier("currentSessionOptions") SessionOptions sessionOptions) {
-    byte[] modelPath = FileUtil.readBytes(super.getModelPath(openCvProperties.getRecognitionModelPath()));
-    return new TorchPlateRecognition(modelPath,
+    return new TorchPlateRecognition(super.getModelPath(openCvProperties.getDetectionModelPath()),
         openCvProperties.getPlateRecognitionThread(), currentEnvironment,
         sessionOptions);
   }

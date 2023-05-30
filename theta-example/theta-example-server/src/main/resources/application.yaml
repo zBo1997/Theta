@@ -148,5 +148,5 @@ mybatis-plus:
 opencv:
   license:
     enable: true
-  detectionModelPath: models/plate_detect.onnx
-  recognitionModelPath: models/plate_rec_color.onnx
+  detectionModelPath: /models/plate_detect.onnx
+  recognitionModelPath: /models/plate_rec_color.onnx
