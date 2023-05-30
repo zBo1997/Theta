@@ -104,6 +104,6 @@ public class TestServiceImpl implements TestService {
         imageMat.release();
       }
     }
-    return JSONObject.toJSONString(extract);
+    return JSONObject.toJSONString(extract.PlateInfos().get(0).parseInfo.plateNo);
   }
 }
