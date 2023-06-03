@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * 认证服务端配置
  *
- * @author zuihou
- * @date 2018/11/20
+ * @author zhubo
  */
 @EnableConfigurationProperties(value = {
         JwtProperties.class,
