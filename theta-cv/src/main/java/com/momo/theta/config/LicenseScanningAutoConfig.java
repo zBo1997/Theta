@@ -54,7 +54,7 @@ public class LicenseScanningAutoConfig extends OpenCVLoader {
   public PlateRecognition getPlateRecognition(
       @Qualifier("currentEnvironment") OrtEnvironment currentEnvironment,
       @Qualifier("currentSessionOptions") SessionOptions sessionOptions) {
-    return new TorchPlateRecognition(super.getModelPath(openCvProperties.getRecognitionModelPath()),
+    return new TorchPlateRecognition(super.getModelPath(openCvProperties.getDetectionModelPath()),
         openCvProperties.getPlateRecognitionThread(), currentEnvironment,
         sessionOptions);
   }
