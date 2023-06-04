@@ -20,8 +20,6 @@
   <properties>
     <spring.profiles.name>${artifactId}</spring.profiles.name>
     <spring.profiles.active>dev</spring.profiles.active>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
   <dependencies>
