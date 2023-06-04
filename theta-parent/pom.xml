@@ -22,8 +22,6 @@
         <sentinel.version>1.8.2</sentinel.version>
         <spring-boot-admin.version>2.7.7</spring-boot-admin.version>
         <dockerfile-maven-plugin.version>1.4.12</dockerfile-maven-plugin.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hutool.version>5.8.1</hutool.version>
         <druid.version>1.1.22</druid.version>
