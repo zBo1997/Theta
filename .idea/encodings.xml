@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/theta-base/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-cache/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-cache/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-common/src/main/java" charset="UTF-8" />
@@ -9,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/theta-example/theta-example-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-example/theta-example-consumer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-example/theta-example-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/theta-jwt/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-mq/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-segment/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/theta-segment/src/main/resources" charset="UTF-8" />

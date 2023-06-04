@@ -1,6 +1,7 @@
 package com.momo.theta.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -26,6 +27,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
 
   @Override
+  @DS("ds0")
   public IPage<User> query(UserCondition user) {
     log.info("分页入参:{}", JSONObject.toJSONString(user));
     QueryWrapper<User> queryWrapper = new QueryWrapper<>();

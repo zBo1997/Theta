@@ -18,7 +18,7 @@ public class AsyncTaskPoolConfig {
 
   @Bean("exportTaskExecutor")
   public Executor taskExecutor() {
-    int i = Runtime.getRuntime().availableProcessors();
+    var i = Runtime.getRuntime().availableProcessors();
     ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
     taskExecutor.setCorePoolSize(i);
     taskExecutor.setMaxPoolSize(i);

@@ -24,7 +24,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * variableSequenceSegment args: {pattern: '#{settleBatch}#{userId}#{batchDate}', upperCase:
  * 'true'}
  */
-@ConfigurationProperties(prefix = "theta.sequence")
+@ConfigurationProperties(prefix = SequenceAutoConfiguration.PREFIX_SQUENCE)
 public class ThetaSegmentConfig {
 
   /**

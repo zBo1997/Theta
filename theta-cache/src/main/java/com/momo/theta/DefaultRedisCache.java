@@ -1,5 +1,6 @@
 package com.momo.theta;
 
+import com.momo.theta.api.LockCallback;
 import com.momo.theta.exception.TimeoutException;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;

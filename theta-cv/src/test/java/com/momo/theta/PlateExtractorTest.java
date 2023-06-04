@@ -1,15 +1,21 @@
 package com.momo.theta;
 
-import com.momo.theta.domain.DrawImage;
-import com.momo.theta.domain.ExtParam;
-import com.momo.theta.domain.ImageMat;
-import com.momo.theta.domain.PlateImage;
-import com.momo.theta.domain.PlateInfo;
+import ai.onnxruntime.OrtEnvironment;
+import ai.onnxruntime.OrtSession;
+import com.momo.theta.model.DrawImage;
+import com.momo.theta.model.ExtParam;
+import com.momo.theta.model.ImageMat;
+import com.momo.theta.model.PlateImage;
+import com.momo.theta.model.PlateInfo;
 import com.momo.theta.extract.PlateExtractor;
 import com.momo.theta.extract.PlateExtractorImpl;
 import com.momo.theta.models.TorchPlateDetection;
 import com.momo.theta.models.TorchPlateRecognition;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,13 +26,24 @@ import org.opencv.imgcodecs.Imgcodecs;
 @Slf4j
 public class PlateExtractorTest extends BaseTest {
 
-  private static String plateDetectionPath = "open-anpr-core/src/main/resources/models/plate_detect.onnx";
-  private static String plateRecognitionPath = "open-anpr-core/src/main/resources/models/plate_rec_color.onnx";
+  private static String plateDetectionPath = "theta-cv/src/main/resources/models/plate_detect.onnx";
+  private static String plateRecognitionPath = "theta-cv/src/main/resources/models/plate_rec_color.onnx";
 
-  public static void main(String[] args) {
-    TorchPlateDetection torchPlateDetection = new TorchPlateDetection(plateDetectionPath, 1);
-    TorchPlateRecognition torchPlateRecognition = new TorchPlateRecognition(plateRecognitionPath,
-        1);
+  public static void main(String[] args) throws IOException {
+    File file = new File(
+        "C:\\Users\\zhubo\\IdeaProjects\\open-anpr\\open-anpr-core\\src\\main\\resources\\models\\plate_detect.onnx");
+    File filePlate = new File(
+        "C:\\Users\\zhubo\\IdeaProjects\\open-anpr\\open-anpr-core\\src\\main\\resources\\models\\plate_rec_color.onnx");
+    FileInputStream fis = new FileInputStream(file);
+    FileInputStream fisPlate = new FileInputStream(filePlate);
+    byte[] bytes = new byte[(int) file.length()];
+    byte[] bytesPlate = new byte[(int) filePlate.length()];
+    fis.read(bytes);
+    fisPlate.read(bytesPlate);
+    TorchPlateDetection torchPlateDetection = new TorchPlateDetection(bytes, 1,
+        OrtEnvironment.getEnvironment(),new OrtSession.SessionOptions());
+    TorchPlateRecognition torchPlateRecognition = new TorchPlateRecognition(bytesPlate,
+        1,OrtEnvironment.getEnvironment(),new OrtSession.SessionOptions());
     PlateExtractor extractor = new PlateExtractorImpl(torchPlateDetection, torchPlateRecognition);
 
     String imagePath = "open-anpr-core/src/test/resources/images";
@@ -79,6 +96,8 @@ public class PlateExtractorTest extends BaseTest {
       }
       //show
       ImageMat.fromCVMat(drawImage.toMat()).imShow();
+      fis.close();
+      fisPlate.close();
       image.release();
     }
   }

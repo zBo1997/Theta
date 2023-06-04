@@ -1,8 +1,8 @@
 package com.momo.theta.extract;
 
-import com.momo.theta.domain.ExtParam;
-import com.momo.theta.domain.ImageMat;
-import com.momo.theta.domain.PlateImage;
+import com.momo.theta.model.ExtParam;
+import com.momo.theta.model.ImageMat;
+import com.momo.theta.model.PlateImage;
 import java.util.Map;
 
 public interface PlateExtractor {

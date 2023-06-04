@@ -1,120 +1,31 @@
+nacos_host: localhost:8848
+nacos_namespace: 59656ea3-0252-4b9c-b9d2-3ae3eab5f631
 spring:
-  lifecycle:
-    timeout-per-shutdown-phase: 60s
-  shardingsphere:
-    datasource:
-      names: ds0
-      ds0:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        validationQuery: select 1
-        testWhileIdle: true
-        testOnBorrow: true
-        minIdle: 5
-        maxActive: 1000
-        initialSize: 10
-        maxWait: 60000
-        timeBetweenEvictionRunsMillis: 6000
-        poolPreparedStatements: true
-        logAbandoned: true
-        removeAbandoned: true
-        #连接从池获取后应该由应用主动释放，为避免泄漏，开启被动归还
-        removeAbandonedTimeout: 1800
-        slowSqlMillis: 1000
-        logSlowSql: true
-        filters: stat
-        url: jdbc:mysql://localhost:3306/test_performance?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
-        username: root
-        password: 123456
-      default-data-source-name: ds0
-  redis:
-    redisson:
-      enable: true
-    # 使用开关
-    switch: true
-    #是否启用缓存
-    cache:
-      enable: true
-    #使用驱动 支持 [ jedis | lettuce ] ，缺省为 lettuce
-    driver: jedis
-    #是否是cluster模式，[true|false] ，缺省为false，即是单节点模式
-    multi-nodes: false
-    host: localhost
-    #password: momo@1234
-    port: 6379
-    cluster:
-      nodes: 12.3.35.31:8001,12.3.35.31:8002,12.3.35.32:8001,12.3.35.32:8002,12.3.35.33:8001,12.3.35.33:8002
-      max-redirects: 3
-    lettuce:
-      pool:
-        max-active: 10
-        max-idle: 5
-        min-idle: 1
-    timeout: 3000
+  main:
+    allow-bean-definition-overriding: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   application:
     name: @spring.profiles.name@
   profiles:
     active: @spring.profiles.active@
-rocketmq:
-  #rocketmq 总开关，默认为false
-  enable: false
-  #namesrv地址，支持一个或多个节点，如果多个节点，节点之间 ; 分隔
-  namesrvAddr: localhost:9876;localhost:9877
-  #生产者信息
-  producer:
-    #生产者开关，默认为 false
-    enable: false
-    #生产者群组名称
-    groupName: producers
-    #消息最大长度 默认1024*4(4M)
-    maxMessageSize: 4096
-    #发送消息超时时间,默认3s
-    sendMsgTimeout: 3000
-    #发送消息失败重试次数，默认3
-    retryTimesWhenSendFailed: 2
-    #是否启动disruptor缓冲队列
-    queue:
-      enable: false
-    #消息文件存储路径
-    filePath: C:\Users\zhubo\logs\rocketmq_file
-  #消费者信息
-  consumer:
-    #消费者总开关，默认为 false
-    enable: false
-    #消费者启动线程数量，默认1
-    consumeThreadMin: 1
-    #消费者启最大线程数量，默认16，但由于使用的是ThreadPoolExecutor，且没有设置ThreadPoolExecutor队列边界，所以不会mq不会新建核心线程，因此该参数基本无用，但该参数必须大于consumeThreadMin
-    consumeThreadMax: 32
-    #批量从broker拉取消息数量，默认为32，且单纯在次数修改无效，如要修改此参数需修改mq启动参数（ sh mqadmin updateBrokerConfig -c 集群名称 -n namesrv  -k maxTransferCountOnMessageInMemory -v 400）
-    pullBatchSize: 32
-    #批量消费消息数量，默认1
-    consumeMessageBatchMaxSize: 32
-    #需消费订阅的topic组
-    topics:
-      #消费者topic名称，即rocketmq中定义的topic
-      - topicName: concurrently-topic
-        #topic开关，默认为 false
-        enable: false
-        #订阅topic的tag信息
-        tag: "*"
-        #消费类型 concurrently:并发消费，orderly:顺序消费
-        listenerType: concurrently
-        #消费者组名称
-        consumerGroup: test-consumer-group
-        #消费消息处理类信息
-        msgHandler: defaultRocketMQMsgHandler
-      - topicName: orderly-topic
-        enable: false
-        tag: "*"
-        listenerType: orderly
-        consumerGroup: demo-consumer-group
-        msgHandler: com.momo.theta.service.DemoRocketMQMsgHandler
-        pullBatchSize: 32
-        consumeMessageBatchMaxSize: 32
-mybatis-plus:
-  type-handlers-package: com.momo.theta.config
-opencv:
-  license:
-    enable: true
-  detectionModelPath: models/plate_detect.onnx
-  recognitionModelPath: models/plate_rec_color.onnx
+  #目前不需要指定配置
+  #profiles:
+  #  active: bootstrap-dev
+  sleuth:
+    sampler:
+      probability: 1
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos_host}
+        namespace: ${nacos_namespace}
+        metadata:
+          version: @system.version@
+      config:
+        server-addr: ${nacos_host}
+        namespace: ${nacos_namespace}
+        file-extension: "yaml"
+  config:
+    import:
+        - optional:nacos:theta-example-server.yaml  # 监听 DEFAULT_GROUP:theta-example-server.yaml

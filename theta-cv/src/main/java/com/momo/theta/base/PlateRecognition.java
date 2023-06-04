@@ -1,7 +1,7 @@
 package com.momo.theta.base;
 
-import com.momo.theta.domain.ImageMat;
-import com.momo.theta.domain.PlateInfo.ParseInfo;
+import com.momo.theta.model.ImageMat;
+import com.momo.theta.model.PlateInfo.ParseInfo;
 import java.util.Map;
 
 public interface PlateRecognition {

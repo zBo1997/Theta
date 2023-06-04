@@ -1,6 +1,5 @@
 package com.momo.theta;
 
-import ai.onnxruntime.OrtEnvironment;
 import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
@@ -11,8 +10,6 @@ public abstract class BaseTest {
   static {
     nu.pattern.OpenCV.loadShared();
   }
-
-  private OrtEnvironment env = OrtEnvironment.getEnvironment();
 
   public static Map<String, String> getImagePathMap(String imagePath) {
     Map<String, String> map = new TreeMap<>();

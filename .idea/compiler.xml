@@ -11,6 +11,7 @@
         <module name="theta-example-api" />
         <module name="theta-example-server" />
         <module name="theta-sharding" />
+        <module name="theta-jwt" />
         <module name="theta-mq" />
         <module name="theta-example-consumer" />
         <module name="theta-base" />
@@ -36,6 +37,7 @@
       <module name="theta-example-api" target="8" />
       <module name="theta-example-consumer" target="8" />
       <module name="theta-example-server" target="8" />
+      <module name="theta-jwt" target="8" />
       <module name="theta-mq" target="8" />
       <module name="theta-ocr" target="8" />
       <module name="theta-parent" target="8" />
@@ -47,7 +49,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Theta" options="" />
-      <module name="theta" options="" />
+      <module name="theta" options="-parameters" />
       <module name="theta-base" options="-parameters" />
       <module name="theta-cache" options="-parameters" />
       <module name="theta-common" options="-parameters" />
@@ -55,10 +57,11 @@
       <module name="theta-cv" options="-parameters" />
       <module name="theta-debug" options="-parameters" />
       <module name="theta-demo" options="-parameters" />
-      <module name="theta-example" options="-parameters" />
+      <module name="theta-example" options="" />
       <module name="theta-example-api" options="-parameters" />
       <module name="theta-example-consumer" options="-parameters" />
       <module name="theta-example-server" options="-parameters" />
+      <module name="theta-jwt" options="-parameters" />
       <module name="theta-mq" options="-parameters" />
       <module name="theta-ocr" options="-parameters" />
       <module name="theta-parent" options="" />

@@ -1,5 +1,6 @@
 package com.momo.theta;
 
+import com.momo.theta.api.LockCallback;
 import com.momo.theta.exception.TimeoutException;
 
 public interface Cache {

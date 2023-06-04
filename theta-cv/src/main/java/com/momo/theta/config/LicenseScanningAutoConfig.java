@@ -1,5 +1,10 @@
 package com.momo.theta.config;
 
+import ai.onnxruntime.OrtEnvironment;
+import ai.onnxruntime.OrtSession;
+import ai.onnxruntime.OrtSession.SessionOptions;
+import cn.hutool.core.io.FileUtil;
+import com.momo.theta.base.OpenCVLoader;
 import com.momo.theta.base.PlateDetection;
 import com.momo.theta.base.PlateRecognition;
 import com.momo.theta.extract.PlateExtractor;
@@ -9,54 +14,52 @@ import com.momo.theta.models.TorchPlateRecognition;
 import com.momo.theta.properties.OpenCVProperties;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
-/**
- * 车牌扫描配置类
- *
- * @author zhubo
- */
+
 @Slf4j
 @AllArgsConstructor
 @EnableCaching
 @EnableConfigurationProperties(OpenCVProperties.class)
 @ConditionalOnProperty(prefix = "opencv.license", name = "enable", havingValue = "true")
-public class LicenseScanningAutoConfig {
+public class LicenseScanningAutoConfig extends OpenCVLoader {
 
 
   private OpenCVProperties openCvProperties;
 
+  @Bean(name = "currentEnvironment")
+  public OrtEnvironment getCurrentEnvironment() {
+    return OrtEnvironment.getEnvironment();
+  }
 
-  /**
-   * 获取车牌检查模型
-   */
+  @Bean(name = "currentSessionOptions")
+  public SessionOptions getCurrentSessionOptions() {
+    return new OrtSession.SessionOptions();
+  }
+
   @Bean(name = "visualPlateDetection")
-  public PlateDetection getPlateDetection() {
-    return new TorchPlateDetection("theta-cv/src/main/resources/models/plate_detect.onnx",
-        openCvProperties.getPlateDetectionThread());
+  public PlateDetection getPlateDetection(
+      @Qualifier("currentEnvironment") OrtEnvironment currentEnvironment,
+      @Qualifier("currentSessionOptions") SessionOptions sessionOptions) {
+    return new TorchPlateDetection(super.getModelPath(openCvProperties.getDetectionModelPath()),
+        openCvProperties.getPlateDetectionThread(), currentEnvironment,
+        sessionOptions);
   }
 
-  /**
-   * 车牌特征提取服务
-   */
   @Bean(name = "visualPlateRecognition")
-  public PlateRecognition getPlateRecognition() {
-    return new TorchPlateRecognition("theta-cv/src/main/resources/models/plate_rec_color.onnx",
-        openCvProperties.getPlateRecognitionThread());
+  public PlateRecognition getPlateRecognition(
+      @Qualifier("currentEnvironment") OrtEnvironment currentEnvironment,
+      @Qualifier("currentSessionOptions") SessionOptions sessionOptions) {
+    return new TorchPlateRecognition(super.getModelPath(openCvProperties.getDetectionModelPath()),
+        openCvProperties.getPlateRecognitionThread(), currentEnvironment,
+        sessionOptions);
   }
 
 
-  /**
-   * 构建特征提取器
-   *
-   * @param plateDetection   车牌检测模型
-   * @param plateRecognition 车牌识别模型
-   */
   @Bean(name = "visualPlateExtractor")
   public PlateExtractor getPlateExtractor(
       @Qualifier("visualPlateDetection") PlateDetection plateDetection,
@@ -65,7 +68,4 @@ public class LicenseScanningAutoConfig {
     return new PlateExtractorImpl(plateDetection, plateRecognition);
   }
 
-  public static String function(String fileName) {
-    return LicenseScanningAutoConfig.class.getClassLoader().getResource(fileName).getFile().substring(1);
-  }
 }

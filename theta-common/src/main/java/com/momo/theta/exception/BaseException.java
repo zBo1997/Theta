@@ -53,11 +53,34 @@ public abstract class BaseException extends RuntimeException {
     this.code = _CODE + code;
   }
 
+  public BaseException(String code, String message, Throwable cause) {
+    super(message, cause);
+    this.code = _CODE + code;
+  }
+
   public BaseException(String module, String code, String message, Throwable cause, Object[] args) {
     super(message, cause);
     this.module = module;
     this.code = _CODE + code;
     this.args = args;
+  }
+
+  public BaseException(String code, String message, Object[] args) {
+    super(message);
+    this.code = _CODE + code;
+    this.args = args;
+  }
+
+  public BaseException(String message) {
+    super(message);
+  }
+
+  public BaseException(String message,Throwable throwable) {
+    super(message,throwable);
+  }
+
+  public BaseException(Throwable cause) {
+    super(cause);
   }
 
   public Object[] getArgs() {
