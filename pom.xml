@@ -52,6 +52,81 @@
         </developer>
     </developers>
 
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-example</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-sharding</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-segment</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-mq</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-cache</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-cv</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.momo.basic</groupId>
+                <artifactId>theta-jwt</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+        </dependencies>
+
+    </dependencyManagement>
+
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <resources>

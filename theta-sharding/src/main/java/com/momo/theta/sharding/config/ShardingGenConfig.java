@@ -1,9 +1,9 @@
 package com.momo.theta.sharding.config;
 
 import java.util.Map;
-import javax.annotation.PostConstruct;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @ConfigurationProperties(prefix = "sharding.config")
 @Slf4j
-public class ShardingGenConfig {
+public class ShardingGenConfig implements InitializingBean {
 
   /**
    * #默认数据库 ds1/ds2
@@ -36,8 +36,8 @@ public class ShardingGenConfig {
   @Autowired
   private DbWeightUtil dbWeightUtil;
 
-  @PostConstruct
-  public void refresh() {
+  @Override
+  public void afterPropertiesSet() {
     log.info("刷新配置:{}", this);
     try {
       dbWeightUtil.initDataBaseWeight(databaseWeight, tableInfo);
@@ -45,4 +45,5 @@ public class ShardingGenConfig {
       log.error(e.getMessage(), e);
     }
   }
+
 }
