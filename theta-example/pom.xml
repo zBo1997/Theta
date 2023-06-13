@@ -80,5 +80,10 @@
       <artifactId>theta-jwt</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.momo.basic</groupId>
+      <artifactId>theta-utils</artifactId>
+    </dependency>
+
   </dependencies>
 </project>

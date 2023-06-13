@@ -24,46 +24,38 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="theta" target="8" />
-      <module name="Theta" target="8" />
-      <module name="theta-base" target="8" />
-      <module name="theta-cache" target="8" />
-      <module name="theta-common" target="8" />
-      <module name="theta-core" target="8" />
-      <module name="theta-cv" target="8" />
-      <module name="theta-debug" target="8" />
-      <module name="theta-demo" target="1.8" />
-      <module name="theta-example" target="8" />
-      <module name="theta-example-api" target="8" />
-      <module name="theta-example-consumer" target="8" />
-      <module name="theta-example-server" target="8" />
-      <module name="theta-jwt" target="8" />
-      <module name="theta-mq" target="8" />
-      <module name="theta-ocr" target="8" />
-      <module name="theta-parent" target="8" />
-      <module name="theta-segment" target="8" />
-      <module name="theta-sharding" target="8" />
-      <module name="theta-utils" target="8" />
+      <module name="theta" target="1.8" />
+      <module name="theta-base" target="11" />
+      <module name="theta-cache" target="11" />
+      <module name="theta-common" target="11" />
+      <module name="theta-core" target="11" />
+      <module name="theta-cv" target="11" />
+      <module name="theta-example" target="1.8" />
+      <module name="theta-example-api" target="1.8" />
+      <module name="theta-example-consumer" target="1.8" />
+      <module name="theta-example-server" target="11" />
+      <module name="theta-jwt" target="11" />
+      <module name="theta-mq" target="11" />
+      <module name="theta-parent" target="1.8" />
+      <module name="theta-segment" target="11" />
+      <module name="theta-sharding" target="11" />
+      <module name="theta-utils" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Theta" options="" />
-      <module name="theta" options="-parameters" />
+      <module name="theta" options="" />
       <module name="theta-base" options="-parameters" />
       <module name="theta-cache" options="-parameters" />
       <module name="theta-common" options="-parameters" />
       <module name="theta-core" options="-parameters" />
       <module name="theta-cv" options="-parameters" />
-      <module name="theta-debug" options="-parameters" />
-      <module name="theta-demo" options="-parameters" />
       <module name="theta-example" options="" />
       <module name="theta-example-api" options="-parameters" />
       <module name="theta-example-consumer" options="-parameters" />
       <module name="theta-example-server" options="-parameters" />
       <module name="theta-jwt" options="-parameters" />
       <module name="theta-mq" options="-parameters" />
-      <module name="theta-ocr" options="-parameters" />
       <module name="theta-parent" options="" />
       <module name="theta-segment" options="-parameters" />
       <module name="theta-sharding" options="-parameters" />

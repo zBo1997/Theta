@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.momo.theta.composite;
 
 import com.momo.theta.api.ThetaSegment;
