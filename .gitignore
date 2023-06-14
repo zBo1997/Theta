@@ -17,6 +17,7 @@ log.path_IS_UNDEFINED
 
 ### IntelliJ IDEA ###
 .idea/
+.idea
 *.iws
 *.iml
 *.ipr
