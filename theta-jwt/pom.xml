@@ -4,14 +4,14 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <artifactId>theta</artifactId>
-    <groupId>com.momo.basic</groupId>
-    <version>1.0.0-SNAPSHOT</version>
+    <groupId>io.github.zbo1997</groupId>
+    <version>1.0.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>theta-jwt</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
@@ -22,7 +22,7 @@
   <dependencies>
 
     <dependency>
-      <groupId>com.momo.basic</groupId>
+      <groupId>io.github.zbo1997</groupId>
       <artifactId>theta-utils</artifactId>
     </dependency>
 
@@ -42,7 +42,7 @@
     </dependency>
 
     <dependency>
-      <groupId>com.momo.basic</groupId>
+      <groupId>io.github.zbo1997</groupId>
       <artifactId>theta-common</artifactId>
     </dependency>
 
