@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -33,11 +34,12 @@ public class RedisJedisConfig {
   public JedisConnectionFactory redisClusterConnectionFactory() {
     log.info("加载 cluster redis >>>>>> driver:{},nodes:{}", "jedis",
         redisProperties.getCluster().getNodes());
-    JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+
     RedisClusterConfiguration configuration = new RedisClusterConfiguration(
         redisProperties.getCluster().getNodes());
     configuration.setPassword(redisProperties.getPassword());
     configuration.setMaxRedirects(redisProperties.getCluster().getMaxRedirects());
+    JedisPoolConfig jedisPoolConfig = getJedisPoolConfig();
     return new JedisConnectionFactory(configuration, jedisPoolConfig);
   }
 
@@ -50,7 +52,13 @@ public class RedisJedisConfig {
     configuration.setHostName(redisProperties.getHost());
     configuration.setPassword(redisProperties.getPassword());
     configuration.setPort(redisProperties.getPort());
-    return new JedisConnectionFactory(configuration);
+    JedisClientConfiguration clientConfiguration = JedisClientConfiguration.builder()
+        .connectTimeout(redisProperties.getConnectTimeout())
+        .readTimeout(redisProperties.getTimeout())
+        .usePooling()
+        .poolConfig(getJedisPoolConfig())
+        .build();
+    return new JedisConnectionFactory(configuration, clientConfiguration);
   }
 
 
@@ -72,6 +80,18 @@ public class RedisJedisConfig {
 
   }
 
+  /**
+   * 构造连接配置参数
+   * @return Jedis 连接配置
+   */
+  private JedisPoolConfig getJedisPoolConfig() {
+    JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+    jedisPoolConfig.setMaxIdle(redisProperties.getJedis().getPool().getMaxIdle());
+    jedisPoolConfig.setMinIdle(redisProperties.getJedis().getPool().getMinIdle());
+    jedisPoolConfig.setMaxWait(redisProperties.getJedis().getPool().getMaxWait());
+    jedisPoolConfig.setMaxTotal(redisProperties.getJedis().getPool().getMaxActive());
+    return jedisPoolConfig;
+  }
 }
 
 
