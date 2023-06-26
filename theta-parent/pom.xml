@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.zbo1997</groupId>
     <artifactId>theta-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
 
@@ -583,6 +583,11 @@
     </dependencyManagement>
 
     <repositories>
+        <repository>
+            <id>central-repos</id>
+            <name>Central Repository</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
         <repository>
             <id>aliyun</id>
             <name>aliyun</name>
