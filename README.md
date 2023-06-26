@@ -11,17 +11,17 @@
 
 | 项目名称   | 项目当前版本号 | 功能描述 |
 |:---------:|:--------:|:---------:|
-|     theta-base     | 1.0.1    | 服务基础 |
-|     theta-cache     | 1.0.1     | 基于Redis二次封装|
-|     theta-common     | 1.0.1     | 服务公共部分 |
-|     theta-core     | 1.0.1     | 服务核心服务的持久组件 |
-|     theta-cv   | 1.0.1     | Onnxruntime二次封装 |
-|     theta-jwt     | 1.0.1     | JWT二次封装 |
-|     theta-mq     | 1.0.1     | RocketMQ二次封装 |
-|     theta-parent     | 1.0.1     | 项目组件依赖版本管理 |
-|     theta-segment     | 1.0.1     | Theta-Sequence的实现 |
-|     theta-sharding     | 1.0.1     | shardingJDBC工具类 |
-|     theta-utils    | 1.0.1     | 工具包 |
+|     theta-base     | 1.0.2    | 服务基础 |
+|     theta-cache     | 1.0.2     | 基于Redis二次封装|
+|     theta-common     | 1.0.2     | 服务公共部分 |
+|     theta-core     | 1.0.2     | 服务核心服务的持久组件 |
+|     theta-cv   | 1.0.2     | Onnxruntime二次封装 |
+|     theta-jwt     | 1.0.2     | JWT二次封装 |
+|     theta-mq     | 1.0.2     | RocketMQ二次封装 |
+|     theta-parent     | 1.0.2     | 项目组件依赖版本管理 |
+|     theta-segment     | 1.0.2     | Theta-Sequence的实现 |
+|     theta-sharding     | 1.0.2     | shardingJDBC工具类 |
+|     theta-utils    | 1.0.2     | 工具包 |
 
 
 --- 
