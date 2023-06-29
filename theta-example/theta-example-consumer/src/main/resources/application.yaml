@@ -1,12 +1,10 @@
-nacos_host: localhost:8848
+nacos_host: 192.168.2.102:8842,192.168.2.102:8844,192.168.2.102:8848
 nacos_namespace: 59656ea3-0252-4b9c-b9d2-3ae3eab5f631
 server:
   port: 8338
 spring:
   main:
     allow-bean-definition-overriding: true
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   application:
     name: @spring.profiles.name@
   profiles:

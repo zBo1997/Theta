@@ -11,6 +11,12 @@
 
     <artifactId>theta-example-consumer</artifactId>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <system.version>1.0.3</system.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
