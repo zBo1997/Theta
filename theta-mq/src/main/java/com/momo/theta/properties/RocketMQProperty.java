@@ -107,6 +107,10 @@ public class RocketMQProperty {
      * 消费者线程数量
      */
     private Integer consumeThreadMin;
+
+    /**
+     * 最小消费线程数
+     */
     private Integer consumeThreadMax;
 
     /**

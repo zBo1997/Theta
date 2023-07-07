@@ -1,9 +1,12 @@
 package com.momo.theta.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.momo.theta.queue.DisruptorQueue;
 import com.momo.theta.queue.data.MqData;
 import com.momo.theta.service.MsgQueue;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQBrokerException;
@@ -12,6 +15,7 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.remoting.exception.RemotingException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,10 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class MqController {
 
 
-  //@Autowired
+  @Autowired
   private DefaultMQProducer defaultMQProducer;
 
-  // @Autowired
+  @Autowired
   private MsgQueue msgQueue;
 
   @GetMapping("queueNormalDelay")
@@ -90,10 +94,11 @@ public class MqController {
   public void mqOrder()
       throws MQBrokerException, RemotingException, InterruptedException, MQClientException {
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
       String msgStr = " num= " + i;
       Message msg = new Message("orderly-topic", "*", msgStr.getBytes(StandardCharsets.UTF_8));
       defaultMQProducer.send(msg, (list, message, qIndex) -> {
+        log.info("发送消息：{}", JSONObject.toJSONString(msg));
         Integer queueIndex = (Integer) qIndex % list.size();
         MessageQueue queue = list.get(queueIndex);
         return queue;
@@ -109,10 +114,30 @@ public class MqController {
    * @throws InterruptedException
    * @throws MQClientException
    */
+  @GetMapping("mqOrderBatch")
+  public void mqOrderBatch()
+      throws MQBrokerException, RemotingException, InterruptedException, MQClientException {
+    List<Message> listData = new ArrayList<>();
+    for (int i = 0; i < 10; i++) {
+      String msgStr = " num= " + i;
+      Message msg = new Message("orderly-topic", "*", msgStr.getBytes(StandardCharsets.UTF_8));
+      listData.add(msg);
+    }
+    defaultMQProducer.send(listData);
+  }
+
+  /**
+   * 队列
+   *
+   * @throws MQBrokerException
+   * @throws RemotingException
+   * @throws InterruptedException
+   * @throws MQClientException
+   */
   @GetMapping("mqNormal")
   public void mqNormal()
       throws MQBrokerException, RemotingException, InterruptedException, MQClientException {
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
       String msgStr = " num= " + i;
       Message msg = new Message("concurrently-topic", "*", msgStr.getBytes(StandardCharsets.UTF_8));
       defaultMQProducer.send(msg);
