@@ -16,7 +16,7 @@ public abstract class OpenCVLoader {
   public byte[] getModelPath(String modelPath) {
     try {
       InputStream inputStream = OpenCVLoader.class.getResourceAsStream(modelPath);
-      log.error("加载模型路径：{}", modelPath);
+      log.info("加载模型路径：{}", modelPath);
       return IOUtils.toByteArray(inputStream);
     } catch (IOException e) {
       e.printStackTrace();
