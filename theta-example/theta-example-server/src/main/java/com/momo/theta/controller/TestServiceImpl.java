@@ -4,13 +4,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.momo.theta.api.TestService;
 import com.momo.theta.biz.UserBusiness;
 import com.momo.theta.condition.UserCondition;
+import com.momo.theta.constants.Constants;
+import com.momo.theta.dto.UserInfoDTO;
+import com.momo.theta.entity.User;
+import com.momo.theta.exception.TimeoutException;
+import com.momo.theta.extract.PlateExtractor;
+import com.momo.theta.form.UserForm;
+import com.momo.theta.limiter.enums.LimiterMode;
+import com.momo.theta.limiter.service.LimiterService;
 import com.momo.theta.model.ExtParam;
 import com.momo.theta.model.ImageMat;
 import com.momo.theta.model.PlateImage;
-import com.momo.theta.dto.UserInfoDTO;
-import com.momo.theta.entity.User;
-import com.momo.theta.extract.PlateExtractor;
-import com.momo.theta.form.UserForm;
 import com.momo.theta.service.AsynExcelExportUtil;
 import java.io.IOException;
 import java.util.HashMap;
@@ -31,24 +35,62 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class TestServiceImpl implements TestService {
 
-  @Autowired
+
   private UserBusiness userBusiness;
 
-  @Autowired
+
   private AsynExcelExportUtil asynExcelExportUtil;
 
-  @Autowired
+
   private PlateExtractor plateExtractor;
 
+
+  private LimiterService limiterService;
+
+  @Autowired
+  public void setUserBusiness(UserBusiness userBusiness) {
+    this.userBusiness = userBusiness;
+  }
+
+  @Autowired
+  public void setAsynExcelExportUtil(AsynExcelExportUtil asynExcelExportUtil) {
+    this.asynExcelExportUtil = asynExcelExportUtil;
+  }
+
+  @Autowired
+  public void setPlateExtractor(PlateExtractor plateExtractor) {
+    this.plateExtractor = plateExtractor;
+  }
+
+  @Autowired
+  public void setLimiterService(LimiterService limiterService) {
+    this.limiterService = limiterService;
+  }
 
   /**
    * 分页查询
    */
   @GetMapping("query")
   public String query(UserCondition userCondition) {
+    try {
+      //尝试设置一个限流 标识 10限制不能超过10次
+      limiterService.limitTimeOutException(LimiterMode.OVERALL, "PageQuery", 3, 10, 20);
+    } catch (TimeoutException e) {
+      log.error(
+          "限流错误当前限流设置接口为:[{}] 限制次数:[{}] 限制时间:[{}] 限制超时时间:[{}]",
+          "/query", 3,
+          10, 20);
+      throw new TimeoutException(Constants.PROJECT_PREFIX, "4000", "限流错误");
+    }
     return JSONObject.toJSONString(userBusiness.query(userCondition));
   }
 
+  /**
+   * 多线程导出
+   *
+   * @param response
+   * @throws InterruptedException
+   */
   @RequestMapping("/exportUserInfo")
   @ResponseBody
   public void exportUserInfo(HttpServletResponse response) throws InterruptedException {

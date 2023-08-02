@@ -3,7 +3,7 @@ package com.momo.theta.exception;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * BaseExceptioon
+ * BaseException
  */
 public abstract class BaseException extends RuntimeException {
 
@@ -113,11 +113,11 @@ public abstract class BaseException extends RuntimeException {
 
   @Override
   public String toString() {
-    return new StringBuilder().append(
-        "Exception:[" + this.getClass().getName() + "],module:[" + StringUtils.defaultString(module)
-            + "],code:[" + StringUtils.defaultString(code) + "],message:["
-            + StringUtils.defaultString(getMessage()) + "],args:[" + StringUtils.join(args, ",")
-            + "]").toString();
+    return "Exception:[" + this.getClass().getName() + "],module:[" + StringUtils.defaultString(
+        module)
+        + "],code:[" + StringUtils.defaultString(code) + "],message:["
+        + StringUtils.defaultString(getMessage()) + "],args:[" + StringUtils.join(args, ",")
+        + "]";
   }
 
   @Override

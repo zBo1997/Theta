@@ -1,270 +1,276 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <parent>
-        <groupId>io.github.zbo1997</groupId>
-        <artifactId>theta-parent</artifactId>
-        <version>1.0.2</version>
-        <relativePath>theta-parent/pom.xml</relativePath>
-    </parent>
-
-    <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>theta</artifactId>
-    <packaging>pom</packaging>
-    <name>${project.artifactId}</name>
+  <parent>
+    <groupId>io.github.zbo1997</groupId>
+    <artifactId>theta-parent</artifactId>
     <version>1.0.2</version>
-    <modules>
-        <module>theta-segment</module>
-        <module>theta-mq</module>
-        <module>theta-parent</module>
-        <module>theta-utils</module>
-        <module>theta-common</module>
-        <module>theta-core</module>
-        <module>theta-base</module>
-        <module>theta-cache</module>
-        <module>theta-sharding</module>
-        <module>theta-example</module>
-        <module>theta-cv</module>
-        <module>theta-jwt</module>
-    </modules>
+    <relativePath>theta-parent/pom.xml</relativePath>
+  </parent>
 
-    <licenses>
-        <license>
-            <name>Apache 2</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
-        </license>
-    </licenses>
+  <modelVersion>4.0.0</modelVersion>
 
-    <developers>
-        <developer>
-            <id>zhubo</id>
-            <name>momo</name>
-            <email>zhubo6984@icloud.com</email>
-            <roles>
-                <role>Project Manager</role>
-                <role>Architect</role>
-            </roles>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
+  <artifactId>theta</artifactId>
+  <packaging>pom</packaging>
+  <name>${project.artifactId}</name>
+  <version>1.0.2</version>
+  <modules>
+    <module>theta-segment</module>
+    <module>theta-mq</module>
+    <module>theta-parent</module>
+    <module>theta-utils</module>
+    <module>theta-common</module>
+    <module>theta-core</module>
+    <module>theta-base</module>
+    <module>theta-cache</module>
+    <module>theta-sharding</module>
+    <module>theta-example</module>
+    <module>theta-cv</module>
+    <module>theta-jwt</module>
+    <module>theta-common-service</module>
+  </modules>
 
+  <licenses>
+    <license>
+      <name>Apache 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
 
-    <scm>
-        <connection>https://github.com/zBo1997/Theta.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:zBo1997/Theta.git</developerConnection>
-        <url>https://github.com/zBo1997/Theta</url>
-    </scm>
-
-
-    <dependencyManagement>
-        <dependencies>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-example</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-sharding</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-segment</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-mq</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-base</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-cache</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-utils</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-cv</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.github.zbo1997</groupId>
-                <artifactId>theta-jwt</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+  <developers>
+    <developer>
+      <id>zhubo</id>
+      <name>momo</name>
+      <email>zhubo6984@icloud.com</email>
+      <roles>
+        <role>Project Manager</role>
+        <role>Architect</role>
+      </roles>
+      <timezone>+8</timezone>
+    </developer>
+  </developers>
 
 
-        </dependencies>
+  <scm>
+    <connection>https://github.com/zBo1997/Theta.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:zBo1997/Theta.git</developerConnection>
+    <url>https://github.com/zBo1997/Theta</url>
+  </scm>
 
-    </dependencyManagement>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-example</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-sharding</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-segment</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-mq</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-base</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-cache</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-utils</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-cv</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-jwt</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-common-service</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+    </dependencies>
+
+  </dependencyManagement>
 
 
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
 
+    <plugins>
+      <!-- 编译插件 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <!-- 资源插件 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <nonFilteredFileExtensions>
+            <!-- pdf文件后缀名，不被filter打包时编码 -->
+            <nonFilteredFileExtension>onnx</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+      <!-- 一键更新子模块版本号 -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <configuration>
+          <generateBackupPoms>false</generateBackupPoms>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <!-- 打包的 -P参数 -->
+      <id>release</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
         <plugins>
-            <!-- 编译插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <!-- 资源插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <nonFilteredFileExtensions>
-                        <!-- pdf文件后缀名，不被filter打包时编码 -->
-                        <nonFilteredFileExtension>onnx</nonFilteredFileExtension>
-                    </nonFilteredFileExtensions>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>
-            <!-- 一键更新子模块版本号 -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <configuration>
-                    <generateBackupPoms>false</generateBackupPoms>
-                </configuration>
-            </plugin>
+          <!--分割线-->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.5.3</version>
+            <configuration>
+              <autoVersionSubmodules>true</autoVersionSubmodules>
+              <useReleaseProfile>false</useReleaseProfile>
+              <releaseProfiles>release</releaseProfiles>
+              <goals>deploy</goals>
+            </configuration>
+          </plugin>
+
+          <!-- Source -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven-source-plugin.version}</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Javadoc -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven-javadoc-plugin.version}</version>
+          </plugin>
+          <!-- GPG  打包插件-->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+              <execution>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
-    </build>
+      </build>
 
-    <profiles>
-        <profile>
-            <!-- 打包的 -P参数 -->
-            <id>release</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <!--分割线-->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-release-plugin</artifactId>
-                        <version>2.5.3</version>
-                        <configuration>
-                            <autoVersionSubmodules>true</autoVersionSubmodules>
-                            <useReleaseProfile>false</useReleaseProfile>
-                            <releaseProfiles>release</releaseProfiles>
-                            <goals>deploy</goals>
-                        </configuration>
-                    </plugin>
+      <distributionManagement>
+        <snapshotRepository>
+          <!--注意,此id必须与setting.xml中指定的一致-->
+          <id>ossrh</id>
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
 
-                    <!-- Source -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>${maven-source-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- Javadoc -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven-javadoc-plugin.version}</version>
-                    </plugin>
-                    <!-- GPG  打包插件-->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
+        <repository>
+          <id>release</id>
+          <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
 
-            <distributionManagement>
-                <snapshotRepository>
-                    <!--注意,此id必须与setting.xml中指定的一致-->
-                    <id>ossrh</id>
-                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
+      </distributionManagement>
 
-                <repository>
-                    <id>release</id>
-                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-
-            </distributionManagement>
-
-        </profile>
-    </profiles>
+    </profile>
+  </profiles>
 
 </project>
