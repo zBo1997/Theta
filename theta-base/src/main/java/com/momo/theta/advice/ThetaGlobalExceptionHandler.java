@@ -3,7 +3,7 @@ package com.momo.theta.advice;
 
 import com.alibaba.fastjson.JSONObject;
 import com.momo.theta.Result;
-import com.momo.theta.enums.ExceptionCodeEnum;
+import com.momo.theta.exception.BaseException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,8 +33,12 @@ public class ThetaGlobalExceptionHandler {
   @ExceptionHandler(Exception.class)
   public Result<?> handleException(Exception exception) {
     log.error(exception.getMessage(), exception);
+    if  (exception instanceof BaseException){
+      //只返回异常中的一个应该提示的异常信息
+      return Result.fail(exception.getMessage());
+    }
     //只返回异常中的一个
-    return Result.fail(ExceptionCodeEnum.SYSTEM_BUSY);
+    return Result.fail("系统开小差了~");
   }
 
 

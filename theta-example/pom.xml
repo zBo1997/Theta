@@ -85,5 +85,10 @@
       <artifactId>theta-utils</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-common-service</artifactId>
+    </dependency>
+
   </dependencies>
 </project>

@@ -4,8 +4,7 @@ package com.momo.theta.enums;
 /**
  * 异常编码
  *
- * @author zuihou
- * @date 2017-12-13 16:22
+ * @author zhubo
  */
 public enum ExceptionCodeEnum {
 

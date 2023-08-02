@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>theta</artifactId>
+    <groupId>io.github.zbo1997</groupId>
+    <version>1.0.2</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>theta-common-service</artifactId>
+
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-common</artifactId>
+      <version>1.0.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-cache</artifactId>
+      <version>1.0.2</version>
+    </dependency>
+
+  </dependencies>
+
+
+</project>

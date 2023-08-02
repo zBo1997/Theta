@@ -6,8 +6,7 @@ import com.momo.theta.enums.ExceptionCodeEnum;
  * 业务异常
  * 用于在处理业务逻辑时，进行抛出的异常。
  *
- * @author zuihou
- * @version 1.0
+ * @author zhubo
  */
 public class BizException extends BaseException {
 
