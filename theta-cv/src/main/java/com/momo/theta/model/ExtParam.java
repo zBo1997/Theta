@@ -8,6 +8,9 @@ public class ExtParam implements Serializable {
 
   private float iouTh;
 
+  /**
+   * 从结果集选出的最大个数
+   */
   private int topK = 5;
 
   private ExtParam() {

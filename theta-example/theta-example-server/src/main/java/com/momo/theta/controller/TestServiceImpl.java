@@ -136,7 +136,9 @@ public class TestServiceImpl implements TestService {
     ImageMat imageMat = null;
     PlateImage extract = null;
     try {
+      //从流中获取图片
       imageMat = ImageMat.fromInputStream(file.getInputStream());
+      //
       ExtParam extParam = ExtParam.build().setTopK(5);
       extract = plateExtractor.extract(imageMat, extParam, new HashMap<>(2));
     } catch (IOException e) {

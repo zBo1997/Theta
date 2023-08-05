@@ -97,7 +97,7 @@ public class ImageMat implements Serializable {
   }
 
   /**
-   * 读取图片，并转换为Mat
+   * 读取图片，并转换为Mat Mat类型为
    *
    * @param inputStream 图片数据
    * @return
@@ -112,7 +112,7 @@ public class ImageMat implements Serializable {
   }
 
   /**
-   * 读取图片，并转换为Mat
+   * 读取图片，并转换为Mat Mat类中type类型，CV_8UC1，CV_16SC3，CV_64FC4，其中8U表示8位无符号整数，16S表示16位有符号整数，64F表示64位浮点数，C表示通道数，C1表示一个通道的图像，即灰度图，C4表示4个通道的图像。
    *
    * @param image 图片数据
    * @return
