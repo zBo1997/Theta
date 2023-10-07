@@ -1,0 +1,96 @@
+version: "3"
+services:
+  nacos-cluster-1:
+    image: nacos/nacos-server:2.0.3
+    environment:
+      PREFER_HOST_MODE: ip
+      MODE: cluster
+      NACOS_SERVER_IP: 172.19.0.2
+      NACOS_SERVERS: "172.19.0.2:8848 172.19.0.3:8848 172.19.0.4:8848"
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: localhost
+      MYSQL_SERVICE_PORT: 33061
+      MYSQL_SERVICE_DB_NAME: nacos
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: 'Secret2017~'
+      JVM_XMS: 256m
+      JVM_XMX: 512m
+      JVM_XMN: 256m
+    ports:
+      - "8860:8848"
+    restart: always
+    networks:
+      nacos_cluster_nginx:
+        ipv4_address: 172.19.0.2
+
+  nacos-cluster-2:
+    image: nacos/nacos-server:2.0.3
+    environment:
+      PREFER_HOST_MODE: ip
+      MODE: cluster
+      NACOS_SERVER_IP: 172.19.0.3
+      NACOS_SERVERS: "172.19.0.2:8848 172.19.0.3:8848 172.19.0.4:8848"
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: localhost
+      MYSQL_SERVICE_PORT: 33061
+      MYSQL_SERVICE_DB_NAME: nacos
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: 'Secret2017~'
+      JVM_XMS: 256m
+      JVM_XMX: 512m
+      JVM_XMN: 256m
+    ports:
+      - "8862:8848"
+    restart: always
+    networks:
+      nacos_cluster_nginx:
+        ipv4_address: 172.19.0.3
+
+
+  nacos-cluster-3:
+    image: nacos/nacos-server:2.0.3
+    environment:
+      PREFER_HOST_MODE: ip
+      MODE: cluster
+      NACOS_SERVER_IP: 172.19.0.4
+      NACOS_SERVERS: "172.19.0.2:8848 172.19.0.3:8848 172.19.0.4:8848"
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: localhost
+      MYSQL_SERVICE_PORT: 33061
+      MYSQL_SERVICE_DB_NAME: nacos
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: 'Secret2017~'
+      JVM_XMS: 256m
+      JVM_XMX: 512m
+      JVM_XMN: 256m
+    ports:
+      - "8864:8848"
+    restart: always
+    networks:
+      nacos_cluster_nginx:
+        ipv4_address: 172.19.0.4
+
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "8081:80"
+    volumes:
+      - ./data/soft/nacos-cluster/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./data/soft/nacos-cluster/nginx/conf/conf.d:/etc/nginx/conf.d
+      - ./data/soft/nacos-cluster/nginx/log:/var/log/nginx
+      - ./data/soft/nacos-cluster/nginx/html:/usr/share/nginx/html
+    depends_on:
+      - nacos-cluster-1
+      - nacos-cluster-2
+      - nacos-cluster-3
+    networks:
+      nacos_cluster_nginx:
+        ipv4_address: 172.19.0.6
+
+networks:
+  nacos_cluster_nginx:
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
