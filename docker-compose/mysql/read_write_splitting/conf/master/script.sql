@@ -1,4 +1,4 @@
--- 查看主库的转u'tai
+-- 查看主库的bing-log文件名字以及，日志文件的偏移量 在slave节点开启时候设置这个只需要用到
 show master status ;
 
 show variables like '%log_bin%';
