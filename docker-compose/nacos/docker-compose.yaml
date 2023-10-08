@@ -1,96 +1,113 @@
 version: "3"
 services:
-  nacos-cluster-1:
-    image: nacos/nacos-server:2.0.3
+  nacos_server_0:
+    hostname: nacos-server-0
+    image: nacos/nacos-server:2.0.2
+    container_name: nacos-2.0.2-server-0
+    privileged: true
     environment:
-      PREFER_HOST_MODE: ip
-      MODE: cluster
-      NACOS_SERVER_IP: 172.19.0.2
-      NACOS_SERVERS: "172.19.0.2:8848 172.19.0.3:8848 172.19.0.4:8848"
-      SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_SERVICE_HOST: localhost
-      MYSQL_SERVICE_PORT: 33061
-      MYSQL_SERVICE_DB_NAME: nacos
-      MYSQL_SERVICE_USER: root
-      MYSQL_SERVICE_PASSWORD: 'Secret2017~'
-      JVM_XMS: 256m
-      JVM_XMX: 512m
-      JVM_XMN: 256m
+      - TZ=Asia/Shanghai
+      - MODE=cluster
+      - PREFER_HOST_MODE=hostname
+      - NACOS_SERVERS=nacos-server-0:8848 nacos-server-1:8848 nacos-server-2:8848
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=172.172.172.3
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=123456
+      - MYSQL_SERVICE_DB_NAME=nacos
+      - MYSQL_SERVICE_DB_PARAM=characterEncoding=utf8&connectTimeout=10000&socketTimeout=3000&autoReconnect=true&useSSL=false&serverTimezone=UTC
+      - JVM_XMS=128m
+      - JVM_XMX=128m
+      - JVM_XMN=128m
+      - JVM_MS=64m
+      - JVM_MMS=256m
     ports:
-      - "8860:8848"
-    restart: always
+      - "8849:8848"
+      - "9849:9848"
+      - "9850:9849"
     networks:
-      nacos_cluster_nginx:
-        ipv4_address: 172.19.0.2
-
-  nacos-cluster-2:
-    image: nacos/nacos-server:2.0.3
+      caseor_bridge:
+        ipv4_address: 172.172.172.24
+  nacos_server_1:
+    hostname: nacos-server-1
+    image: nacos/nacos-server:2.0.2
+    container_name: nacos-2.0.2-server-1
+    privileged: true
     environment:
-      PREFER_HOST_MODE: ip
-      MODE: cluster
-      NACOS_SERVER_IP: 172.19.0.3
-      NACOS_SERVERS: "172.19.0.2:8848 172.19.0.3:8848 172.19.0.4:8848"
-      SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_SERVICE_HOST: localhost
-      MYSQL_SERVICE_PORT: 33061
-      MYSQL_SERVICE_DB_NAME: nacos
-      MYSQL_SERVICE_USER: root
-      MYSQL_SERVICE_PASSWORD: 'Secret2017~'
-      JVM_XMS: 256m
-      JVM_XMX: 512m
-      JVM_XMN: 256m
+      - TZ=Asia/Shanghai
+      - MODE=cluster
+      - PREFER_HOST_MODE=hostname
+      - NACOS_SERVERS=nacos-server-0:8848 nacos-server-1:8848 nacos-server-2:8848
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=172.172.172.3
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=123456
+      - MYSQL_SERVICE_DB_NAME=nacos
+      - MYSQL_SERVICE_DB_PARAM=characterEncoding=utf8&connectTimeout=10000&socketTimeout=3000&autoReconnect=true&useSSL=false&serverTimezone=UTC
+      - JVM_XMS=128m
+      - JVM_XMX=128m
+      - JVM_XMN=128m
+      - JVM_MS=64m
+      - JVM_MMS=256m
     ports:
-      - "8862:8848"
-    restart: always
+      - "8851:8848"
+      - "9851:9848"
+      - "9852:9849"
     networks:
-      nacos_cluster_nginx:
-        ipv4_address: 172.19.0.3
-
-
-  nacos-cluster-3:
-    image: nacos/nacos-server:2.0.3
+      caseor_bridge:
+        ipv4_address: 172.172.172.25
+  nacos_server_2:
+    hostname: nacos-server-2
+    image: nacos/nacos-server:2.0.2
+    container_name: nacos-2.0.2-server-2
+    privileged: true
     environment:
-      PREFER_HOST_MODE: ip
-      MODE: cluster
-      NACOS_SERVER_IP: 172.19.0.4
-      NACOS_SERVERS: "172.19.0.2:8848 172.19.0.3:8848 172.19.0.4:8848"
-      SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_SERVICE_HOST: localhost
-      MYSQL_SERVICE_PORT: 33061
-      MYSQL_SERVICE_DB_NAME: nacos
-      MYSQL_SERVICE_USER: root
-      MYSQL_SERVICE_PASSWORD: 'Secret2017~'
-      JVM_XMS: 256m
-      JVM_XMX: 512m
-      JVM_XMN: 256m
+      - TZ=Asia/Shanghai
+      - MODE=cluster
+      - PREFER_HOST_MODE=hostname
+      - NACOS_SERVERS=nacos-server-0:8848 nacos-server-1:8848 nacos-server-2:8848
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=172.172.172.3
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=123456
+      - MYSQL_SERVICE_DB_NAME=nacos
+      - MYSQL_SERVICE_DB_PARAM=characterEncoding=utf8&connectTimeout=10000&socketTimeout=3000&autoReconnect=true&useSSL=false&serverTimezone=UTC
+      - JVM_XMS=128m
+      - JVM_XMX=128m
+      - JVM_XMN=128m
+      - JVM_MS=64m
+      - JVM_MMS=256m
     ports:
-      - "8864:8848"
-    restart: always
+      - "8853:8848"
+      - "9853:9848"
+      - "9854:9849"
     networks:
-      nacos_cluster_nginx:
-        ipv4_address: 172.19.0.4
-
-
-  nginx:
-    image: nginx:latest
-    restart: always
-    ports:
-      - "8081:80"
+      caseor_bridge:
+        ipv4_address: 172.172.172.26
+  mysql:
+    hostname: mysql
+    image: mysql:8.0
+    container_name: mysql-8.0
+    privileged: true
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --max_connections=2000 --max_allowed_packet=64M
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=123456
     volumes:
-      - ./data/soft/nacos-cluster/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
-      - ./data/soft/nacos-cluster/nginx/conf/conf.d:/etc/nginx/conf.d
-      - ./data/soft/nacos-cluster/nginx/log:/var/log/nginx
-      - ./data/soft/nacos-cluster/nginx/html:/usr/share/nginx/html
-    depends_on:
-      - nacos-cluster-1
-      - nacos-cluster-2
-      - nacos-cluster-3
+      - ./ysql-8.0-data:/var/lib/mysql:rw
+    ports:
+      - "3306:3306"
     networks:
-      nacos_cluster_nginx:
-        ipv4_address: 172.19.0.6
-
+      caseor_bridge:
+        ipv4_address: 172.172.172.3
 networks:
-  nacos_cluster_nginx:
+  caseor_bridge:
+    driver: bridge
     ipam:
       config:
-        - subnet: 172.19.0.0/16
+        - subnet: 172.172.0.0/16
+volumes:
+  mysql-8.0-data: {}
