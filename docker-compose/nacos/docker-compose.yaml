@@ -1,5 +1,21 @@
 version: "3"
 services:
+  mysql:
+    hostname: mysql
+    image: mysql:8.0
+    container_name: mysql-8.0
+    privileged: true
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --max_connections=2000 --max_allowed_packet=64M
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./ysql-8.0-data:/var/lib/mysql:rw
+    ports:
+      - "3306:3306"
+    networks:
+      caseor_bridge:
+        ipv4_address: 172.172.172.3
   nacos_server_0:
     hostname: nacos-server-0
     image: nacos/nacos-server:2.0.2
@@ -87,22 +103,6 @@ services:
     networks:
       caseor_bridge:
         ipv4_address: 172.172.172.26
-  mysql:
-    hostname: mysql
-    image: mysql:8.0
-    container_name: mysql-8.0
-    privileged: true
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --max_connections=2000 --max_allowed_packet=64M
-    environment:
-      - TZ=Asia/Shanghai
-      - MYSQL_ROOT_PASSWORD=123456
-    volumes:
-      - ./ysql-8.0-data:/var/lib/mysql:rw
-    ports:
-      - "3306:3306"
-    networks:
-      caseor_bridge:
-        ipv4_address: 172.172.172.3
 networks:
   caseor_bridge:
     driver: bridge
