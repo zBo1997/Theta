@@ -2,13 +2,21 @@
 nacos_host: 172.16.32.253:8849,172.16.32.253:9849,172.16.32.253:9850
 nacos_namespace: 59656ea3-0252-4b9c-b9d2-3ae3eab5f631
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: @spring.profiles.name@
   cloud:
     gateway:
     nacos:
-      username: user
-      password: user
+      discovery:
+        server-addr: ${nacos_host}
+        namespace: ${nacos_namespace}
+        metadata:
+          version: @system.version@
       config:
         server-addr: ${nacos_host}
         namespace: ${nacos_namespace}
+  config:
+    import:
+      - optional:nacos:theta-gateway.yaml  # 监听 DEFAULT_GROUP:theta-example-server.yaml
