@@ -33,3 +33,5 @@ nbdist/
 .nb-gradle/
 generatorConfig.xml
 .idea/compiler.xml
+./docker-compose/
+/docker-compose/nacos/ysql-8.0-data/
