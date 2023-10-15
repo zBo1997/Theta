@@ -1,4 +1,4 @@
-package com.momo.theta.utils;
+package com.momo.theta.excel;
 
 import cn.afterturn.easypoi.excel.entity.params.ExcelExportEntity;
 import cn.afterturn.easypoi.excel.entity.params.ExcelForEachParams;
@@ -14,13 +14,11 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 
+
 /**
- * @ClassName: ExcelStyleUtil
- * @Description: Excel样式设置
- * @Author: WM
- * @Date: 2021-07-24 18:23
- **/
-public class ExcelStyleUtil implements IExcelExportStyler {
+ * @author zhubo
+ */
+public class ExcelStyleService implements IExcelExportStyler {
 
   private static final short STRING_FORMAT = (short) BuiltinFormats.getBuiltinFormat("TEXT");
   private static final short FONT_SIZE_TEN = 10;
@@ -34,7 +32,7 @@ public class ExcelStyleUtil implements IExcelExportStyler {
   // 数据行样式
   private CellStyle styles;
 
-  public ExcelStyleUtil(Workbook workbook) {
+  public ExcelStyleService(Workbook workbook) {
     this.init(workbook);
   }
 

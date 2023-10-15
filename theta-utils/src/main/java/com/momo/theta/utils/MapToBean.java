@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.InvalidPropertyException;
@@ -24,10 +22,8 @@ import org.springframework.beans.InvalidPropertyException;
  */
 public class MapToBean {
 
-  private static final Logger logger = LoggerFactory.getLogger(MapToBean.class);
 
   public static void mapToBean(Map<String, Object> paramMap, Object bean) {
-    logger.debug("covert map to bean, map: " + paramMap + ", bean: " + bean);
     try {
       BeanInfo beanInfo = Introspector.getBeanInfo(bean.getClass());
       PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
@@ -127,11 +123,6 @@ public class MapToBean {
       try {
         pd = bw.getPropertyDescriptor(name);
       } catch (InvalidPropertyException e) {
-        if (logger.isWarnEnabled()) {
-          logger.warn(
-              "bean of {} no such property named {},Ensure this beanType is proper use, or the value of input-parameter '{}' is no use",
-              beanType, name, name);
-        }
         continue;
       }
       Object value = paramMap.get(name);

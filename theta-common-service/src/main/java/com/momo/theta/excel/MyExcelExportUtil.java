@@ -1,4 +1,4 @@
-package com.momo.theta.utils;
+package com.momo.theta.excel;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
@@ -66,7 +66,7 @@ public class MyExcelExportUtil {
     // 获取导出参数
     ExportParams exportParams = new ExportParams(title, sheetName, excelType);
     // 设置导出样式
-    exportParams.setStyle(ExcelStyleUtil.class);
+    exportParams.setStyle(ExcelStyleService.class);
     // 设置行高
     exportParams.setHeight((short) 8);
     // 普通导出，输出Workbook流
@@ -85,7 +85,7 @@ public class MyExcelExportUtil {
     // 获取导出模板
     TemplateExportParams params = new TemplateExportParams(path);
     // 设置导出样式
-    params.setStyle(ExcelStyleUtil.class);
+    params.setStyle(ExcelStyleService.class);
     // 输出Workbook流
     return ExcelExportUtil.exportExcel(params, map);
   }
@@ -161,7 +161,7 @@ public class MyExcelExportUtil {
   public static Workbook createExcel(ExportParams entity, Class<?> pojoClass,
       Collection<?> dataSet) {
     Workbook workbook = getWorkbook(entity.getType(), dataSet.size());
-    (new MyExcelExportService()).createSheet(workbook, entity, pojoClass, dataSet);
+    (new MyExcelExportSheetService()).createSheet(workbook, entity, pojoClass, dataSet);
     return workbook;
   }
 
@@ -172,27 +172,4 @@ public class MyExcelExportUtil {
       return size < USE_SXSSF_LIMIT ? new XSSFWorkbook() : new SXSSFWorkbook();
     }
   }
-
-  /**
-   * 导出大数据量
-   *
-   * @param title
-   * @param sheetName
-   * @param object
-   * @param queryParams 大数据量导出，查询数据的参数条件
-   * @param excelType
-   * @return
-   */
-  public Workbook getWorkbook(String title, String sheetName, Class<?> object, Object queryParams,
-      ExcelType excelType) {
-    // 获取导出参数
-    ExportParams exportParams = new ExportParams(title, sheetName, excelType);
-    // 设置导出样式
-    exportParams.setStyle(ExcelStyleUtil.class);
-    // 设置行高
-    exportParams.setHeight((short) 6);
-    // 导出大数据量，输出Workbook流
-    return ExcelExportUtil.exportBigExcel(exportParams, object, excelExportServer, queryParams);
-  }
-
 }

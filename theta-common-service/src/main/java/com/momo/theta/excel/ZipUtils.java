@@ -1,4 +1,4 @@
-package com.momo.theta.utils;
+package com.momo.theta.excel;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @ClassName: ZipUtils
@@ -18,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
  * @Author: WM
  * @Date: 2021-08-06 20:33
  **/
-@Slf4j
 public class ZipUtils {
 
   private static final int BUFFER_SIZE = 2 * 1024;
@@ -33,7 +31,6 @@ public class ZipUtils {
    */
   public static void toZip(String srcDir, OutputStream out, boolean KeepDirStructure)
       throws RuntimeException {
-    log.info("正在压缩文件。。。");
     long start = System.currentTimeMillis();
     ZipOutputStream zos = null;
     try {
@@ -41,7 +38,6 @@ public class ZipUtils {
       File sourceFile = new File(srcDir);
       compress(sourceFile, zos, sourceFile.getName(), KeepDirStructure);
       long end = System.currentTimeMillis();
-      log.info("压缩完成，耗时：" + (end - start) + " ms");
     } catch (Exception e) {
       throw new RuntimeException("zip error from ZipUtils", e);
     } finally {
@@ -79,7 +75,6 @@ public class ZipUtils {
         in.close();
       }
       long end = System.currentTimeMillis();
-      System.out.println("压缩完成，耗时：" + (end - start) + " ms");
     } catch (Exception e) {
       throw new RuntimeException("zip error from ZipUtils", e);
     } finally {
@@ -151,7 +146,6 @@ public class ZipUtils {
    * @param response
    */
   public static void sendZip(HttpServletResponse response, File zipFile) {
-    log.info("正在发送zip包");
     OutputStream outputStream = null;
     BufferedInputStream fis = null;
     try {
@@ -167,7 +161,6 @@ public class ZipUtils {
           "attachment;filename=" + new String(zipFile.getName().getBytes("UTF-8"), "ISO-8859-1"));
       outputStream.write(buffer);
       outputStream.flush();
-      log.info("发送成功。");
     } catch (Exception ex) {
       ex.printStackTrace();
     } finally {

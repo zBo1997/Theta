@@ -1,6 +1,6 @@
 CREATE DATABASE test_performance;
 
-REATE DATABASE theta_sequence;C
+CREATE DATABASE theta_sequence;
 
 CREATE TABLE `sequence_config` (
    `ID` varchar(128) NOT NULL,

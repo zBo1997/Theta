@@ -18,8 +18,8 @@ services:
         ipv4_address: 172.172.172.3
   nacos_server_0:
     hostname: nacos-server-0
-    image: nacos/nacos-server:2.0.2
-    container_name: nacos-2.0.2-server-0
+    image: nacos/nacos-server:2.2.0
+    container_name: nacos-2.2.0-server-0
     privileged: true
     environment:
       - TZ=Asia/Shanghai
@@ -76,8 +76,8 @@ services:
         ipv4_address: 172.172.172.25
   nacos_server_2:
     hostname: nacos-server-2
-    image: nacos/nacos-server:2.0.2
-    container_name: nacos-2.0.2-server-2
+    image: nacos/nacos-server:2.2.0
+    container_name: nacos-2.2.0-server-2
     privileged: true
     environment:
       - TZ=Asia/Shanghai

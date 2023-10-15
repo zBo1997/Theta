@@ -20,6 +20,17 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>io.github.zbo1997</groupId>
+            <artifactId>theta-utils</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.zbo1997</groupId>
+            <artifactId>theta-common</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>

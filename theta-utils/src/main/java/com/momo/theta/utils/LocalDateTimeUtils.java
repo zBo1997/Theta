@@ -8,12 +8,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.Objects;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class LocalDateTimeUtils {
-
-  private static Logger log = LoggerFactory.getLogger(LocalDateTimeUtils.class);
 
   private LocalDateTimeUtils() {
 
@@ -108,7 +105,6 @@ public class LocalDateTimeUtils {
       }
       return checkCycleExceptLocalDate(beginPeriod, endPeriod, cycle, now);
     } catch (Exception e) {
-      log.error("检验当前时间是否在周期范围内异常", e);
       return Boolean.FALSE;
     }
   }
@@ -137,7 +133,6 @@ public class LocalDateTimeUtils {
       }
       return checkCycleExceptLocalDate(beginPeriod, endPeriod, cycle, LocalDate.now());
     } catch (Exception e) {
-      log.error("检验当前时间是否在周期范围内异常", e);
       return Boolean.FALSE;
     }
   }

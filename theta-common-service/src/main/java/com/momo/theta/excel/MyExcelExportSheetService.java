@@ -1,4 +1,4 @@
-package com.momo.theta.utils;
+package com.momo.theta.excel;
 
 import cn.afterturn.easypoi.excel.annotation.ExcelEntity;
 import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
@@ -16,14 +16,9 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
 
-/**
- * @ClassName: MyExcelExportService
- * @Description:
- * @Author: WM
- * @Date: 2021-07-30 16:54
- **/
+
 @Slf4j
-public class MyExcelExportService {
+public class MyExcelExportSheetService {
 
   private static double EXCEL_WIDTH = 25.0D;
 
