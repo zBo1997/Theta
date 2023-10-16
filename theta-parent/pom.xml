@@ -129,6 +129,11 @@
                 <version>${redis.starter.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>2.2.3.RELEASE</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-client</artifactId>
                 <version>${rocketmq.version}</version>
@@ -343,7 +348,6 @@
                 <artifactId>bce-java-sdk</artifactId>
                 <version>${bce-java-sdk.version}</version>
             </dependency>
-
             <!-- 对象转换 -->
             <dependency>
                 <groupId>com.github.dozermapper</groupId>

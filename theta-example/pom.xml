@@ -77,11 +77,6 @@
 
     <dependency>
       <groupId>io.github.zbo1997</groupId>
-      <artifactId>theta-jwt</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>io.github.zbo1997</groupId>
       <artifactId>theta-utils</artifactId>
     </dependency>
 

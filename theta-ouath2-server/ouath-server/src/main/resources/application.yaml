@@ -1,0 +1,32 @@
+## 注意这里需要修改为docker本地地址 localhost 不可用 因为docker 解析不了
+nacos_host: 192.168.1.114:8849,192.168.1.114:9849,192.168.1.114:9850
+nacos_namespace: 59656ea3-0252-4b9c-b9d2-3ae3eab5f631
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: @spring.profiles.name@
+  profiles:
+    active: @spring.profiles.active@
+  #目前不需要指定配置
+  #profiles:
+  #  active: bootstrap-dev
+  sleuth:
+    sampler:
+      probability: 1
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos_host}
+        namespace: ${nacos_namespace}
+        metadata:
+          version: @system.version@
+        # 设置成永久实例
+        ephemeral: false
+      config:
+        server-addr: ${nacos_host}
+        namespace: ${nacos_namespace}
+        file-extension: "yaml"
+  config:
+    import:
+        - optional:nacos:theta-example-server.yaml  # 监听 DEFAULT_GROUP:theta-example-server.yaml

@@ -28,7 +28,7 @@
     <module>theta-sharding</module>
     <module>theta-example</module>
     <module>theta-cv</module>
-    <module>theta-jwt</module>
+    <module>theta-ouath2-server</module>
     <module>theta-common-service</module>
     <module>theta-gateway</module>
   </modules>
@@ -128,7 +128,7 @@
 
       <dependency>
         <groupId>io.github.zbo1997</groupId>
-        <artifactId>theta-jwt</artifactId>
+        <artifactId>theta-ouath2-server</artifactId>
         <version>${project.version}</version>
       </dependency>
 
