@@ -1,5 +1,7 @@
 CREATE DATABASE test_performance;
 
+CREATE DATABASE theta_sequence;
+
 CREATE TABLE `sequence_config` (
    `ID` varchar(128) NOT NULL,
    `CURRENT` bigint(20) NOT NULL,

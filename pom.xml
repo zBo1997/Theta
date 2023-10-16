@@ -30,6 +30,7 @@
     <module>theta-cv</module>
     <module>theta-jwt</module>
     <module>theta-common-service</module>
+    <module>theta-gateway</module>
   </modules>
 
   <licenses>

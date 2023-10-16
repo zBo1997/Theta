@@ -6,27 +6,17 @@ spring:
     allow-bean-definition-overriding: true
   application:
     name: @spring.profiles.name@
-  profiles:
-    active: @spring.profiles.active@
-  #目前不需要指定配置
-  #profiles:
-  #  active: bootstrap-dev
-  sleuth:
-    sampler:
-      probability: 1
   cloud:
+    gateway:
     nacos:
       discovery:
         server-addr: ${nacos_host}
         namespace: ${nacos_namespace}
         metadata:
           version: @system.version@
-        # 设置成永久实例
-        ephemeral: false
       config:
         server-addr: ${nacos_host}
         namespace: ${nacos_namespace}
-        file-extension: "yaml"
   config:
     import:
-        - optional:nacos:theta-example-server.yaml  # 监听 DEFAULT_GROUP:theta-example-server.yaml
+      - optional:nacos:theta-gateway.yaml  # 监听 DEFAULT_GROUP:theta-example-server.yaml

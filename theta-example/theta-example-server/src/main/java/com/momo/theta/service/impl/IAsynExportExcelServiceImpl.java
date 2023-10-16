@@ -7,7 +7,7 @@ import com.momo.theta.condition.UserCondition;
 import com.momo.theta.entity.User;
 import com.momo.theta.service.IAsynExportExcelService;
 import com.momo.theta.service.IUserService;
-import com.momo.theta.utils.MyExcelExportUtil;
+import com.momo.theta.excel.MyExcelExportUtil;
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;

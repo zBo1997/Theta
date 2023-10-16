@@ -1,9 +1,8 @@
 package com.momo.theta.base;
 
-import java.io.IOException;
+import cn.hutool.core.io.IoUtil;
 import java.io.InputStream;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.util.IOUtils;
 
 @Slf4j
 public abstract class OpenCVLoader {
@@ -14,14 +13,9 @@ public abstract class OpenCVLoader {
   }
 
   public byte[] getModelPath(String modelPath) {
-    try {
-      InputStream inputStream = OpenCVLoader.class.getResourceAsStream(modelPath);
-      log.info("加载模型路径：{}", modelPath);
-      return IOUtils.toByteArray(inputStream);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return null;
+    InputStream inputStream = OpenCVLoader.class.getResourceAsStream(modelPath);
+    log.info("加载模型路径：{}", modelPath);
+    return IoUtil.readBytes(inputStream);
   }
 
 }

@@ -1,0 +1,55 @@
+version: "3"
+services:
+  # 设置 mysql_master 服务
+  mysql_master:
+    image: mysql:8.0
+    container_name: mysql-master-8.0
+    environment:
+      - TZ=Asia/Shanghai
+      # 配置mysql root 账号密码
+      - MYSQL_ROOT_PASSWORD=Secret2017~
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --server-id=100
+    ports:
+      - "33061:3306"
+    volumes:
+      - ./conf/master/my.cnf:/etc/mysql/my.cnf
+      - ./data/mysql8_master/data:/var/lib/mysql
+      - ./data/mysql8_master/files:/var/lib/mysql-files
+    restart: "always"
+    networks:
+      - mysql-net
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 100000
+        hard: 200000
+  # 设置 mysql_slave 服务
+  mysql_slave:
+    image: mysql:8.0
+    container_name: mysql-slave-8.0
+    environment:
+      - TZ=Asia/Shanghai
+      # 配置mysql root 账号密码
+      - MYSQL_ROOT_PASSWORD=Secret2017~
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --server-id=200
+    ports:
+      - "33062:3306"
+    volumes:
+      - ./conf/slave/my.cnf:/etc/mysql/my.cnf
+      - ./data/mysql8_slave/data:/var/lib/mysql
+      - ./data/mysql8_slave/files:/var/lib/mysql-files
+    restart: "always"
+    networks:
+      - mysql-net
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 100000
+        hard: 200000
+networks:
+  mysql-net:
+    driver: bridge
