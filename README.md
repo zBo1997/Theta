@@ -116,7 +116,7 @@ D -->|进行生成| F[获取最新无重复的主sequence]
   我们采取的生成策略是不一样的，当然了为了方便拓展，也可以通过实现`Segment`这个接口，com.momo.theta.api.ThetaSegment 来实现不同的一个客制化的生成策略。
 - 下面是一个使用Theta-sequence所需要的一个.yaml文件示例。
 
-  ```yaml
+```yaml
   theta:
     sequence:
       # 是否启用Theta
