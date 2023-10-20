@@ -25,6 +25,11 @@
   <dependencies>
 
     <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-openfeign-core</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>io.github.zbo1997</groupId>
       <artifactId>theta-utils</artifactId>
     </dependency>
@@ -62,6 +67,16 @@
     <dependency>
       <groupId>org.springframework.security.oauth</groupId>
       <artifactId>spring-security-oauth2</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-base</artifactId>
     </dependency>
 
   </dependencies>
