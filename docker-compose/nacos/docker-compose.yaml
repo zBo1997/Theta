@@ -1,4 +1,5 @@
 version: "3"
+# 记得Mysql启动后使用数据库连接软件尝试连接一下（连接可以激活，只有这样集群中的Nacos才可以连接到MySQL）
 services:
   mysql:
     hostname: mysql
