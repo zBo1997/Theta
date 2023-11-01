@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>授权页</title>
+</head>
+<body>
+
+<div>
+    <h3 th:text="${clientId}+' 请求授权，该应用将获取你的以下信息'"></h3>
+    <p>昵称，头像和性别</p>
+    授权后表明你已同意 <a  href="#boot" style="color: #E9686B">服务协议</a>
+    <form method="post" action="/oauth/authorize">
+        <input type="hidden" name="user_oauth_approval" value="true">
+        <div th:each="item:${scopes}">
+            <input type="radio" th:name="'scope.'+${item}" value="true" checked>同意
+            <input type="radio" th:name="'scope.'+${item}" value="false" >拒绝
+        </div>
+        <input name="authorize" value="同意/授权" type="submit">
+    </form>
+
+
+</div>
+</body>
+</html>

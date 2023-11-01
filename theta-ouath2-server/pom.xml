@@ -25,6 +25,11 @@
   <dependencies>
 
     <dependency>
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-openfeign-core</artifactId>
     </dependency>
@@ -42,21 +47,6 @@
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-impl</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-jackson</artifactId>
     </dependency>
 
     <dependency>
@@ -83,6 +73,21 @@
       <groupId>io.github.zbo1997</groupId>
       <artifactId>theta-common-service</artifactId>
       <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-base</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-sharding</artifactId>
     </dependency>
 
 
