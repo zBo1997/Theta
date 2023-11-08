@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @ClassName MybatisPlusConfig
  */
 @Configuration
-@MapperScan("com.momo.theta")
+@MapperScan("com.momo.theta.mapper")
 public class MybatisPlusConfig {
 
 

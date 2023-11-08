@@ -14,6 +14,6 @@ public class UserInfo {
 
     private List<String> permissions;
 
-    private String userName;
+    private String username;
 
 }
