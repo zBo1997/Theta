@@ -35,3 +35,4 @@ generatorConfig.xml
 .idea/compiler.xml
 ./docker-compose/
 /docker-compose/nacos/ysql-8.0-data/
+/docker-compose/mysql/read_write_splitting/
