@@ -31,6 +31,7 @@
     <module>theta-ouath2-server</module>
     <module>theta-common-service</module>
     <module>theta-gateway</module>
+    <module>theta-member</module>
   </modules>
 
   <licenses>

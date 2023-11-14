@@ -1,20 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>theta</artifactId>
     <groupId>io.github.zbo1997</groupId>
+    <artifactId>theta</artifactId>
     <version>1.0.2</version>
   </parent>
 
-  <modelVersion>4.0.0</modelVersion>
-
-  <artifactId>theta-ouath2-server</artifactId>
+  <artifactId>theta-member</artifactId>
   <packaging>pom</packaging>
+
+  <name>theta-member</name>
+  <url>http://maven.apache.org</url>
+
   <modules>
-    <module>ouath-api</module>
-    <module>ouath-server</module>
+    <module>theta-member-api</module>
+    <module>theta-member-server</module>
   </modules>
 
   <properties>
