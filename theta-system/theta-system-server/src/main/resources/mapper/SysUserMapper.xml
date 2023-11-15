@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.momo.theta.mapper.SysUserMapper">
+
+  <select id="getUserAuthInfo" resultType="com.momo.theta.dto.UserAuthInfo" parameterType="java.lang.String">
+    SELECT
+      t1.id userId,
+      t1.username,
+      t1.nickname,
+      t1.PASSWORD,
+      t1.STATUS,
+      t1.dept_id deptId,
+      t3.CODE roleCode
+    FROM
+      sys_user t1
+    WHERE
+      t1.username = #{username} and t1.deleted=0
+  </select>
+</mapper>

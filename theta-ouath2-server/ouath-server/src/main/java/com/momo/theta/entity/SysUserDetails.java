@@ -1,6 +1,8 @@
 package com.momo.theta.entity;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.momo.theta.dto.UserAuthInfo;
+import com.momo.theta.enums.PasswordEncoderTypeEnum;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,8 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 /**
  * 系统用户认证信息
  *
- * @author <a href="mailto:xianrui0365@163.com">haoxr</a>
- * @date 2021/9/27
  */
 @Data
 public class SysUserDetails implements UserDetails {
@@ -47,20 +47,20 @@ public class SysUserDetails implements UserDetails {
     /**
      * 系统管理用户
      */
-   // public SysUserDetails(UserAuthInfo user) {
-   //     this.setUserId(user.getUserId());
-   //     this.setUsername(user.getUsername());
-   //     this.setDeptId(user.getDeptId());
-   //     this.setDataScope(user.getDataScope());
-   //     this.setPassword(PasswordEncoderTypeEnum.BCRYPT.getPrefix() + user.getPassword());
-   //     this.setEnabled(StatusEnum.ENABLE.getValue().equals(user.getStatus()));
-   //     if (CollectionUtil.isNotEmpty(user.getRoles())) {
-   //         authorities = user.getRoles().stream()
-   //                 .map(SimpleGrantedAuthority::new)
-   //                 .collect(Collectors.toSet());
-   //     }
-   //     this.setPerms(user.getPerms());
-   // }
+   public SysUserDetails(UserAuthInfo user) {
+       this.setUserId(user.getUserId());
+       this.setUsername(user.getUsername());
+       this.setDeptId(user.getDeptId());
+       this.setDataScope(user.getDataScope());
+       this.setPassword(PasswordEncoderTypeEnum.BCRYPT.getPrefix() + user.getPassword());
+       this.setEnabled("ENABLE".equals(user.getStatus()));
+       if (CollectionUtil.isNotEmpty(user.getRoles())) {
+           authorities = user.getRoles().stream()
+                   .map(SimpleGrantedAuthority::new)
+                   .collect(Collectors.toSet());
+       }
+       this.setPerms(user.getPerms());
+   }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -61,6 +61,11 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
+          <dependency>
+            <groupId>io.github.zbo1997</groupId>
+            <artifactId>theta-system-api</artifactId>
+          </dependency>
+
     </dependencies>
 
 
@@ -72,6 +77,23 @@
                 <version>2.6.8</version>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.jks</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.jks</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>
