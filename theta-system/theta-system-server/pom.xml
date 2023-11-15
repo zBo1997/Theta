@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.zbo1997</groupId>
+    <artifactId>theta-system</artifactId>
+    <version>1.0.2</version>
+  </parent>
+
+  <artifactId>theta-system-server</artifactId>
+  <packaging>jar</packaging>
+
+  <name>theta-system-server</name>
+
+
+  <properties>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+    <system.version>1.0.0</system.version>
+  </properties>
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-system-api</artifactId>
+    </dependency>
+
+  </dependencies>
+</project>

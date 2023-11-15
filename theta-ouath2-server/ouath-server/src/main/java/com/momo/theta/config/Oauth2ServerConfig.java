@@ -6,6 +6,7 @@ import com.momo.theta.Result;
 import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+import org.springframework.security.    oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
@@ -36,12 +37,7 @@ import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider;
 
-/**
- * 授权服务器配置
- *
- * @author haoxr
- * @date 2021/10/29
- */
+
 @Configuration
 @EnableAuthorizationServer
 @RequiredArgsConstructor
@@ -49,7 +45,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     private final AuthenticationManager authenticationManager;
     private final SysUserDetailsServiceImpl sysUserDetailsService;
-    private final MemberUserDetailsServiceImpl memberUserDetailsService;
     private final StringRedisTemplate stringRedisTemplate;
     private final DataSource dataSource;
 
@@ -79,7 +74,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints.tokenStore(jwtTokenStore());
 
         // 获取原有默认授权模式(授权码模式、密码模式、客户端模式、简化模式)的授权者
-        List<TokenGranter> granterList = new ArrayList<>(Arrays.asList(endpoints.getTokenGranter()));
+        List<TokenGranter> granterList = new ArrayList<>(Collections.singletonList(endpoints.getTokenGranter()));
 
         // 添加验证码授权模式授权者
 //        granterList.add(new CaptchaTokenGranter(endpoints.getTokenServices(), endpoints.getClientDetailsService(),

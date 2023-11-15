@@ -61,6 +61,11 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-system-api</artifactId>
+      </dependency>
+
     </dependencies>
 
 
