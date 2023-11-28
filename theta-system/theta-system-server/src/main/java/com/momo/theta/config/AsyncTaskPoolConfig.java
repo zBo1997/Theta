@@ -7,10 +7,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
- * @ClassName: AsyncTaskPoolConfig
- * @Description:
- * @Author: momo
- * @Date: 2023-04-09 19:23
+ * @author  momo
+ * @since 2023-04-09 19:23
  **/
 @Configuration
 @EnableAsync
