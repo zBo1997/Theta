@@ -56,7 +56,7 @@ public class JpaConfiguration {
 
         @Override
         public String getValidationQuery() {
-            log.info("Theta检查数据是否可用");
+            log.info("Theta检查数据库连接是否可用");
             // 该字符串是适用于MySQL的简单查询语句,用于检查检查,其他数据库可能需要更换
             return "select 1";
         }
