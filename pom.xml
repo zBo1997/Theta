@@ -32,6 +32,7 @@
     <module>theta-common-service</module>
     <module>theta-gateway</module>
     <module>theta-system</module>
+    <module>theta-commnon-security</module>
   </modules>
 
   <licenses>
