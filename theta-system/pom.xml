@@ -71,6 +71,11 @@
       <artifactId>theta-sharding</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-commnon-security</artifactId>
+    </dependency>
+
   </dependencies>
 
 </project>

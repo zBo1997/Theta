@@ -23,9 +23,35 @@
   <dependencies>
 
     <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-openfeign-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-oauth2</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-oauth2-jose</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>io.github.zbo1997</groupId>
       <artifactId>theta-system-api</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>io.github.zbo1997</groupId>
+      <artifactId>theta-commnon-security</artifactId>
+    </dependency>
+
 
   </dependencies>
 </project>

@@ -146,6 +146,12 @@
         <version>${project.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>io.github.zbo1997</groupId>
+        <artifactId>theta-commnon-security</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
     </dependencies>
 
   </dependencyManagement>
