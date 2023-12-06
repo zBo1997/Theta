@@ -11,10 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 /**
  * 系统用户认证信息
- *
  */
 @Data
 public class SysUserDetails implements UserDetails {
@@ -47,20 +45,18 @@ public class SysUserDetails implements UserDetails {
     /**
      * 系统管理用户
      */
-   public SysUserDetails(UserAuthInfo user) {
-       this.setUserId(user.getUserId());
-       this.setUsername(user.getUsername());
-       this.setDeptId(user.getDeptId());
-       this.setDataScope(user.getDataScope());
-       this.setPassword(PasswordEncoderTypeEnum.BCRYPT.getPrefix() + user.getPassword());
-       this.setEnabled("ENABLE".equals(user.getStatus()));
-       if (CollectionUtil.isNotEmpty(user.getRoles())) {
-           authorities = user.getRoles().stream()
-                   .map(SimpleGrantedAuthority::new)
-                   .collect(Collectors.toSet());
-       }
-       this.setPerms(user.getPerms());
-   }
+    public SysUserDetails(UserAuthInfo user) {
+        this.setUserId(user.getUserId());
+        this.setUsername(user.getUsername());
+        this.setDeptId(user.getDeptId());
+        this.setDataScope(user.getDataScope());
+        this.setPassword(PasswordEncoderTypeEnum.NOOP.getPrefix() + user.getPassword());
+        this.setEnabled("ENABLE".equals(user.getStatus()));
+        if (CollectionUtil.isNotEmpty(user.getRoles())) {
+            authorities = user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
+        }
+        this.setPerms(user.getPerms());
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
