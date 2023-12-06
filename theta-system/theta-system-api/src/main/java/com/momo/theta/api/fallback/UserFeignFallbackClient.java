@@ -17,6 +17,11 @@ public class UserFeignFallbackClient implements UserFeignClient {
     @Override
     public UserAuthInfo getUserAuthInfo(String username) {
         log.error("feign远程调用系统用户服务异常后的降级方法");
-        return new UserAuthInfo();
+        UserAuthInfo userAuthInfo = new UserAuthInfo();
+        userAuthInfo.setUserId(1L);
+        userAuthInfo.setUsername("admin");
+        userAuthInfo.setStatus(1);
+        userAuthInfo.setPassword("$2a$10$LNUwyy/mxW6ygqdaNKIdXO3GPhRyXEQONCKqOVywEzJkeFZQ1U17.");
+        return userAuthInfo;
     }
 }

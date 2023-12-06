@@ -25,7 +25,7 @@ public class SysUserDetailsServiceImpl implements UserDetailsService {
         Assert.isTrue(userAuthInfo!= null,
             "用户不存在");
 
-        if (!"ENABLE".equals(userAuthInfo.getStatus()) ) {
+        if (Integer.valueOf(0).equals(userAuthInfo.getStatus()) ) {
             throw new DisabledException("该账户已被禁用!");
         }
 
