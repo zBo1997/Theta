@@ -50,7 +50,7 @@ public class SysUserDetails implements UserDetails {
         this.setUsername(user.getUsername());
         this.setDeptId(user.getDeptId());
         this.setDataScope(user.getDataScope());
-        this.setPassword(PasswordEncoderTypeEnum.NOOP.getPrefix() + user.getPassword());
+        this.setPassword(user.getPassword());
         this.setEnabled(Integer.valueOf(1).equals(user.getStatus()));
         if (CollectionUtil.isNotEmpty(user.getRoles())) {
             authorities = user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet());

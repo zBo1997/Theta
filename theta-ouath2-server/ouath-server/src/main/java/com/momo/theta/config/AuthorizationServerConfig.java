@@ -48,10 +48,6 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 @RequiredArgsConstructor
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("123456"));
-    }
-
     private final AuthenticationManager authenticationManager;
     private final SysUserDetailsServiceImpl sysUserDetailsService;
     private final StringRedisTemplate stringRedisTemplate;

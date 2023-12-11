@@ -1,8 +1,8 @@
 package com.momo.theta.service.impl;
 
-import com.momo.theta.api.UserFeignClient;
 import com.momo.theta.dto.UserAuthInfo;
 import com.momo.theta.entity.SysUserDetails;
+import com.momo.theta.feign.SystemUserFeignApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.DisabledException;
@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
 @RequiredArgsConstructor
 public class SysUserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserFeignClient userFeignClient;
+    private final SystemUserFeignApi userFeignClient;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
